@@ -321,8 +321,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed logs should be maintained for system administrators to troubleshoot issues effectively.
-5. Application architecture should be scalable to accommodate future growth in terms of users and data volume, without compromising performance.
-6. Automated backups of critical data should be performed, and there should be a documented and tested procedure for data recovery in case of system failures or data loss.
+5.  Application architecture should be scalable to accommodate future growth in terms of users and data volume, without compromising performance.
+6.  Automated backups of critical data should be performed, and there should be a documented and tested procedure for data recovery in case of system failures or data loss.
 
 ### Glossary
 
