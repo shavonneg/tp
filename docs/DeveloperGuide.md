@@ -323,6 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed logs should be maintained for system administrators to troubleshoot issues effectively.
 5.  Application architecture should be scalable to accommodate future growth in terms of users and data volume, without compromising performance.
 6.  Automated backups of critical data should be performed, and there should be a documented and tested procedure for data recovery in case of system failures or data loss.
+7.  Application should respond to user inputs within a defined time frame (e.g., < 1 second) for a seamless user experience.
 
 ### Glossary
 
