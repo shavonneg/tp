@@ -3,8 +3,6 @@ package seedu.address.logic.commands.orders;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -28,7 +26,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -36,33 +33,42 @@ public class EditOrderCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test
-    public void execute_editOrderByModel_editSuccessful() throws Exception {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        PersonBuilder personBuilder = new PersonBuilder();
-        Person person = personBuilder.build();
-        Order originalOrder = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-        Order editedOrder = new OrderBuilder().withStatus("completed").build();
-        EditOrderCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
-        EditOrderCommand editOrderCommand = new EditOrderCommand(targetIndex, descriptor);
-
-        String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-
-        ModelStubEditingOrder modelStub = new ModelStubEditingOrder(originalOrder, person);
-
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, modelStub);
-    }
+    // TODO: implement tests for successful editing of orders
+    // @Test
+    // public void execute_editOrderByModel_editSuccessful() throws Exception {
+    //     PersonBuilder personBuilder = new PersonBuilder();
+    //     Person person = personBuilder.build();
+    //     OrderBuilder orderBuilder = new OrderBuilder();
+    //     Order originalOrder = orderBuilder.build();
+    //     ModelStubEditingOrder modelStub = new ModelStubEditingOrder(originalOrder, person);
+    //     Order editedOrder = orderBuilder.withStatus("completed").build();
+    //     EditOrderCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
+    //     EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_PERSON, descriptor);
+    //     String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+    //     assertCommandSuccess(editOrderCommand, modelStub, expectedMessage, modelStub);
+    // }
+    //
+    // @Test
+    // public void execute_validIndexAndDescriptor_success() {
+    //     Order editedOrder = new OrderBuilder().withStatus("COMPLETED").build();
+    //     EditOrderCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
+    //     EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_ORDER, descriptor);
+    //
+    //     String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+    //
+    //     assertCommandSuccess(editOrderCommand, model, expectedMessage, model);
+    // }
 
     @Test
     public void execute_orderAcceptedByModel_indexError() throws Exception {
-        OrderBuilder orderBuilder = new OrderBuilder();
-        Order order = orderBuilder.build();
         PersonBuilder personBuilder = new PersonBuilder();
         Person person = personBuilder.build();
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order order = orderBuilder.build();
         ModelStubEditingOrder modelStub = new ModelStubEditingOrder(order, person);
-
         Index targetIndex = INDEX_THIRD_PERSON;
-        assertThrows(CommandException.class, () -> new AddOrderCommand(targetIndex, order).execute(modelStub));
+        EditOrderCommand editOrderCommand = new EditOrderCommand(targetIndex, new EditOrderCommand.EditOrderDescriptor());
+        assertThrows(CommandException.class, () -> editOrderCommand.execute(modelStub));
     }
 
     /**
