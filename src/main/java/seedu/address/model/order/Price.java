@@ -3,6 +3,9 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.DecimalFormat;
+
+
 /**
  * Represents the price of items for the order in the order book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
@@ -10,8 +13,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price must be a positive number";
-    public final int value;
+            "Price must be a positive number and can only include up to two decimal places";
+    public final double value;
 
     /**
      * Constructs a {@code Price}.
@@ -21,7 +24,7 @@ public class Price {
     public Price(String value) {
         requireNonNull(value);
         checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(value);
+        this.value = truncateToTwoDecimalPlaces(Double.parseDouble(value));
     }
 
     /**
@@ -31,7 +34,18 @@ public class Price {
      * @return true if the price is valid
      */
     public static boolean isValidPrice(String test) {
-        return Integer.parseInt(test) > 0;
+        return Double.parseDouble(test) > 0;
+    }
+
+    /**
+     * Truncates a double value to two decimal places.
+     *
+     * @param value the double value to be truncated
+     * @return the truncated value
+     */
+    private double truncateToTwoDecimalPlaces(double value) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(value));
     }
 
     @Override
@@ -55,6 +69,6 @@ public class Price {
 
     @Override
     public int hashCode() {
-        return value;
+        return Double.hashCode(value);
     }
 }

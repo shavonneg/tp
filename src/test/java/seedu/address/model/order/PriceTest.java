@@ -37,18 +37,19 @@ class PriceTest {
     @Test
     void isValidPrice() {
 
-        assertThrows(NumberFormatException.class, () -> Price.isValidPrice(null));
+        assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
         assertThrows(NumberFormatException.class, () -> Price.isValidPrice(""));
 
         assertFalse(Price.isValidPrice("-1"));
 
         assertThrows(NumberFormatException.class, () -> Price.isValidPrice(" "));
         assertFalse(Price.isValidPrice("0"));
-        assertThrows(NumberFormatException.class, () -> Price.isValidPrice("1.5"));
-        assertThrows(NumberFormatException.class, () -> Price.isValidPrice("1.0"));
 
         assertTrue(Price.isValidPrice("1"));
         assertTrue(Price.isValidPrice("100"));
+        assertTrue(Price.isValidPrice("1.5"));
+        assertTrue(Price.isValidPrice("1.55"));
+        assertTrue(Price.isValidPrice("1.500"));
     }
 
     @Test
