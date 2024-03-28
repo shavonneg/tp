@@ -42,7 +42,7 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label amount;
+    private Label price;
     @FXML
     private Label remark;
     @FXML
@@ -62,7 +62,7 @@ public class OrderCard extends UiPart<Region> {
         orderCustomerName.setText("Order Customer: " + person.getName().toString());
         orderDate.setText("Date: " + order.getOrderDate().toString());
         deadline.setText("Deadline: " + order.getDeadline().toString());
-        amount.setText("Price: " + order.getAmount().toString());
+        price.setText("Price: " + order.getPrice().toString());
         remark.setText("Description: " + order.getRemark().toString());
         status.setText("Status: " + order.getStatus().toString());
     }
