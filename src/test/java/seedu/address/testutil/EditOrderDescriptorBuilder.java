@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 
@@ -30,7 +30,7 @@ public class EditOrderDescriptorBuilder {
         descriptor = new EditOrderDescriptor();
         descriptor.setOrderDate(order.getOrderDate());
         descriptor.setDeadline(order.getDeadline());
-        descriptor.setAmount(order.getAmount());
+        descriptor.setPrice(order.getPrice());
         descriptor.setRemark(order.getRemark());
         descriptor.setStatus(order.getStatus());
     }
@@ -52,10 +52,10 @@ public class EditOrderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Amount} of the {@code EditOrderDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditOrderDescriptor} that we are building.
      */
-    public EditOrderDescriptorBuilder withAmount(String amount) {
-        descriptor.setAmount(new Amount(amount));
+    public EditOrderDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
         return this;
     }
 

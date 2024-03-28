@@ -43,7 +43,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
             editOrderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_BY).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            editOrderDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_PRICE).get()));
+            editOrderDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_DETAILS).isPresent()) {
             editOrderDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_DETAILS).get()));

@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Address;
@@ -161,18 +161,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String amount} into a {@code amount}.
+     * Parses a {@code String price} into a {@code price}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code amount} is invalid.
+     * @throws ParseException if the given {@code price} is invalid.
      */
-    public static Amount parseAmount(String amount) throws ParseException {
-        requireNonNull(amount);
-        String trimmedAmount = amount.trim();
-        if (!Amount.isValidAmount(trimmedAmount)) {
-            throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         } else {
-            return new Amount(trimmedAmount);
+            return new Price(trimmedPrice);
         }
     }
 

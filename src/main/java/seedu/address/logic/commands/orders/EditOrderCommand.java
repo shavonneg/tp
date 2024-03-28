@@ -22,10 +22,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Person;
@@ -43,7 +43,7 @@ public class EditOrderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + "DATE] "
             + "[" + PREFIX_BY + "DEADLINE] "
-            + "[" + PREFIX_PRICE + "AMOUNT] "
+            + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_DETAILS + "REMARK] "
             + "[" + PREFIX_STATUS + "STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
@@ -75,7 +75,7 @@ public class EditOrderCommand extends Command {
 
         OrderDate updatedOrderDate = editOrderDescriptor.getOrderDate().orElse(orderToEdit.getOrderDate());
         Deadline updatedDeadline = editOrderDescriptor.getDeadline().orElse(orderToEdit.getDeadline());
-        Amount updatedAmount = editOrderDescriptor.getAmount().orElse(orderToEdit.getAmount());
+        Price updatedPrice = editOrderDescriptor.getPrice().orElse(orderToEdit.getPrice());
         Remark updatedRemark = editOrderDescriptor.getRemark().orElse(orderToEdit.getRemark());
         Status updatedStatus = editOrderDescriptor.getStatus().orElse(orderToEdit.getStatus());
 
@@ -84,7 +84,7 @@ public class EditOrderCommand extends Command {
             updatedStatus = new Status(Status.StatusEnum.COMPLETED.name());
         }
 
-        return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedAmount, updatedRemark, updatedStatus);
+        return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedPrice, updatedRemark, updatedStatus);
     }
 
     @Override
@@ -157,7 +157,7 @@ public class EditOrderCommand extends Command {
     public static class EditOrderDescriptor {
         private OrderDate orderDate;
         private Deadline deadline;
-        private Amount amount;
+        private Price price;
         private Remark remark;
         private Status status;
 
@@ -171,7 +171,7 @@ public class EditOrderCommand extends Command {
         public EditOrderDescriptor(seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor toCopy) {
             setOrderDate(toCopy.orderDate);
             setDeadline(toCopy.deadline);
-            setAmount(toCopy.amount);
+            setPrice(toCopy.price);
             setRemark(toCopy.remark);
             setStatus(toCopy.status);
         }
@@ -180,7 +180,7 @@ public class EditOrderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(orderDate, deadline, amount, remark, status);
+            return CollectionUtil.isAnyNonNull(orderDate, deadline, price, remark, status);
         }
 
         public Optional<OrderDate> getOrderDate() {
@@ -199,12 +199,12 @@ public class EditOrderCommand extends Command {
             this.deadline = deadline;
         }
 
-        public Optional<Amount> getAmount() {
-            return Optional.ofNullable(amount);
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
         }
 
-        public void setAmount(Amount amount) {
-            this.amount = amount;
+        public void setPrice(Price price) {
+            this.price = price;
         }
 
         public Optional<Remark> getRemark() {
@@ -237,7 +237,7 @@ public class EditOrderCommand extends Command {
             seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor otherEditOrderDescriptor = (seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor) other;
             return Objects.equals(orderDate, otherEditOrderDescriptor.orderDate)
                     && Objects.equals(deadline, otherEditOrderDescriptor.deadline)
-                    && Objects.equals(amount, otherEditOrderDescriptor.amount)
+                    && Objects.equals(price, otherEditOrderDescriptor.price)
                     && Objects.equals(remark, otherEditOrderDescriptor.remark)
                     && Objects.equals(status, otherEditOrderDescriptor.status);
         }
@@ -247,7 +247,7 @@ public class EditOrderCommand extends Command {
             return new ToStringBuilder(this)
                     .add("orderDate", orderDate)
                     .add("deadline", deadline)
-                    .add("amount", amount)
+                    .add("price", price)
                     .add("remark", remark)
                     .add("status", status)
                     .toString();
