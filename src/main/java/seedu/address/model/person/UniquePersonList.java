@@ -108,7 +108,6 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersonAndEditOrder(Person person, Person editedPerson, Order orderToDelete, Order orderToAdd) {
         requireAllNonNull(person, orderToDelete, orderToAdd);
         setPerson(person, editedPerson);
-        
         int index = internalOrderList.indexOf(orderToDelete);
         internalOrderList.set(index, orderToAdd);
         internalOrderList.remove(orderToDelete);
