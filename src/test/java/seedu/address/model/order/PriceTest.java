@@ -49,6 +49,7 @@ class PriceTest {
         assertTrue(Price.isValidPrice("100"));
         assertTrue(Price.isValidPrice("1.5"));
         assertTrue(Price.isValidPrice("1.55"));
+        assertTrue(Price.isValidPrice("1.500"));
     }
 
     @Test
