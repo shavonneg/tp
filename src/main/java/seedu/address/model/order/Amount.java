@@ -11,7 +11,7 @@ public class Amount {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Amount must be a positive number";
-    public final int value;
+    public final double value;
 
     /**
      * Constructs a {@code Amount}.
@@ -21,7 +21,7 @@ public class Amount {
     public Amount(String value) {
         requireNonNull(value);
         checkArgument(isValidAmount(value), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(value);
+        this.value = Double.parseDouble(value);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Amount {
      * @return true if the amount is valid
      */
     public static boolean isValidAmount(String test) {
-        return Integer.parseInt(test) > 0;
+        return Double.parseDouble(test) > 0;
     }
 
     @Override
@@ -55,6 +55,6 @@ public class Amount {
 
     @Override
     public int hashCode() {
-        return value;
+        return Double.hashCode(value);
     }
 }
