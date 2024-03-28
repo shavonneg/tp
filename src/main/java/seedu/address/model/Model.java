@@ -91,6 +91,8 @@ public interface Model {
 
     void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order);
 
+    void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder);
+
     /**
      * Returns an unmodifiable view of the filtered person list.
      */

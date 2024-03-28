@@ -77,6 +77,18 @@ public class UniquePersonList implements Iterable<Person> {
      *
      * @param target       person to be removed.
      * @param editedPerson person to be added.
+     * @param order        order to be added.
+     */
+    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
+        setPerson(target, editedPerson);
+        internalOrderList.add(order);
+    }
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param target       person to be removed.
+     * @param editedPerson person to be added.
      * @param order        order to be removed.
      */
     public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
@@ -84,17 +96,21 @@ public class UniquePersonList implements Iterable<Person> {
         internalOrderList.remove(order);
     }
 
-
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      *
-     * @param target       person to be removed.
-     * @param editedPerson person to be added.
-     * @param order        order to be added.
+     * @param person        person to be removed.
+     *                      // * @param editedPerson  person to be added.
+     * @param orderToDelete order to be removed.
+     * @param orderToAdd    order to be added.
      */
-    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
-        setPerson(target, editedPerson);
-        internalOrderList.add(order);
+
+    public void setPersonAndEditOrder(Person person, Person editedPerson, Order orderToDelete, Order orderToAdd) {
+        requireAllNonNull(person, orderToDelete, orderToAdd);
+        setPerson(person, editedPerson);
+
+        internalOrderList.remove(orderToDelete);
+        internalOrderList.add(orderToAdd);
     }
 
     /**
