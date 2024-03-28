@@ -93,7 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPersonAndAddOrder(target, editedPerson, order);
     }
 
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
         requireNonNull(editedPerson);
         persons.setPersonAndDeleteOrder(target, editedPerson, order);
     }

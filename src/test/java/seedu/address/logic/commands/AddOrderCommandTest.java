@@ -126,7 +126,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
             throw new AssertionError("This method should not be called.");
         }
 

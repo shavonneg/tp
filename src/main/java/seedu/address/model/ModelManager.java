@@ -125,7 +125,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPersonAndDeleteOrder(target, editedPerson, order);

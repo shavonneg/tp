@@ -76,13 +76,13 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      *
-     * @param target       person to be removed.
-     * @param editedPerson person to be added.
-     * @param order        order to be removed.
+     * @param target            person to be removed.
+     * @param editedPerson      person to be added.
+     * @param personOrderPair   pair to be removed.
      */
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> personOrderPair) {
         setPerson(target, editedPerson);
-        internalOrderList.remove(order);
+        internalOrderList.remove(personOrderPair);
     }
 
 
@@ -142,6 +142,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Pair<Person, Order>> asUnmodifiableObservableListOrders() {
+        internalOrderList.clear();
         for (Person person : internalList) {
             List<Order> orderSet = person.getOrdersList();
             for (Order order : orderSet) {
