@@ -36,7 +36,7 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label orderId;
     @FXML
-    private Label orderCustomerName;
+    private Label orderClientName;
     @FXML
     private Label orderDate;
     @FXML
@@ -59,7 +59,7 @@ public class OrderCard extends UiPart<Region> {
         this.order = personOrderPair.getSecond();
         id.setText(displayedIndex + ". ");
         orderId.setText("OrderId: " + order.getOrderId().toString());
-        orderCustomerName.setText("Order Customer: " + person.getName().toString());
+        orderClientName.setText("Order Customer: " + person.getName().toString());
         orderDate.setText("Date: " + order.getOrderDate().toString());
         deadline.setText("Deadline: " + order.getDeadline().toString());
         price.setText("Price: " + order.getPrice().toString());
