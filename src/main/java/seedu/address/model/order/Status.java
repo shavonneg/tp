@@ -38,6 +38,13 @@ public class Status {
                 .anyMatch(status -> status.name().equalsIgnoreCase(test));
     }
 
+    /**
+     * Returns the status enum value.
+     */
+    public StatusEnum getStatusEnum() {
+        return status;
+    }
+
     @Override
     public String toString() {
         return status.name();

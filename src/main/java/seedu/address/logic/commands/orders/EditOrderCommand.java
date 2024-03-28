@@ -79,25 +79,13 @@ public class EditOrderCommand extends Command {
         Remark updatedRemark = editOrderDescriptor.getRemark().orElse(orderToEdit.getRemark());
         Status updatedStatus = editOrderDescriptor.getStatus().orElse(orderToEdit.getStatus());
 
+        if (orderToEdit.getStatus().getStatusEnum() == Status.StatusEnum.PENDING &&
+                updatedStatus.getStatusEnum() == Status.StatusEnum.COMPLETED) {
+            updatedStatus = new Status(Status.StatusEnum.COMPLETED.name());
+        }
+
         return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedAmount, updatedRemark, updatedStatus);
     }
-    //
-    // @Override
-    // public CommandResult execute(Model model) throws CommandException {
-    //     requireNonNull(model);
-    //     List<Order> lastShownOrderList = model.getFilteredOrderList();
-    //
-    //     if (targetIndex.getZeroBased() >= lastShownOrderList.size()) {
-    //         throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-    //     }
-    //
-    //     Order orderToEdit = lastShownOrderList.get(targetIndex.getZeroBased());
-    //     Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
-    //
-    //     model.setEditedOrder(orderToEdit, editedOrder);
-    //     model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-    //     return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, Messages.format(editedOrder)));
-    // }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
