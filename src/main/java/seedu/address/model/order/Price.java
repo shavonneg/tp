@@ -3,7 +3,6 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.text.DecimalFormat;
 
 /**
  * Represents the price of items for the order in the order book.
