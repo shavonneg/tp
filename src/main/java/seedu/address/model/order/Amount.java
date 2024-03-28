@@ -3,6 +3,8 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents the amount of items for the order in the order book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
@@ -21,7 +23,7 @@ public class Amount {
     public Amount(String value) {
         requireNonNull(value);
         checkArgument(isValidAmount(value), MESSAGE_CONSTRAINTS);
-        this.value = Double.parseDouble(value);
+        this.value = truncateToTwoDecimalPlaces(Double.parseDouble(value));
     }
 
     /**
@@ -32,6 +34,17 @@ public class Amount {
      */
     public static boolean isValidAmount(String test) {
         return Double.parseDouble(test) > 0;
+    }
+
+    /**
+     * Truncates a double value to two decimal places.
+     *
+     * @param value the double value to be truncated
+     * @return the truncated value
+     */
+    private double truncateToTwoDecimalPlaces(double value) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(value));
     }
 
     @Override
