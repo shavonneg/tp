@@ -5,7 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -23,6 +25,7 @@ public class OrderCard extends UiPart<Region> {
      */
 
     public final Order order;
+    public final Person person;
 
     @FXML
     private HBox cardPane;
@@ -32,6 +35,8 @@ public class OrderCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label orderId;
+    @FXML
+    private Label orderCustomerName;
     @FXML
     private Label orderDate;
     @FXML
@@ -48,11 +53,13 @@ public class OrderCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public OrderCard(Order order, int displayedIndex) {
+    public OrderCard(Pair<Person, Order> personOrderPair, int displayedIndex) {
         super(FXML);
-        this.order = order;
+        this.person = personOrderPair.getFirst();
+        this.order = personOrderPair.getSecond();
         id.setText(displayedIndex + ". ");
         orderId.setText("OrderId: " + order.getOrderId().toString());
+        orderCustomerName.setText("Order Customer: " + person.getName().toString());
         orderDate.setText("Date: " + order.getOrderDate().toString());
         deadline.setText("Deadline: " + order.getDeadline().toString());
         amount.setText("Price: " + order.getAmount().toString());

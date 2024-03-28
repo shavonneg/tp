@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -28,8 +29,8 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final ObservableList<Order> internalOrderList = FXCollections.observableArrayList();
-    private final ObservableList<Order> internalUnmodifiableOrderList =
+    private final ObservableList<Pair<Person, Order>> internalOrderList = FXCollections.observableArrayList();
+    private final ObservableList<Pair<Person, Order>> internalUnmodifiableOrderList =
             FXCollections.unmodifiableObservableList(internalOrderList);
 
     /**
@@ -94,7 +95,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
-        internalOrderList.add(order);
+        internalOrderList.add(new Pair<>(editedPerson, order));
     }
 
     /**
@@ -140,9 +141,12 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Order> asUnmodifiableObservableListOrders() {
+    public ObservableList<Pair<Person, Order>> asUnmodifiableObservableListOrders() {
         for (Person person : internalList) {
-            internalOrderList.addAll(person.getOrdersList());
+            List<Order> orderSet = person.getOrdersList();
+            for (Order order : orderSet) {
+                internalOrderList.add(new Pair<>(person, order));
+            }
         }
         return internalUnmodifiableOrderList;
     }
