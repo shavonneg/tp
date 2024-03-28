@@ -86,6 +86,15 @@ public class AddressBookTest {
     }
 
     @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(addressBook.equals(addressBook));
+    }
+    @Test
+    public void equals_nullObject_returnsFalse() {
+        assertFalse(addressBook.equals(null));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());
