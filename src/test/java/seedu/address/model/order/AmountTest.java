@@ -37,18 +37,18 @@ class AmountTest {
     @Test
     void isValidAmount() {
 
-        assertThrows(NumberFormatException.class, () -> Amount.isValidAmount(null));
+        assertThrows(NullPointerException.class, () -> Amount.isValidAmount(null));
         assertThrows(NumberFormatException.class, () -> Amount.isValidAmount(""));
 
         assertFalse(Amount.isValidAmount("-1"));
 
         assertThrows(NumberFormatException.class, () -> Amount.isValidAmount(" "));
         assertFalse(Amount.isValidAmount("0"));
-        assertThrows(NumberFormatException.class, () -> Amount.isValidAmount("1.5"));
-        assertThrows(NumberFormatException.class, () -> Amount.isValidAmount("1.0"));
 
         assertTrue(Amount.isValidAmount("1"));
         assertTrue(Amount.isValidAmount("100"));
+        assertTrue(Amount.isValidAmount("1.5"));
+        assertTrue(Amount.isValidAmount("1.50"));
     }
 
     @Test
@@ -65,7 +65,7 @@ class AmountTest {
         assertNotEquals(null, amount);
 
         // different types -> returns false
-        assertNotEquals(amount, 0.0);
+        assertNotEquals(amount, 0.00);
 
         // different values -> returns false
         assertNotEquals(amount, new Amount("2"));
