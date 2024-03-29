@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.Pair;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.model.Model;
@@ -125,7 +126,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +136,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Pair<Person, Order>> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,7 +146,7 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public void updateFilteredOrderList(Predicate<Pair<Person, Order>> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,13 +186,17 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
-            ObservableList<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
-            return orderList;
+        public ObservableList<Pair<Person, Order>> getFilteredOrderList() {
+            ObservableList<Pair<Person, Order>> personOrderList = FXCollections.observableArrayList();
+            List<Order> orderList = FXCollections.observableArrayList(this.person.getOrders());
+            for (Order order : orderList) {
+                personOrderList.add(new Pair<>(this.person, order));
+            }
+            return personOrderList;
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public void updateFilteredOrderList(Predicate<Pair<Person, Order>> predicate) {
             requireNonNull(predicate);
         }
     }

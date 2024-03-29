@@ -21,6 +21,7 @@
                 </Label>
                 <Label fx:id="orderId" text="\$first" styleClass="cell_big_label"/>
             </HBox>
+            <Label fx:id="orderClientName" styleClass="cell_small_label" text="\$orderClientName"/>
             <Label fx:id="orderDate" styleClass="cell_small_label" text="\$orderDate"/>
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline"/>
             <Label fx:id="price" styleClass="cell_small_label" text="\$price"/>

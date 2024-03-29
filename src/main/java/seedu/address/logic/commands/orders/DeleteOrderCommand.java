@@ -50,38 +50,28 @@ public class DeleteOrderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Order> lastShownOrderList = model.getFilteredOrderList();
+        List<Pair<Person, Order>> lastShownOrderList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownOrderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Order orderToDelete = lastShownOrderList.get(targetIndex.getZeroBased());
+        Pair<Person, Order> personOrderPairToDelete = lastShownOrderList.get(targetIndex.getZeroBased());
+        Order orderToDelete = personOrderPairToDelete.getSecond();
+        Person person = personOrderPairToDelete.getFirst();
 
-        List<Person> personList = model.getFilteredPersonList();
-        Pair<Person, Person> pair = getEditedPerson(personList, orderToDelete);
-        Person person = pair.getFirst();
-        Person editedPerson = pair.getSecond();
+        Person editedPerson = getEditedPerson(person, orderToDelete);
 
-        model.setPersonAndDeleteOrder(person, editedPerson, orderToDelete);
+        model.setPersonAndDeleteOrder(person, editedPerson, personOrderPairToDelete);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(orderToDelete)));
     }
 
-    private Pair<Person, Person> getEditedPerson(List<Person> personList, Order orderToDelete) throws CommandException {
-
-        for (Person person : personList) {
-            if (person.getOrders().contains(orderToDelete)) {
-                Person editedPerson = new Person(
-                        person.getName(), person.getPhone(), person.getEmail(),
-                        person.getAddress(), person.getTags(),
-                        removeOrder(orderToDelete, person.getOrders()));
-
-                return new Pair<>(person, editedPerson);
-            }
-        }
-        throw new CommandException(MESSAGE_DELETE_ORDER_FAILURE);
+    private Person getEditedPerson(Person person, Order orderToDelete) {
+        Person editedPerson = new Person(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                person.getTags(), removeOrder(orderToDelete, person.getOrders()));
+        return editedPerson;
     }
 
     private Set<Order> removeOrder(Order orderToRemove, Set<Order> orders) {

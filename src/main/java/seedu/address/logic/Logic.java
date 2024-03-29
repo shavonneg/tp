@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.util.Pair;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -40,7 +41,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of orders.
      */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Pair<Person, Order>> getFilteredOrderList();
 
     /**
      * Returns the user prefs' address book file path.

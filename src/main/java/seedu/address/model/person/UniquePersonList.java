@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -28,8 +29,8 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final ObservableList<Order> internalOrderList = FXCollections.observableArrayList();
-    private final ObservableList<Order> internalUnmodifiableOrderList =
+    private final ObservableList<Pair<Person, Order>> internalOrderList = FXCollections.observableArrayList();
+    private final ObservableList<Pair<Person, Order>> internalUnmodifiableOrderList =
             FXCollections.unmodifiableObservableList(internalOrderList);
 
     /**
@@ -75,13 +76,13 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      *
-     * @param target       person to be removed.
-     * @param editedPerson person to be added.
-     * @param order        order to be removed.
+     * @param target            person to be removed.
+     * @param editedPerson      person to be added.
+     * @param personOrderPair   pair to be removed.
      */
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> personOrderPair) {
         setPerson(target, editedPerson);
-        internalOrderList.remove(order);
+        internalOrderList.remove(personOrderPair);
     }
 
 
@@ -94,7 +95,7 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
-        internalOrderList.add(order);
+        internalOrderList.add(new Pair<>(editedPerson, order));
     }
 
     /**
@@ -140,9 +141,13 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Order> asUnmodifiableObservableListOrders() {
+    public ObservableList<Pair<Person, Order>> asUnmodifiableObservableListOrders() {
+        internalOrderList.clear();
         for (Person person : internalList) {
-            internalOrderList.addAll(person.getOrdersList());
+            List<Order> orderSet = person.getOrdersList();
+            for (Order order : orderSet) {
+                internalOrderList.add(new Pair<>(person, order));
+            }
         }
         return internalUnmodifiableOrderList;
     }

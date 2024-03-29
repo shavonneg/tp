@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -85,6 +86,15 @@ public class AddressBookTest {
     }
 
     @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(addressBook.equals(addressBook));
+    }
+    @Test
+    public void equals_nullObject_returnsFalse() {
+        assertFalse(addressBook.equals(null));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());
@@ -107,10 +117,15 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Order> getOrderList() {
-            return orders;
+        public ObservableList<Pair<Person, Order>> getOrderList() {
+            ObservableList<Pair<Person, Order>> personOrderList = FXCollections.observableArrayList();
+            for (Person person : persons) {
+                List<Order> orderList = person.getOrdersList();
+                for (Order order : orderList) {
+                    personOrderList.add(new Pair<>(person, order));
+                }
+            }
+            return personOrderList;
         }
-
     }
-
 }
