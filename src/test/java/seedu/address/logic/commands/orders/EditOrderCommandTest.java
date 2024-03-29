@@ -3,7 +3,7 @@ package seedu.address.logic.commands.orders;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -47,15 +47,15 @@ public class EditOrderCommandTest {
     //     String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
     //     assertCommandSuccess(editOrderCommand, modelStub, expectedMessage, modelStub);
     // }
-    //
+
+    // TODO: implement tests for successful indexing and correct description
     // @Test
     // public void execute_validIndexAndDescriptor_success() {
-    //     Order editedOrder = new OrderBuilder().withStatus("COMPLETED").build();
+    //     Order editedOrder = new OrderBuilder().withStatus("PENDING").build();
     //     EditOrderCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
     //     EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_ORDER, descriptor);
     //
     //     String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-    //
     //     assertCommandSuccess(editOrderCommand, model, expectedMessage, model);
     // }
 
@@ -66,7 +66,7 @@ public class EditOrderCommandTest {
         OrderBuilder orderBuilder = new OrderBuilder();
         Order order = orderBuilder.build();
         ModelStubEditingOrder modelStub = new ModelStubEditingOrder(order, person);
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_SECOND_ORDER;
         EditOrderCommand editOrderCommand = new EditOrderCommand(targetIndex, new EditOrderCommand.EditOrderDescriptor());
         assertThrows(CommandException.class, () -> editOrderCommand.execute(modelStub));
     }

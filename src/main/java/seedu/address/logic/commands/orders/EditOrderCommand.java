@@ -58,19 +58,23 @@ public class EditOrderCommand extends Command {
      * @param targetIndex         of the order in the filtered order list to edit
      * @param editOrderDescriptor details to edit the order with
      */
-    public EditOrderCommand(Index targetIndex, seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor editOrderDescriptor) {
+    public EditOrderCommand(Index targetIndex, seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor
+            editOrderDescriptor) {
         requireNonNull(targetIndex);
         requireNonNull(editOrderDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editOrderDescriptor = new seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor(editOrderDescriptor);
+        this.editOrderDescriptor = new
+                seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor(editOrderDescriptor);
     }
 
     /**
      * Creates and returns a {@code Order} with the details of {@code orderToEdit}
      * edited with {@code editOrderDescriptor}.
      */
-    private static Order createEditedOrder(Order orderToEdit, seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor editOrderDescriptor) {
+    private static Order createEditedOrder(Order orderToEdit,
+                                           seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor
+                                                   editOrderDescriptor) {
         assert orderToEdit != null;
 
         OrderDate updatedOrderDate = editOrderDescriptor.getOrderDate().orElse(orderToEdit.getOrderDate());
@@ -84,7 +88,8 @@ public class EditOrderCommand extends Command {
             updatedStatus = new Status(Status.StatusEnum.COMPLETED.name());
         }
 
-        return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedPrice, updatedRemark, updatedStatus);
+        return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedPrice, updatedRemark,
+                updatedStatus);
     }
 
     @Override
@@ -109,7 +114,8 @@ public class EditOrderCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, Messages.format(editedOrder)));
     }
 
-    private Pair<Person, Person> getEditedPerson(List<Person> personList, Order orderToEdit, Order editedOrder) throws CommandException {
+    private Pair<Person, Person> getEditedPerson(List<Person> personList, Order orderToEdit, Order editedOrder) throws
+            CommandException {
         for (Person person : personList) {
             if (person.getOrders().contains(orderToEdit)) {
                 Set<Order> newOrders = new HashSet<>(person.getOrders());
@@ -137,7 +143,8 @@ public class EditOrderCommand extends Command {
             return false;
         }
 
-        seedu.address.logic.commands.orders.EditOrderCommand otherEditOrderCommand = (seedu.address.logic.commands.orders.EditOrderCommand) other;
+        seedu.address.logic.commands.orders.EditOrderCommand otherEditOrderCommand =
+                (seedu.address.logic.commands.orders.EditOrderCommand) other;
         return targetIndex.equals(otherEditOrderCommand.targetIndex)
                 && editOrderDescriptor.equals(otherEditOrderCommand.editOrderDescriptor);
     }
@@ -234,7 +241,8 @@ public class EditOrderCommand extends Command {
                 return false;
             }
 
-            seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor otherEditOrderDescriptor = (seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor) other;
+            seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor otherEditOrderDescriptor =
+                    (seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor) other;
             return Objects.equals(orderDate, otherEditOrderDescriptor.orderDate)
                     && Objects.equals(deadline, otherEditOrderDescriptor.deadline)
                     && Objects.equals(price, otherEditOrderDescriptor.price)
