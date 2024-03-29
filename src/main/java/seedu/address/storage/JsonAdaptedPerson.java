@@ -121,7 +121,9 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Order> modelOrders = new HashSet<>(personOrders);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelOrders);
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelOrders);
+        newPerson.getOrders().forEach(order -> order.setPerson(newPerson));
+        return newPerson;
     }
 
 }

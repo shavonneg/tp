@@ -1,10 +1,12 @@
 package seedu.address.model.order;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
  * Represents an Order.
@@ -16,6 +18,7 @@ public class Order {
     private final Price price;
     private final Remark remark;
     private final Status status;
+    private Person person;
 
     /**
      * Every field must be present and not null.
@@ -31,6 +34,7 @@ public class Order {
         this.remark = remark;
         this.status = status;
     }
+
 
     public OrderId getOrderId() {
         return orderId;
@@ -60,6 +64,14 @@ public class Order {
         return this.getOrderId().equals(orderId);
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        requireNonNull(person);
+        this.person = person;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -77,7 +89,11 @@ public class Order {
                 && otherOrder.getDeadline().equals(getDeadline())
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getRemark().equals(getRemark())
-                && otherOrder.getStatus().equals(getStatus());
+                && otherOrder.getStatus().equals(getStatus())
+                && (otherOrder.person == null && person == null
+                || otherOrder.person != null && person != null
+                && otherOrder.person.equals(person));
+
 
     }
 

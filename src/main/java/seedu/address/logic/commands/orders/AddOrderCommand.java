@@ -32,7 +32,7 @@ public class AddOrderCommand extends Command {
             + "r/ [ORDER]\n"
             + "Example: " + COMMAND_WORD + " 1 d/1xRoses c/40 by/23-07-2024 00:00";
 
-    public static final String MESSAGE_SUCCESS = "New Order added!";
+    public static final String MESSAGE_SUCCESS = "New Order added! %1$s";
     public static final String MESSAGE_FAILURE = "Failed to add new Order!";
     private final Order order;
     private final Index index;
@@ -58,6 +58,7 @@ public class AddOrderCommand extends Command {
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = getEditedPerson(personToEdit);
+        order.setPerson(editedPerson);
 
         model.setPersonAndAddOrder(personToEdit, editedPerson, this.order);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
@@ -79,6 +80,6 @@ public class AddOrderCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_SUCCESS);
+        return String.format(MESSAGE_SUCCESS, personToEdit.getName());
     }
 }
