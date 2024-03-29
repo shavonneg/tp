@@ -24,6 +24,9 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    private SampleDataUtil() {
+    } //
+
     public static Person[] getSamplePersons() {
         Set<Order> s1 = Set.of(
                 new Order(new OrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae73"),
@@ -31,22 +34,22 @@ public class SampleDataUtil {
                         new Price("50"), new Remark("No remark"), new Status("PENDING")),
                 new Order(new OrderId("b7d063c5-f803-4f75-b2ad-777ec679b75e"),
                         new OrderDate("10-02-2024 11:33"), new Deadline("14-02-2024 10:59"),
-                        new Price("20"), new Remark("No remark"), new Status("PENDING")));
-
+                        new Price("20"), new Remark("No remark"), new Status("COMPLETED")));
         Set<Order> s2 = Set.of(
                 new Order(new OrderId("fc64826c-369b-4f45-97c0-f98e2edfa006"),
                         new OrderDate("10-10-2024 01:50"), new Deadline("15-10-2024 13:50"),
                         new Price("30"), new Remark("No remark"), new Status("CANCELED")),
                 new Order(new OrderId("cd7e3cb4-c310-4692-ba68-a779f6e09d68"),
                         new OrderDate("10-02-2024 11:33"), new Deadline("14-02-2024 10:59"),
-                        new Price("20"), new Remark("No remark"), new Status("PENDING")));
-
+                        new Price("20"), new Remark("No remark"), new Status("CANCELED")));
         Person p1 = new Person(new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), s1);
+        p1.getOrders().forEach(order -> order.setPerson(p1));
         Person p2 = new Person(new Name("Bernice Yu"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), s2);
+        p2.getOrders().forEach(order -> order.setPerson(p2));
         Person p3 = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), Set.of());

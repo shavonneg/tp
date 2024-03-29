@@ -8,6 +8,7 @@ import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building Order objects.
@@ -28,6 +29,7 @@ public class OrderBuilder {
     private Price price;
     private Remark remark;
     private Status status;
+    private Person person;
 
 
     /**
@@ -40,6 +42,7 @@ public class OrderBuilder {
         price = new Price(DEFAULT_PRICE);
         remark = new Remark(DEFAULT_REMARK);
         status = new Status(DEFAULT_STATUS);
+        person = new PersonBuilder().build();
     }
 
     /**
@@ -52,6 +55,7 @@ public class OrderBuilder {
         price = orderToCopy.getPrice();
         remark = orderToCopy.getRemark();
         status = orderToCopy.getStatus();
+        person = orderToCopy.getPerson();
     }
 
     /**
@@ -102,9 +106,20 @@ public class OrderBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Person} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withPerson(Person person) {
+        this.person = person;
+        return this;
+    }
 
+
+    /**
+     * Builds the Order object.
+     */
     public Order build() {
-        return new Order(orderId, orderDate, deadline, price, remark, status);
+        return new Order(orderId, orderDate, deadline, price, remark, status, person);
     }
 
 }

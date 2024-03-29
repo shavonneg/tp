@@ -99,7 +99,7 @@ public class JsonAdaptedOrder {
         if (!Price.isValidPrice(price)) {
             throw new NumberFormatException(Price.MESSAGE_CONSTRAINTS);
         }
-        final Price modelPrice = new Price(String.valueOf(price));
+        final Price modelPrice = new Price(price);
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
