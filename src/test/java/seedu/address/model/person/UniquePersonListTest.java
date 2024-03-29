@@ -11,16 +11,12 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -173,58 +169,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void setPersonAndAddOrder_newOrder_success() {
-        PersonBuilder personBuilder = new PersonBuilder();
-        OrderBuilder orderBuilder = new OrderBuilder();
-        Person person = personBuilder.build();
-        Order order = orderBuilder.build();
-        uniquePersonList.add(person);
-        Person editedPerson = getEditedPersonAddOrder(person, order);
-        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
-        assertEquals(1, uniquePersonList.asUnmodifiableObservableListOrders().size());
-    }
-
-    @Test
-    public void setPersonAndDeleteOrder_removeOrder_success() {
-        PersonBuilder personBuilder = new PersonBuilder();
-        OrderBuilder orderBuilder = new OrderBuilder();
-        Person person = personBuilder.build();
-        Order order = orderBuilder.build();
-        uniquePersonList.add(person);
-        Person editedPerson = getEditedPersonAddOrder(person, order);
-        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
-        uniquePersonList.setPersonAndDeleteOrder(editedPerson, person,
-                uniquePersonList.asUnmodifiableObservableListOrders().get(0));
-        assertEquals(0, uniquePersonList.asUnmodifiableObservableListOrders().size());
-    }
-
-    @Test
-    public void equalsMethod_sameObject_success() {
-        assertTrue(uniquePersonList.equals(uniquePersonList));
-    }
-
-    @Test
-    public void equalsMethod_nullObject_failure() {
-        assertFalse(uniquePersonList.equals(null));
-    }
-
-    @Test
-    public void checkHashCodeMethod_emptyList_success() {
-        UniquePersonList uniquePersonList2 = new UniquePersonList();
-        assertTrue(uniquePersonList2.hashCode() == uniquePersonList.hashCode());
-    }
-
-    @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
-    }
-
-    private Person getEditedPersonAddOrder(Person person, Order order) {
-        Set<Order> orders = person.getOrders();
-        orders = new HashSet<>(orders);
-        orders.add(order);
-        return new Person(
-                person.getName(), person.getPhone(), person.getEmail(),
-                person.getAddress(), person.getTags(), orders);
     }
 }

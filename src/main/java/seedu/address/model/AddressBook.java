@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.util.Pair;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
@@ -93,7 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPersonAndAddOrder(target, editedPerson, order);
     }
 
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
         persons.setPersonAndDeleteOrder(target, editedPerson, order);
     }
@@ -121,7 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Pair<Person, Order>> getOrderList() {
+    public ObservableList<Order> getOrderList() {
         return persons.asUnmodifiableObservableListOrders();
     }
 

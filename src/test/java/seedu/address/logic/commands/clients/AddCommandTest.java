@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.util.Pair;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -156,7 +155,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
+        public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -166,7 +165,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Pair<Person, Order>> getFilteredOrderList() {
+        public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -176,7 +175,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Pair<Person, Order>> predicate) {
+        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

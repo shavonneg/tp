@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -24,7 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Pair<Person, Order>> filteredOrders;
+    private final FilteredList<Order> filteredOrders;
 
 
     /**
@@ -125,7 +124,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPersonAndDeleteOrder(target, editedPerson, order);
@@ -138,12 +137,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Pair<Person, Order>> getFilteredOrderList() {
+    public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Pair<Person, Order>> predicate) {
+    public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
     }
