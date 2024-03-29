@@ -35,6 +35,21 @@ public class Order {
         this.status = status;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Order(OrderId orderId, OrderDate orderDate, Deadline deadline,
+                 Price price, Remark remark, Status status, Person person) {
+        requireAllNonNull(orderId, orderDate, deadline, price, remark, status, person);
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.deadline = deadline;
+        this.price = price;
+        this.remark = remark;
+        this.status = status;
+        this.person = person;
+    }
+
 
     public OrderId getOrderId() {
         return orderId;
@@ -90,9 +105,7 @@ public class Order {
                 && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getRemark().equals(getRemark())
                 && otherOrder.getStatus().equals(getStatus())
-                && (otherOrder.person == null && person == null
-                || otherOrder.person != null && person != null
-                && otherOrder.person.equals(person));
+                && Objects.equals(otherOrder.getPerson(), getPerson());
 
 
     }
@@ -105,6 +118,7 @@ public class Order {
 
     @Override
     public String toString() {
+        // Intentionally do not include Person within the order to prevent infinite loop
         return new ToStringBuilder(this)
                 .add("orderId", orderId)
                 .add("orderDate", orderDate)

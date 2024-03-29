@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.commands.orders.DeleteOrderCommand;
 import seedu.address.model.AddressBook;
@@ -23,7 +24,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderId;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -37,9 +37,8 @@ public class DeleteOrderCommandTest {
         OrderBuilder builder = new OrderBuilder();
         Order order = builder.build();
         ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order, person);
-        Index targetIndex = INDEX_FIRST_PERSON;
-        CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
-        commandResult = new DeleteOrderCommand(targetIndex).execute(modelStub);
+        CommandResult commandResult = new AddOrderCommand(INDEX_FIRST_ORDER, order).execute(modelStub);
+        commandResult = new DeleteOrderCommand(INDEX_FIRST_ORDER).execute(modelStub);
         assertEquals(0, modelStub.getOrderList().size());
     }
 
@@ -50,12 +49,7 @@ public class DeleteOrderCommandTest {
         OrderBuilder builder = new OrderBuilder();
         Order order = builder.build();
         ModelStubDeletingOrder modelStub = new ModelStubDeletingOrder(order, person);
-        Index targetIndex = INDEX_FIRST_PERSON;
-        CommandResult commandResult = new AddOrderCommand(targetIndex, order).execute(modelStub);
-        OrderId invalidId = new OrderId();
-        // TODO fix
-        // assertThrows(CommandException.class, () -> new DeleteOrderCommand(invalidId).execute(modelStub));
-        // assertThrows(CommandException.class, () -> new DeleteOrderCommand(INDEX_FIRST_PERSON).execute(modelStub));
+        assertThrows(CommandException.class, () -> new DeleteOrderCommand(INDEX_FIRST_ORDER).execute(modelStub));
 
     }
 
