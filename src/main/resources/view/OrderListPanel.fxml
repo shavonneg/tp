@@ -3,5 +3,5 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
-    <ListView fx:id="personOrderListView" VBox.vgrow="ALWAYS"/>
+    <ListView fx:id="orderListView" VBox.vgrow="ALWAYS"/>
 </VBox>

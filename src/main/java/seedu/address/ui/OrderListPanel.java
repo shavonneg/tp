@@ -8,9 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of orders.
@@ -20,24 +18,24 @@ public class OrderListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(OrderListPanel.class);
 
     @FXML
-    private ListView<Pair<Person, Order>> personOrderListView;
+    private ListView<Order> orderListView;
 
 
     /**
      * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
      */
-    public OrderListPanel(ObservableList<Pair<Person, Order>> personOrderList) {
+    public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
-        personOrderListView.setItems(personOrderList);
-        personOrderListView.setCellFactory(listView -> new OrderListViewCell());
+        orderListView.setItems(orderList);
+        orderListView.setCellFactory(listView -> new OrderListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
-    class OrderListViewCell extends ListCell<Pair<Person, Order>> {
+    class OrderListViewCell extends ListCell<Order> {
         @Override
-        protected void updateItem(Pair<Person, Order> order, boolean empty) {
+        protected void updateItem(Order order, boolean empty) {
             super.updateItem(order, empty);
 
             if (empty || order == null) {

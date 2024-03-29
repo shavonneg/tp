@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.util.Pair;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -22,7 +21,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true.
      */
-    Predicate<Pair<Person, Order>> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
+    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -90,7 +89,7 @@ public interface Model {
 
     void setPersonAndAddOrder(Person target, Person editedPerson, Order order);
 
-    void setPersonAndDeleteOrder(Person target, Person editedPerson, Pair<Person, Order> order);
+    void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order);
 
     /**
      * Returns an unmodifiable view of the filtered person list.
@@ -100,7 +99,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered order list.
      */
-    ObservableList<Pair<Person, Order>> getFilteredOrderList();
+    ObservableList<Order> getFilteredOrderList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -114,5 +113,5 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(Predicate<Pair<Person, Order>> predicate);
+    void updateFilteredOrderList(Predicate<Order> predicate);
 }
