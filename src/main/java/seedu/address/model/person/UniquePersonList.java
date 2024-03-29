@@ -100,7 +100,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      *
      * @param person        person to be removed.
-     *                      // * @param editedPerson  person to be added.
+     * @param editedPerson  person to be added.
      * @param orderToDelete order to be removed.
      * @param orderToAdd    order to be added.
      */

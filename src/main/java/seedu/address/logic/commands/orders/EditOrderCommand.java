@@ -83,8 +83,8 @@ public class EditOrderCommand extends Command {
         Remark updatedRemark = editOrderDescriptor.getRemark().orElse(orderToEdit.getRemark());
         Status updatedStatus = editOrderDescriptor.getStatus().orElse(orderToEdit.getStatus());
 
-        if (orderToEdit.getStatus().getStatusEnum() == Status.StatusEnum.PENDING &&
-                updatedStatus.getStatusEnum() == Status.StatusEnum.COMPLETED) {
+        if (orderToEdit.getStatus().getStatusEnum() == Status.StatusEnum.PENDING
+                && updatedStatus.getStatusEnum() == Status.StatusEnum.COMPLETED) {
             updatedStatus = new Status(Status.StatusEnum.COMPLETED.name());
         }
 

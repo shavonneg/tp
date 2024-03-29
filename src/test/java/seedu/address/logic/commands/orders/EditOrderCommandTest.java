@@ -67,7 +67,8 @@ public class EditOrderCommandTest {
         Order order = orderBuilder.build();
         ModelStubEditingOrder modelStub = new ModelStubEditingOrder(order, person);
         Index targetIndex = INDEX_SECOND_ORDER;
-        EditOrderCommand editOrderCommand = new EditOrderCommand(targetIndex, new EditOrderCommand.EditOrderDescriptor());
+        EditOrderCommand editOrderCommand = new EditOrderCommand(targetIndex,
+                new EditOrderCommand.EditOrderDescriptor());
         assertThrows(CommandException.class, () -> editOrderCommand.execute(modelStub));
     }
 
