@@ -172,4 +172,29 @@ public class UniquePersonListTest {
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
+
+    @Test
+    public void setPersonsAndAddOrder_nullUniquePersonList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersonAndAddOrder(ALICE, null,
+                null));
+    }
+
+    @Test
+    public void setPersonsAndAddOrder_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersonAndAddOrder(null,
+                null, null));
+    }
+
+    @Test
+    public void setPersonsAndDeleteOrder_nullUniquePersonList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersonAndDeleteOrder(BOB, null,
+                null));
+    }
+
+    @Test
+    public void setPersonsAndDeleteOrder_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersonAndDeleteOrder(null,
+                null, null));
+    }
+
 }
