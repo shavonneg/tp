@@ -166,6 +166,20 @@ Exits the program.
 
 Format: `exit`
 
+### Deleting an order: deleteOrder INDEX
+
+Deletes the specified order from BookKeeper.
+
+Format: `deleteOrder INDEX`
+
+* Deletes the order at the specified `INDEX`.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `deleteOrder 2` deletes the 2nd order in the order list.
+
 ### Editing an order : `editOrder INDEX`
 
 Edits an existing order in BookKeeper.
