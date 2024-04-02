@@ -128,6 +128,7 @@ designers, and boutique flower businesses.
 ## 5. Commands
 
 ### 5.1 Command summary
+### 5.1.1 Client
 
  Action     | Format, Examples                                                                                                                                                      
 ------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -138,6 +139,12 @@ designers, and boutique flower businesses.
  **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
  **List**   | `list`                                                                                                                                                                
  **Help**   | `help`                                                                                                                                                                
+
+### 5.1.2 Order
+
+ Action       | Format, Examples                                                                             
+--------------|----------------------------------------------------------------------------------------------
+ **addOrder** | `add d/DESCRIPTION b/by p/PRICE` <br> e.g., `addOrder d/1xRoses b/23-07-2024 00:00 p/123.99` 
 
 --------------------------------------------------------------------------------------------------------------------
 
