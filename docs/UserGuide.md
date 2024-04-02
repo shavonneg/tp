@@ -12,11 +12,92 @@ management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Purpose of User Guide (UG)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 2. Introduction
+
+### 2.1. Introducing BookKeeper
+
+BookKeeper is an application designed to simplify your client and order management.
+
+With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.
+With our innovative mix of a Command Line Interface (CLI) and a Graphical User Interface (GUI), enhance your
+productivity while easily tracking.
+
+This user guide is your comprehensive resource for understanding the full capabilities of BookKeeper.
+Here, we break down the installation process, system setup, and key features, ensuring seamless adoption and utilisation
+of our app. If you are just starting your small florist business, BookKeeper is here to help you efficiently organise
+your business operations.
+
+### 2.2. What's New in BookKeeper release v1.4
+
+BookKeeper v1.4 contains the following new features and improvements.
+
+* Order management enhancements
+    * Improved functionalities for efficient order management, with features like add, delete, edit and filter orders.
+
+* Links Client to Orders
+    * Seamlessly links clients to their respective orders for comprehensive tracking and management
+* Provides bug fixes
+    * Fixed minor bugs to ensure the smooth operation of the application
+
+### 2.3. Product Description
+
+BookKeeper is like an address book, providing a working platform that can effectively manage user information
+and orders. This efficiently manages customer relationships as it maximises user productivity.
+
+### 2.4. Unique Selling Points
+
+#### 2.4.1. Centralised Platform
+
+BookKeeper offers a centralised platform where you can effortlessly store and search for client information,
+keeping all your vital data organised and accessible at your fingertips.
+
+#### 2.4.2. Efficiency
+
+With its intuitive command-line interface, BookKeeper is faster and more efficient than traditional methods
+like CRMs or Excel sheets. Spend less time navigating complex menus and more time serving your customer’s needs.
+
+#### 2.4.3. Tailored for Florist Businesses
+
+We understand the unique needs of florists, which is why BookKeeper comes equipped with customizable fields, tags,
+and seamless integration with e-commerce platforms.
+
+### 2.4.4. Cost-Effective
+
+Designed with small businesses in mind, BookKeeper is not only powerful but also cost-effective.
+Say goodbye to expensive software solutions that drain your resources.
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Target Audience with assumptions
+
+### 3.1. Target Audience
+
+BookKeeper is specifically designed for small florist businesses, catering to the unique needs and challenges they face
+in managing client relationships and orders. Our target audience includes small florist shops, independent floral
+designers, and boutique flower businesses.
+
+### 3.2. Assumptions
+
+1. Our application is made with the assumption that users are members of the florist industry and will understand the
+   needs as well as the terminology used by florists. They can either be business owners, managers, or employees and
+   are looking for a tailored solution to streamline their operations.
+2. Users are presumed to have a basic understanding of computer operations and software usage. This can help them to
+   navigate easily through the application and follow the instructions to download and use BookKeeper,
+   as provided in this guide.
+3. While prior experience with customer relationship management (CRM) systems and command line interfaces (CLIs) can
+   help users to familiarise themselves with BookKeeper fast, BookKeeper is also entry-level-friendly so that we can
+   accommodate users of all levels of technical expertise.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -44,7 +125,23 @@ management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 5. Commands
+
+### 5.1 Command summary
+
+ Action     | Format, Examples                                                                                                                                                      
+------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
+ **Clear**  | `clear`                                                                                                                                                               
+ **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
+ **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
+ **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
+ **List**   | `list`                                                                                                                                                                
+ **Help**   | `help`                                                                                                                                                                
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Main Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -76,8 +173,15 @@ management tasks done faster than traditional GUI apps.
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
-
 Format: `help`
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### <ins>Client Features:
 
 ### Adding a person: `add`
 
@@ -93,12 +197,6 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
 
 ### Editing a person : `edit`
 
@@ -120,6 +218,27 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Deleting a person : `delete`
+
+Deletes the specified person from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -139,26 +258,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
+### <ins>Order Features:
 
 ### Exiting the program : `exit`
 
@@ -202,15 +302,69 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 7. Information about how to use the guide
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+(insert video here)
+
+(What do the colours mean)
+
+### 7.1. Appendix A: Technical Glossary
+
+**Java** - the programming language that the application was written in,
+as well as the process in which the application is run
+
+**Runtime** - a software that users must download onto their systems to run other applications.
+The Java runtime allows users to run the BookKeeper application
+
+**JSON (Javascript Object Notation)** - a file format used to store data which is understandable
+for both end users and computers. BookKeeper stores its data inside addressbook.json.
+
+**Command Line Interface (CLI)**
+![Ui](images/CLI.png)
+A user interface that allows users to interact with the computer software by typing commands into the console.
+The CLI is one method which the BookKeeper application can be launched
+
+**CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
+
+**GUI (Graphical User Interface)** -
+
+**Terminal Emulator**
+An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
+For Mac, open Terminal. For Linux, open your terminal emulator of choice
+
+### 7.2. Appendix B: One page cheatsheet
+
+### 7.3. Appendix C: FAQ
+
+**Q**: I cannot run the application<br>
+**A**: Try updating your system. On Windows, look for Windows Update.
+For Mac
+For Linux, type in your terminal sudo apt update -y && sudo apt upgrade
+
+**Q**: What command do I use to [...]<br>
+**A**: You can access the help page by clicking the Help button on the page
+
+**Q**: How do I backup and restore data?<br>
+**A**: Your data is stored in the same directory you downloaded the application in.
+In that directory, search for a directory called data. In that directory, it is called `addressbook.json`.
+You may copy the addressbook.json to another location to back it up,
+and you may copy another addressbook.json to restore existing data.
+
+**Q**: Can I access the application from multiple devices at once?<br>
+**A**: Not at the moment. It is something that we are working on, though.
+
+**Q**: Can I access this application without internet connection?<br>
+**A**: BookKeeper is designed to work fully offline
+
+**Q**: The application is not working!!!<br>
+**A**: Contact us at https://github.com/AY2324S2-CS2103T-T09-2/tp/releases
+
+**Q**: How do I update my application?<br>
+**A**: You may download the latest release at https://github.com/AY2324S2-CS2103T-T09-2/tp/releases
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## 8. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
@@ -218,14 +372,3 @@ the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
- Action     | Format, Examples                                                                                                                                                      
-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**  | `clear`                                                                                                                                                               
- **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**   | `list`                                                                                                                                                                
- **Help**   | `help`                                                                                                                                                                
