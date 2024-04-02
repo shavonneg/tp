@@ -59,6 +59,49 @@ public class EditOrderCommandTest {
     //     assertCommandSuccess(editOrderCommand, model, expectedMessage, model);
     // }
 
+    // TODO: implement test for createEditedOrder
+    // @Test
+    // public void testExecute_createEditedOrder() throws Exception {
+    //     PersonBuilder personBuilder = new PersonBuilder();
+    //     Person person = personBuilder.build();
+    //
+    //     // Create an original order
+    //     Order originalOrder = new Order(new OrderId(), new OrderDate("01-02-2024 10:09"),
+    //             new Deadline("22-02-2024 23:59"), new Price("100.00"), new Remark("Original remark"),
+    //             new Status("PENDING"));
+    //
+    //     // Set up edit descriptor with new values
+    //     EditOrderCommand.EditOrderDescriptor editDescriptor = new EditOrderCommand.EditOrderDescriptor();
+    //     editDescriptor.setOrderDate(new OrderDate("01-02-2024 10:09"));
+    //     editDescriptor.setDeadline(new Deadline("01-03-2024 23:59"));
+    //     editDescriptor.setPrice(new Price("150.00"));
+    //     editDescriptor.setRemark(new Remark("Updated remark"));
+    //     editDescriptor.setStatus(new Status("COMPLETED"));
+    //
+    //     // Create EditOrderCommand with target index and edit descriptor
+    //     EditOrderCommand editOrderCommand = new EditOrderCommand(Index.fromZeroBased(0), editDescriptor);
+    //
+    //     // Create a model with the original order and associated person
+    //     Model model = new ModelManager();
+    //     model.addPerson(person); // Add the person to the model
+    //     model.setPersonAndAddOrder(person, person, originalOrder); // Pass same person for target and editedPerson
+    //
+    //     // Execute the edit command
+    //     editOrderCommand.execute(model);
+    //
+    //     // Retrieve the edited order from the model
+    //     Order editedOrder = model.getFilteredOrderList().get(0);
+    //
+    //     // Verify that the edited order details match the expected values
+    //     assertNotNull(editedOrder);
+    //     assertEquals(new OrderDate("01-02-2024 10:09"), editedOrder.getOrderDate());
+    //     assertEquals(new Deadline("01-03-2024 23:59"), editedOrder.getDeadline());
+    //     assertEquals(new Price("150.00"), editedOrder.getPrice());
+    //     assertEquals(new Remark("Updated remark"), editedOrder.getRemark());
+    //     assertEquals(new Status("COMPLETED"), editedOrder.getStatus());
+    // }
+
+
     @Test
     public void execute_orderAcceptedByModel_indexError() throws Exception {
         PersonBuilder personBuilder = new PersonBuilder();
