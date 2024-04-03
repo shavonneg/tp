@@ -4,9 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -57,23 +55,13 @@ public class AddOrderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = getEditedPerson(personToEdit);
+        Person editedPerson = personToEdit.addOrder(order);
         order.setPerson(editedPerson);
 
         model.setPersonAndAddOrder(personToEdit, editedPerson, this.order);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
-
-    private Person getEditedPerson(Person person) {
-        Set<Order> orders = person.getOrders();
-        orders = new HashSet<>(orders);
-        orders.add(this.order);
-        return new Person(
-                person.getName(), person.getPhone(), person.getEmail(),
-                person.getAddress(), person.getTags(), orders);
-    }
-
     /**
      * Generates a command execution success message based on whether
      * the order is added to or removed from

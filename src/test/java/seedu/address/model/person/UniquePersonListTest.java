@@ -15,8 +15,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -128,6 +130,27 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void addOrder_existingPerson_addOrder() {
+        Order order = new OrderBuilder().build();
+        Person person = new PersonBuilder().build();
+        uniquePersonList.add(person);
+        Person editedPerson = person.addOrder(order);
+        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
+        assertEquals(1, uniquePersonList.asUnmodifiableObservableListOrders().size());
+    }
+
+    @Test
+    public void removeOrder_existingPersonAndOrder_removeOrder() {
+        Order order = new OrderBuilder().build();
+        Person person = new PersonBuilder().build();
+        uniquePersonList.add(person);
+        Person editedPerson = person.addOrder(order);
+        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
+        uniquePersonList.setPersonAndDeleteOrder(editedPerson, person, order);
+        assertEquals(0, uniquePersonList.asUnmodifiableObservableListOrders().size());
+    }
+
+    @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
     }
@@ -171,5 +194,13 @@ public class UniquePersonListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(uniquePersonList.equals(uniquePersonList));
+        UniquePersonList uniquePersonList2 = new UniquePersonList();
+        uniquePersonList2.add(new PersonBuilder().build());
+        assertFalse(uniquePersonList.equals(uniquePersonList2));
     }
 }
