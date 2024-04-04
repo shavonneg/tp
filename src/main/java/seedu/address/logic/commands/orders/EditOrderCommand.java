@@ -89,7 +89,7 @@ public class EditOrderCommand extends Command {
         }
 
         return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedPrice, updatedRemark,
-                updatedStatus);
+                updatedStatus, orderToEdit.getPerson());
     }
 
     @Override
