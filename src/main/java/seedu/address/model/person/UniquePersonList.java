@@ -98,8 +98,7 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.add(order);
-        FXCollections.sort(internalOrderList, (order1, order2) ->
-                order1.getDeadline().compareTo(order2.getDeadline()));
+        sortOrders();
     }
 
     /**
