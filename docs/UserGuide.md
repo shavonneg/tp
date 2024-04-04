@@ -3,8 +3,39 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+
+[1. Purpose of User Guide (UG)](#1-purpose-of-user-guide-ug)
+
+[2. Introduction](#2-introduction)
+
+* [2.1. Introducing BookKeeper](#21-introducing-bookkeeper)
+* [2.2. What's New in BookKeeper release v1.4](#22-whats-new-in-bookkeeper-release-v14)
+* [2.3. Product Description](#23-product-description)
+* [2.4. Unique Selling Points](#24-unique-selling-points)
+    * [2.4.1. Centralised Platform](#241-centralised-platform)
+    * [2.4.2. Efficiency](#242-efficiency)
+    * [2.4.3. Tailored for Florist Businesses](#243-tailored-for-florist-businesses)
+    * [2.4.4. Cost-Effective](#244-cost-effective)
+
+[3. Target Audience with assumptions](#3-target-audience-with-assumptions)
+
+* [3.1. Target Audience](#31-target-audience)
+* [3.2. Assumptions](#32-assumptions)
+
+[4. Quick start](#4-quick-start)
+
+[5. Commands](#5-commands)
+
+* [5.1 Command summary](#51-command-summary)
+    * [5.1.1 Client](#511-client)
+    * [5.1.2 Order](#512-order)
+      [6. Main Features](#6-main-features)
+      [7. Information about how to use the guide](#7-information-about-how-to-use-the-guide)
+    * [7.1. Appendix A: Technical Glossary](#71-appendix-a-technical-glossary)
+    * [7.2. Appendix B: One page cheatsheet](#72-appendix-b-one-page-cheatsheet)
+    * [7.3. Appendix C: FAQ](#73-appendix-c-faq)
+      [8. Known issues](#8-known-issues)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,9 +181,9 @@ designers, and boutique flower businesses.
 
 | Action          | Format, Examples                                                                                          |
 |-----------------|-----------------------------------------------------------------------------------------------------------|
-| **addOrder**    | `addOrder INDEX d/DESCRIPTION b/by p/PRICE` <br> e.g., `addOrder 3 d/1xRoses b/23-07-2024 00:00 p/123.99` |
+| **order**       | `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` <br> e.g. `order 3 by/23-07-2024 00:00 c/99.99 d/1xRoses` |
 | **deleteOrder** | `deleteOrder INDEX` <br/> `deleteOrder 3`                                                                 |
-| **editOrder**   | `editOrder INDEX by/ DEADLINE c/PRICE d/DESCRIPTION s/STATUS`                                             |
+| **editOrder**   | `editOrder INDEX by/DEADLINE c/PRICE d/DESCRIPTION s/STATUS`                                              |
 | **viewOrders**  | `viewOrders`                                                                                              |
 
 --------------------------------------------------------------------------------------------------------------------
