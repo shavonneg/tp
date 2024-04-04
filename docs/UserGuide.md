@@ -305,7 +305,7 @@ Examples:
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findKarenResult.png)
 
 ### Exiting the program : `exit`
 
@@ -315,15 +315,17 @@ Format: `exit`
 
 ### <ins>Order Features:
 
-### Adding an order: `addOrder`
-
+### Adding an order: `order`
 Adds an order into BookKeeper.
 
-Format: `addOrder INDEX d/DESCRIPTION b/by p/PRICE`
+Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 
 * Adds the order to the user at the specified `INDEX`.
-  The index **must be a positive integer** 1, 2, 3, …​
+  The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 * All fields must be provided.
+* Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
+* For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
+  * For e.g. `2.999` will be rounded up to `3.00`.
 
 Examples:
 
@@ -347,7 +349,7 @@ Examples:
 
 Edits an existing order in BookKeeper.
 
-Format: `edit <INDEX> [by/ DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+Format: `edit <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 
 * Edits the order at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -356,7 +358,7 @@ Format: `edit <INDEX> [by/ DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 
 Examples:
 
-* `editOrder 1  by/ 23-07-2024 10:10 c/ 40 d/ 1xRoses s/ PENDING` Edits 1st order in the order list.
+* `editOrder 1  by/23-07-2024 10:10 c/40 d/1xRoses s/PENDING` Edits 1st order in the order list.
 
 ### Saving the data
 
