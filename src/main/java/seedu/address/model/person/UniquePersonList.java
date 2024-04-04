@@ -80,9 +80,9 @@ public class UniquePersonList implements Iterable<Person> {
      * @param editedPerson person to be added.
      * @param order        order to be added.
      */
-    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
-        internalOrderList.add(order);
+        internalOrderList.remove(order);
     }
 
     /**
@@ -92,7 +92,7 @@ public class UniquePersonList implements Iterable<Person> {
      * @param editedPerson person to be added.
      * @param order        order to be removed.
      */
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.add(order);
         FXCollections.sort(internalOrderList, (order1, order2) ->

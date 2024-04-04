@@ -271,7 +271,7 @@ public class UniquePersonListTest {
             assertEquals(initialHashCode, uniquePersonList.hashCode());
         }
     }
-  
+
     public void equals() {
         assertTrue(uniquePersonList.equals(uniquePersonList));
         UniquePersonList uniquePersonList2 = new UniquePersonList();
