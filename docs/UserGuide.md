@@ -179,12 +179,12 @@ designers, and boutique flower businesses.
 
 ### 5.1.2 Order
 
-| Action          | Format, Examples                                                                                          |
-|-----------------|-----------------------------------------------------------------------------------------------------------|
-| **order**       | `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` <br> e.g. `order 3 by/23-07-2024 00:00 c/99.99 d/1xRoses` |
-| **deleteOrder** | `deleteOrder INDEX` <br/> `deleteOrder 3`                                                                 |
-| **editOrder**   | `editOrder INDEX by/DEADLINE c/PRICE d/DESCRIPTION s/STATUS`                                              |
-| **viewOrders**  | `viewOrders`                                                                                              |
+| Action          | Format, Examples                                                                                                                     |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| **order**       | `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` <br> e.g., `order 3 by/23-07-2024 00:00 c/99.99 d/1xRoses`                           |
+| **deleteOrder** | `deleteOrder INDEX` <br/> `deleteOrder 3`                                                                                            |
+| **editOrder**   | `editOrder INDEX by/DEADLINE c/PRICE d/DESCRIPTION s/STATUS` <br> e.g., `editOrder 1 by/23-07-2024 10:10 c/40 d/1xRoses s/COMPLETED` |
+| **viewOrders**  | `viewOrders`                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
