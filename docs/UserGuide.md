@@ -3,10 +3,6 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (
-CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact
-management tasks done faster than traditional GUI apps.
-
 * Table of Contents
   {:toc}
 
@@ -14,6 +10,17 @@ management tasks done faster than traditional GUI apps.
 
 ## 1. Purpose of User Guide (UG)
 
+BookKeeper is a desktop app designed for florists, in particular to manage their clients and orders when selling
+flower bouquets.
+
+Our User Guide (UG) provides florists with a comprehensive resource to understand and use BookKeeper effectively.
+Inside, we have outlined clear instructions, explanations, and best practices in order to aid florists in navigating
+BookKeeper’s features seamlessly. This UG is crucial to help florists comprehend the application’s functionalities,
+optimise their workflows, and maximise productivity with ease.
+
+BookKeeper is also optimised for use via a Command Line Interface (
+CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookKeeper can get your
+client management tasks done faster than traditional GUI apps.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Introduction
@@ -23,8 +30,6 @@ management tasks done faster than traditional GUI apps.
 BookKeeper is an application designed to simplify your client and order management.
 
 With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.
-With our innovative mix of a Command Line Interface (CLI) and a Graphical User Interface (GUI), enhance your
-productivity while easily tracking.
 
 This user guide is your comprehensive resource for understanding the full capabilities of BookKeeper.
 Here, we break down the installation process, system setup, and key features, ensuring seamless adoption and utilisation
@@ -128,9 +133,10 @@ designers, and boutique flower businesses.
 ## 5. Commands
 
 ### 5.1 Command summary
+
 ### 5.1.1 Client
 
-|  Action    | Format, Examples                                                                                                                                                      |
+| Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                               |
@@ -146,7 +152,8 @@ designers, and boutique flower businesses.
 |-----------------|-----------------------------------------------------------------------------------------------------------|
 | **addOrder**    | `addOrder INDEX d/DESCRIPTION b/by p/PRICE` <br> e.g., `addOrder 3 d/1xRoses b/23-07-2024 00:00 p/123.99` |
 | **deleteOrder** | `deleteOrder INDEX` <br/> `deleteOrder 3`                                                                 |
-| **editOrder**   | `editOrder d/DESCRIPTION b/by p/PRICE`                                                                    |
+| **editOrder**   | `editOrder INDEX by/ DEADLINE c/PRICE d/DESCRIPTION s/STATUS`                                             |
+| **viewOrders**  | `viewOrders`                                                                                              |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,6 +283,7 @@ Format: `exit`
 ### <ins>Order Features:
 
 ### Adding an order: `addOrder`
+
 Adds an order into BookKeeper.
 
 Format: `addOrder INDEX d/DESCRIPTION b/by p/PRICE`
@@ -285,9 +293,11 @@ Format: `addOrder INDEX d/DESCRIPTION b/by p/PRICE`
 * All fields must be provided.
 
 Examples:
+
 * order 1 d/1xRoses c/40 by/23-07-2024 00:00
 
 ### Deleting an order: `deleteOrder`
+
 Deletes the specified order from BookKeeper.
 
 Format: `deleteOrder INDEX`
@@ -315,6 +325,16 @@ Examples:
 
 * `editOrder 1  by/ 23-07-2024 10:10 c/ 40 d/ 1xRoses s/ PENDING` Edits 1st order in the order list.
 
+### Viewing your orders : `viewOrders`
+
+Displays a list of all existing orders in BookKeeper.
+
+Format: `viewOrders`
+
+Examples:
+
+* `viewOrders`
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
@@ -338,9 +358,17 @@ _Details coming soon ..._
 
 ## 7. Information about how to use the guide
 
-(insert video here)
+What do the colours mean?
 
-(What do the colours mean)
+BookKeeper mainly uses four colours: beige, muted green, creamy yellow, and warm brown.
+
+We hoped to achieve a cohesive colour scheme that not only shows visual hierarchy, but provides florists with a sense
+of familiarity by choosing colours that are reminiscent of nature. The neutral colour palette caters to a the wide
+diversity of florists, be it with respect to age group or gender, while also ensuring that the app remains timeless
+and appealing.
+
+This combination of colours not only enhances the aesthetics of BookKeeper, but also promises a user experience that
+is consistently positive and engaging.
 
 ### 7.1. Appendix A: Technical Glossary
 
