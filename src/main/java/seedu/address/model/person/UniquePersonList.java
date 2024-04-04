@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
     private final ObservableList<Order> internalOrderList = FXCollections.observableArrayList();
-    private final ObservableList<Order> internalUnmodifiableOrderList =
+    private final ObservableList<Order> internalUnmodifiableListOrder =
             FXCollections.unmodifiableObservableList(internalOrderList);
 
     /**
@@ -95,6 +96,8 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.add(order);
+        FXCollections.sort(internalOrderList, (order1, order2) ->
+                order1.getDeadline().compareTo(order2.getDeadline()));
     }
 
     /**
@@ -125,7 +128,7 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-        internalOrderList.setAll(asUnmodifiableObservableListOrders());
+        setOrders();
     }
 
 
@@ -141,10 +144,15 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Order> asUnmodifiableObservableListOrders() {
+        return internalUnmodifiableListOrder;
+    }
+
+    private void setOrders() {
+        List<Order> creationOrderList = new ArrayList<>();
         for (Person person : internalList) {
-            internalOrderList.addAll(person.getOrdersList());
+            creationOrderList.addAll(person.getOrdersList());
         }
-        return internalUnmodifiableOrderList;
+        internalOrderList.setAll(creationOrderList);
     }
 
     @Override

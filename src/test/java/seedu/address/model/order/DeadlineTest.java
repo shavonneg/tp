@@ -40,6 +40,20 @@ class DeadlineTest {
     }
 
     @Test
+    public void compareDeadline() {
+        Deadline deadline = new Deadline("01-01-2024 00:00");
+
+        // smaller values -> returns 1
+        assertEquals(1, deadline.compareTo(new Deadline("01-01-2023 00:00")));
+
+        // bigger values -> returns -1
+        assertEquals(-1, deadline.compareTo(new Deadline("01-01-2024 01:00")));
+
+        // same values -> returns 0
+        assertEquals(0, deadline.compareTo(new Deadline("01-01-2024 00:00")));
+    }
+
+    @Test
     public void equals() {
         Deadline deadline = new Deadline("11-05-2024 21:51");
 

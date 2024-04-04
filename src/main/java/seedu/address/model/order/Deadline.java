@@ -11,7 +11,7 @@ import seedu.address.commons.util.DateTimeUtil;
  * Represents a Deadline that an order must be fulfilled
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "A deadline should be in the format of "
@@ -39,6 +39,10 @@ public class Deadline {
         return DateTimeUtil.isValidDate(test);
     }
 
+    @Override
+    public int compareTo(Deadline other) {
+        return this.deadline.compareTo(other.deadline);
+    }
 
     @Override
     public String toString() {
