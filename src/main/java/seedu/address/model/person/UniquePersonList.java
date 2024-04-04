@@ -78,26 +78,41 @@ public class UniquePersonList implements Iterable<Person> {
      *
      * @param target       person to be removed.
      * @param editedPerson person to be added.
-     * @param order        order to be removed.
+     * @param order        order to be added.
      */
     public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.remove(order);
     }
 
-
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      *
      * @param target       person to be removed.
      * @param editedPerson person to be added.
-     * @param order        order to be added.
+     * @param order        order to be removed.
      */
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.add(order);
         FXCollections.sort(internalOrderList, (order1, order2) ->
                 order1.getDeadline().compareTo(order2.getDeadline()));
+    }
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param person        person to be removed.
+     * @param editedPerson  person to be added.
+     * @param orderToDelete order to be removed.
+     * @param orderToAdd    order to be added.
+     */
+
+    public void setPersonAndEditOrder(Person person, Person editedPerson, Order orderToDelete, Order orderToAdd) {
+        requireAllNonNull(person, orderToDelete, orderToAdd);
+        setPerson(person, editedPerson);
+        int index = internalOrderList.indexOf(orderToDelete);
+        internalOrderList.set(index, orderToAdd);
     }
 
     /**

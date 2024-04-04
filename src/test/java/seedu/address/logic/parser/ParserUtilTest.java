@@ -15,7 +15,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Deadline;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.Remark;
+import seedu.address.model.order.Status;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -38,6 +42,14 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
+    private static final String INVALID_DEADLINE = "123456";
+    private static final String INVALID_PRICE = "ab";
+    private static final String INVALID_REMARK = " ";
+    private static final String INVALID_STATUS = "ALMOST";
+    private static final String VALID_DEADLINE = "23-07-2024 10:23";
+    private static final String VALID_PRICE = "40";
+    private static final String VALID_REMARK = "1xRoses";
+    private static final String VALID_STATUS = "PENDING";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -219,5 +231,77 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDeadline_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
+    }
+
+    @Test
+    public void parseDeadline_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
+    }
+
+    @Test
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
+    }
+
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice((String) null));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(NumberFormatException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
+    }
+
+    @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));
+    }
+
+    @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    }
+
+    @Test
+    public void parseStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStatus((String) null));
+    }
+
+    @Test
+    public void parseStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus(INVALID_STATUS));
+    }
+
+    @Test
+    public void parseStatus_validValueWithoutWhitespace_returnsStatus() throws Exception {
+        Status expectedStatus = new Status(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(VALID_STATUS));
     }
 }

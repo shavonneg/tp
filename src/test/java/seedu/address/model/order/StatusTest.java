@@ -22,6 +22,14 @@ class StatusTest {
     }
 
     @Test
+    public void getStatus_returnsCorrectStatus() {
+        Status.StatusEnum expectedStatus = Status.StatusEnum.valueOf("PENDING");
+        Status status = new Status("PENDING");
+        Status.StatusEnum actualStatus = status.getStatusEnum();
+        assertEquals(expectedStatus, actualStatus, "getStatus should return the correct status.");
+    }
+
+    @Test
     public void isValidStatus() {
         // null status
         assertThrows(NullPointerException.class, () -> Status.isValidStatus(null));

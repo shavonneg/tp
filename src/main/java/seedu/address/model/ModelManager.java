@@ -130,6 +130,14 @@ public class ModelManager implements Model {
         addressBook.setPersonAndDeleteOrder(target, editedPerson, order);
     }
 
+    @Override
+    public void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder) {
+        requireAllNonNull(target, editedPerson, order, editedOrder);
+
+        addressBook.setPersonAndEditOrder(target, editedPerson, order, editedOrder);
+    }
+
+
     //=========== Order ================================================================================
 
     /**
