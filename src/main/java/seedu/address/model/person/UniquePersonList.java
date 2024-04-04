@@ -75,6 +75,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Removes the respective Order object from the ObservableList as well.
      *
      * @param target       person to be removed.
      * @param editedPerson person to be added.
@@ -83,10 +84,12 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.remove(order);
+        sortOrders();
     }
 
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Adds the Order object to the ObservableList as well.
      *
      * @param target       person to be removed.
      * @param editedPerson person to be added.
@@ -95,8 +98,7 @@ public class UniquePersonList implements Iterable<Person> {
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         setPerson(target, editedPerson);
         internalOrderList.add(order);
-        FXCollections.sort(internalOrderList, (order1, order2) ->
-                order1.getDeadline().compareTo(order2.getDeadline()));
+        sortOrders();
     }
 
     /**
@@ -113,6 +115,7 @@ public class UniquePersonList implements Iterable<Person> {
         setPerson(person, editedPerson);
         int index = internalOrderList.indexOf(orderToDelete);
         internalOrderList.set(index, orderToAdd);
+        sortOrders();
     }
 
     /**
@@ -168,6 +171,11 @@ public class UniquePersonList implements Iterable<Person> {
             creationOrderList.addAll(person.getOrdersList());
         }
         internalOrderList.setAll(creationOrderList);
+    }
+
+    private void sortOrders() {
+        FXCollections.sort(internalOrderList, (order1, order2) ->
+                order1.getDeadline().compareTo(order2.getDeadline()));
     }
 
     @Override
