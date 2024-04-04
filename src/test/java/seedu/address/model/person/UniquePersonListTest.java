@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,8 +16,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -186,6 +189,20 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void setPersonAndAddOrder_validPersonAndOrder_success() {
+        UniquePersonList uniquePersonList = new UniquePersonList();
+        Person originalPerson = new PersonBuilder(ALICE).build();
+        Person editedPerson = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order newOrder = orderBuilder.build();
+
+        uniquePersonList.add(originalPerson);
+        assertDoesNotThrow(() -> uniquePersonList.setPersonAndAddOrder(originalPerson, editedPerson, newOrder));
+
+        assertTrue(uniquePersonList.contains(editedPerson));
+    }
+
+    @Test
     public void setPersonsAndDeleteOrder_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPersonAndDeleteOrder(BOB, null,
                 null));
@@ -197,4 +214,40 @@ public class UniquePersonListTest {
                 null, null));
     }
 
+    @Test
+    public void setPersonAndDeleteOrder_orderDoesNotExist_personUnchanged() {
+        UniquePersonList uniquePersonList = new UniquePersonList();
+        Person originalPerson = new PersonBuilder(ALICE).build();
+        Person editedPerson = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order newOrder = orderBuilder.build();
+
+        uniquePersonList.add(originalPerson);
+
+        assertDoesNotThrow(() -> uniquePersonList.setPersonAndDeleteOrder(originalPerson, editedPerson, newOrder));
+    }
+
+    @Test
+    public void testEquals_sameInput() {
+        UniquePersonList uniquePersonList = new UniquePersonList();
+        assertEquals(uniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void testEquals_sameOutput() {
+        UniquePersonList list1 = new UniquePersonList();
+        UniquePersonList list2 = new UniquePersonList();
+        list1.add(ALICE);
+        list2.add(ALICE);
+        assertEquals(list1.equals(list2), list2.equals(list1));
+    }
+
+    @Test
+    public void testHashCode() {
+        UniquePersonList uniquePersonList = new UniquePersonList();
+        int initialHashCode = uniquePersonList.hashCode();
+        for (int i = 0; i < 10; i++) {
+            assertEquals(initialHashCode, uniquePersonList.hashCode());
+        }
+    }
 }
