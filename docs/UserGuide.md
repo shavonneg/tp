@@ -38,7 +38,8 @@ title: User Guide
 * [7.1. Appendix A: Technical Glossary](#71-appendix-a-technical-glossary)
 * [7.2. Appendix B: One page cheatsheet](#72-appendix-b-one-page-cheatsheet)
 * [7.3. Appendix C: FAQ](#73-appendix-c-faq)
-  [8. Known issues](#8-known-issues)
+
+[8. Known issues](#8-known-issues)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,6 +317,7 @@ Format: `exit`
 ### <ins>Order Features:
 
 ### Adding an order: `order`
+
 Adds an order into BookKeeper.
 
 Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
@@ -325,7 +327,7 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 * All fields must be provided.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
-  * For e.g. `2.999` will be rounded up to `3.00`.
+    * For e.g. `2.999` will be rounded up to `3.00`.
 
 Examples:
 
