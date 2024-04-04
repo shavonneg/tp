@@ -131,6 +131,27 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void addOrder_existingPerson_addOrder() {
+        Order order = new OrderBuilder().build();
+        Person person = new PersonBuilder().build();
+        uniquePersonList.add(person);
+        Person editedPerson = person.addOrder(order);
+        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
+        assertEquals(1, uniquePersonList.asUnmodifiableObservableListOrders().size());
+    }
+
+    @Test
+    public void removeOrder_existingPersonAndOrder_removeOrder() {
+        Order order = new OrderBuilder().build();
+        Person person = new PersonBuilder().build();
+        uniquePersonList.add(person);
+        Person editedPerson = person.addOrder(order);
+        uniquePersonList.setPersonAndAddOrder(person, editedPerson, order);
+        uniquePersonList.setPersonAndDeleteOrder(editedPerson, person, order);
+        assertEquals(0, uniquePersonList.asUnmodifiableObservableListOrders().size());
+    }
+
+    @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
     }
@@ -249,5 +270,12 @@ public class UniquePersonListTest {
         for (int i = 0; i < 10; i++) {
             assertEquals(initialHashCode, uniquePersonList.hashCode());
         }
+    }
+  
+    public void equals() {
+        assertTrue(uniquePersonList.equals(uniquePersonList));
+        UniquePersonList uniquePersonList2 = new UniquePersonList();
+        uniquePersonList2.add(new PersonBuilder().build());
+        assertFalse(uniquePersonList.equals(uniquePersonList2));
     }
 }

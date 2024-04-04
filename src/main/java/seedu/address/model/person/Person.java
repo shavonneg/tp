@@ -77,6 +77,18 @@ public class Person {
     }
 
     /**
+     * Returns a new Person object, with the specified Order added to the orders object.
+     *
+     * @param order the order to be added
+     * @return new Person object
+     */
+    public Person addOrder(Order order) {
+        Set<Order> newOrders = new HashSet<>(orders);
+        newOrders.add(order);
+        return new Person(this.name, this.phone, this.email, this.address, this.getTags(), newOrders);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
