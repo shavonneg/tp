@@ -417,9 +417,7 @@ The CLI is one method which the BookKeeper application can be launched
 An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
 For Mac, open Terminal. For Linux, open your terminal emulator of choice
 
-### 7.2. Appendix B: One page cheatsheet
-
-### 7.3. Appendix C: FAQ
+### 7.2. Appendix B: FAQ
 
 **Q**: I cannot run the application<br>
 **A**: Try updating your system. On Windows, look for Windows Update.
