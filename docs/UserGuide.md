@@ -83,9 +83,9 @@ Here, we break down the installation process, system setup, and key features, en
 of our app. If you are just starting your small florist business, BookKeeper is here to help you efficiently organise
 your business operations.
 
-### 2.2. What's New in BookKeeper release v1.3
+### 2.2. What's New in BookKeeper release v1.4
 
-BookKeeper v1.3 contains the following new features and improvements.
+BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
     * Improved functionalities for efficient order management, with features like add, delete, edit and filter orders.
