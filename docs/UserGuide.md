@@ -165,7 +165,7 @@ designers, and boutique flower businesses.
     * `list` : Lists all contacts.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the BookKeeper.
+      to BookKeeper.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -239,7 +239,7 @@ Format: `help`
 
 ### 6.2. Clearing all entries : `clear`
 
-Clears all entries from the BookKeeper.
+Clears all entries from BookKeeper.
 
 Format: `clear`
 
@@ -253,7 +253,7 @@ Format: `exit`
 
 ### 6.4. Adding a client: `add`
 
-Adds a client to the BookKeeper.
+Adds a client to BookKeeper.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -268,7 +268,7 @@ Examples:
 
 ### 6.5. Editing a client : `edit`
 
-Edits an existing client in the BookKeeper.
+Edits an existing client in BookKeeper.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -288,7 +288,7 @@ Examples:
 
 ### 6.6. Deleting a client : `delete`
 
-Deletes the specified client from the BookKeeper.
+Deletes the specified client from BookKeeper.
 
 Format: `delete INDEX`
 
@@ -298,12 +298,12 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd client in the BookKeeper.
+* `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### 6.7. Listing all clients : `list`
 
-Shows a list of all clients in the BookKeeper.
+Shows a list of all clients in BookKeeper.
 
 Format: `list`
 
@@ -423,7 +423,7 @@ for both end users and computers. BookKeeper stores its data inside bookkeeper.j
 **Command Line Interface (CLI)**
 ![Ui](images/CLI.png)
 A user interface that allows users to interact with the computer software by typing commands into the console.
-The CLI is one method which the BookKeeper application can be launched
+The CLI is one method which BookKeeper application can be launched
 
 **CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
 
@@ -437,7 +437,7 @@ For Mac, open Terminal. For Linux, open your terminal emulator of choice
 
 **Q**: I cannot run the application.<br>
 **A**: Try updating your system. On Windows, look for Windows Update.
-For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade`.
+For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade -y`.
 
 **Q**: What command do I use to [...].<br>
 **A**: You can access the help page by clicking the Help button on the page.
@@ -445,7 +445,7 @@ For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade`.
 **Q**: How do I back up and restore data?<br>
 **A**: Your data is stored in the same directory you downloaded the application in.
 In that directory, search for a directory called data. In that directory, it is called `bookkeeper.json`.
-You may copy the bookkeeper.json to another location to back it up,
+You may copy bookkeeper.json to another location to back it up,
 and you may copy another bookkeeper.json to restore existing data.
 
 **Q**: Can I access the application from multiple devices at once?<br>
