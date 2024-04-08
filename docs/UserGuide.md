@@ -224,14 +224,15 @@ designers, and boutique flower businesses.
 
 ### 6.1. Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-![help message](images/helpMessage.png)
+Shows a message explaning how to access the help page. <br>
+![help message](images/helpMessage.png) <br>
 Format: `help`
 
 ### 6.2. Clearing all entries : `clear`
 
 Clears all entries from BookKeeper. <br>
-Format: `clear`
+Format: `clear` <br>
+![clear](images/clear.png)
 
 ### 6.3. Exiting the program : `exit`
 
@@ -251,10 +252,18 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A client can have any number of tags (including 0)
 
 </div>
-Examples:
+
+Example:
+`add n/Betsy Crowe e/betsycrowe@example.com a/Beauty World p/1234567 t/VIP`
+
+![add client](images/addClient.png)
+
+More examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Jane Low p/95357481 e/jane@example.com a/Bukit Batok, block 312, #08-01 t/Member`
+* `add n/Alex Yeoh p/92157481 e/AY@example.com a/Bukit Batok, block 32, #07-01 t/VIP`
+* `add n/David Li p/98353481 e/David@example.com a/Bukit Batok, block 462, #07-02 t/Customer`
 
 ### 6.5. Editing a client : `edit`
 
@@ -274,11 +283,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 </div>
-Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+Example:
+`edit 1 n/Betsy Crower t/` Edits the name of the 1st client to be `Betsy Crower` and clears all existing tags.
+
+![edit client](images/editClient1.png)
+
+More examples:
+
+`edit 2 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 2nd client to
+be `91234567` and `johndoe@example.com` respectively.
 
 ### 6.6. Deleting a client : `delete`
 
@@ -294,15 +308,22 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
-Examples:
+
+Example:
 
 * `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
+
+![delete client](images/deleteClient.png)
+
+More examples:
+
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### 6.7. Listing all clients : `list`
 
 Shows a list of all clients in BookKeeper. <br>
-Format: `list`
+Format: `list` <br>
+![list clients](images/listClients.png)
 
 ### 6.8. Locating clients by name: `find`
 
@@ -321,10 +342,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 </div>
-Examples:
+
+Example:
+
+* `find alex david` returns `Alex Yeoh`, `David Li`
+
+![find clients](images/findClient.png)
+
+More examples:
 
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 ### <ins>Order Features:
 
@@ -337,7 +364,7 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 
 **:information_source: Additional Notes:**<br>
 
-* Adds the order to the user at the specified `INDEX`.
+* Adds the order to the client at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 * All fields must be provided.
 * order of the fields does not matter
@@ -350,10 +377,17 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
     * For e.g. `2.999` will be rounded up to `3.00`.
 
 </div>
+
 Examples:
 
 * `order 1 d/1xRoses c/40 by/23-07-2024 00:00`
-* `order 1 by/23-07-2024 00:00 c/40 d/1xRoses`
+
+![add order](images/addOrder.png)
+
+More examples:
+
+* `order 3 by/07-07-2024 00:00 c/88.88 d/99xRoses`
+* `order 1 by/23-05-2024 16:00 c/58.90 d/1xLily`
 
 ### 6.10. Deleting an order: `deleteOrder`
 
@@ -372,6 +406,9 @@ Format: `deleteOrder INDEX`
 Examples:
 
 * `deleteOrder 2` deletes the 2nd order in the order list.
+
+![delete order](images/deleteOrder_Before.png)
+![delete order](images/deleteOrder_After.png)
 
 ### 6.11. Editing an order : `editOrder`
 
@@ -397,8 +434,14 @@ Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 </div>
 Examples:
 
-* `editOrder 1  by/23-07-2024 10:10 c/40 d/1xRoses s/PENDING` edits 1st order in the order list.
-* `editOrder 1  s/COMPLETED` edits 1st order status to "COMPLETED".
+1. `editOrder 1  by/05-05-2024 16:00 c/58.90 d/1xRoses s/PENDING` edits 1st order Deadline and Description in the order
+   list.
+
+![edit order](images/editOrder1.png)
+
+2. `editOrder 1  s/COMPLETED` edits 1st order status to "COMPLETED".
+
+![edit order](images/editOrder2.png)
 
 ### Saving the data
 
