@@ -34,7 +34,7 @@ public class Price {
      * @return true if the price is valid
      */
     public static boolean isValidPrice(String test) {
-        return Double.parseDouble(test) > 0;
+        return Double.parseDouble(test) >= 0;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.format("%.2f", value);
     }
 
     @Override
