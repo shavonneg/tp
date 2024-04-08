@@ -74,10 +74,8 @@ client management tasks done faster than traditional GUI apps.
 
 ### 2.1. Introducing BookKeeper
 
-BookKeeper is an application designed to simplify your client and order management.
-
-With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.
-
+BookKeeper is an application designed to simplify your client and order management. <br>
+With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.<br>
 This user guide is your comprehensive resource for understanding the full capabilities of BookKeeper.
 Here, we break down the installation process, system setup, and key features, ensuring seamless adoption and utilisation
 of our app. If you are just starting your small florist business, BookKeeper is here to help you efficiently organise
@@ -89,7 +87,6 @@ BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
     * Improved functionalities for efficient order management, with features like add, delete, edit and filter orders.
-
 * Links Client to Orders
     * Seamlessly links clients to their respective orders for comprehensive tracking and management
 * Provides bug fixes
@@ -149,31 +146,26 @@ designers, and boutique flower businesses.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `bookkeeper.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
+2. Download the latest `bookkeeper.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your BookKeeper.
+3. Copy the file to the folder you want to use as the _home folder_ for your BookKeeper.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
-
     * `list` : Lists all contacts.
-
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
       to BookKeeper.
-
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-
     * `clear` : Deletes all contacts.
-
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Main Features](#6-main-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,34 +225,32 @@ designers, and boutique flower businesses.
 ### 6.1. Viewing help : `help`
 
 Shows a message explaning how to access the help page.
-
 ![help message](images/helpMessage.png)
 Format: `help`
 
 ### 6.2. Clearing all entries : `clear`
 
-Clears all entries from BookKeeper.
-
+Clears all entries from BookKeeper. <br>
 Format: `clear`
 
 ### 6.3. Exiting the program : `exit`
 
-Exits the program.
-
+Exits the program. <br>
 Format: `exit`
 
 ### <ins>Client Features:
 
 ### 6.4. Adding a client: `add`
 
-Adds a client to BookKeeper.
-
+Adds a client to BookKeeper. <br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
+<div markdown="span" class="alert alert-primary">
 
+:bulb:**Tip:**
+A client can have any number of tags (including 0)
+
+</div>
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -268,9 +258,12 @@ Examples:
 
 ### 6.5. Editing a client : `edit`
 
-Edits an existing client in BookKeeper.
-
+Edits an existing client in BookKeeper. <br>
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -280,6 +273,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * You can remove all the client’s tags by typing `t/` without
   specifying any tags after it.
 
+</div>
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
@@ -288,14 +282,18 @@ Examples:
 
 ### 6.6. Deleting a client : `delete`
 
-Deletes the specified client from BookKeeper.
-
+Deletes the specified client from BookKeeper. <br>
 Format: `delete INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
 
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+</div>
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
@@ -303,15 +301,17 @@ Examples:
 
 ### 6.7. Listing all clients : `list`
 
-Shows a list of all clients in BookKeeper.
-
+Shows a list of all clients in BookKeeper. <br>
 Format: `list`
 
 ### 6.8. Locating clients by name: `find`
 
-Finds clients whose names contain any of the given keywords.
-
+Finds clients whose names contain any of the given keywords. <br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -320,59 +320,85 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+</div>
 Examples:
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findKarenResult.png)
 
 ### <ins>Order Features:
 
 ### 6.9. Adding an order: `order`
 
-Adds an order into BookKeeper.
-
+Adds an order into BookKeeper. <br>
 Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
 
 * Adds the order to the user at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 * All fields must be provided.
+* order of the fields does not matter
+  (e.g. both `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION` and `order <INDEX> d/DESCRIPTION c/PRICE by/DEADLINE`
+  are acceptable)
+* All orders status are automatically set to PENDING.
+* OrderID is automatically generated for better reference during delivery.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
     * For e.g. `2.999` will be rounded up to `3.00`.
 
+</div>
 Examples:
 
 * `order 1 d/1xRoses c/40 by/23-07-2024 00:00`
+* `order 1 by/23-07-2024 00:00 c/40 d/1xRoses`
 
 ### 6.10. Deleting an order: `deleteOrder`
 
-Deletes the specified order from BookKeeper.
-
+Deletes the specified order from BookKeeper. <br>
 Format: `deleteOrder INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br
 
 * Deletes the order at the specified `INDEX`.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+</div>
 Examples:
 
 * `deleteOrder 2` deletes the 2nd order in the order list.
 
 ### 6.11. Editing an order : `editOrder`
 
-Edits an existing order in BookKeeper.
-
+Edits an existing order in BookKeeper. <br>
 Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br
 
 * Edits the order at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* There are 3 different status:
 
+| Status        | Information                                   |
+|---------------|-----------------------------------------------|
+| **PENDING**   | `All orders are automatically set to PENDING` |
+| **COMPLETED** | `When the order is delivered successfully`    |
+| **CANCELED**  | `When the order is canceled`                  |
+
+</div>
 Examples:
 
-* `editOrder 1  by/23-07-2024 10:10 c/40 d/1xRoses s/PENDING` Edits 1st order in the order list.
+* `editOrder 1  by/23-07-2024 10:10 c/40 d/1xRoses s/PENDING` edits 1st order in the order list.
+* `editOrder 1  s/COMPLETED` edits 1st order status to "COMPLETED".
 
 ### Saving the data
 
@@ -427,7 +453,7 @@ The CLI is one method which BookKeeper application can be launched
 
 **CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
 
-**GUI (Graphical User Interface)** -
+**GUI (Graphical User Interface)** - is a type of user interface that allows users to interact through buttons and text.
 
 **Terminal Emulator**
 An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
