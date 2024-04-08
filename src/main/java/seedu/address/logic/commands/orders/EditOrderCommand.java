@@ -46,35 +46,32 @@ public class EditOrderCommand extends Command {
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_DETAILS + "REMARK] "
             + "[" + PREFIX_STATUS + "STATUS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 by/09-01-2024 23:11";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
-    private final seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor editOrderDescriptor;
+    private final EditOrderDescriptor editOrderDescriptor;
 
     /**
      * @param targetIndex         of the order in the filtered order list to edit
      * @param editOrderDescriptor details to edit the order with
      */
-    public EditOrderCommand(Index targetIndex, seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor
+    public EditOrderCommand(Index targetIndex, EditOrderDescriptor
             editOrderDescriptor) {
         requireNonNull(targetIndex);
         requireNonNull(editOrderDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editOrderDescriptor = new
-                seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor(editOrderDescriptor);
+        this.editOrderDescriptor = new EditOrderCommand.EditOrderDescriptor(editOrderDescriptor);
     }
 
     /**
      * Creates and returns a {@code Order} with the details of {@code orderToEdit}
      * edited with {@code editOrderDescriptor}.
      */
-    private static Order createEditedOrder(Order orderToEdit,
-                                           seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor
-                                                   editOrderDescriptor) {
+    private static Order createEditedOrder(Order orderToEdit, EditOrderDescriptor editOrderDescriptor) {
         assert orderToEdit != null;
 
         OrderDate updatedOrderDate = editOrderDescriptor.getOrderDate().orElse(orderToEdit.getOrderDate());
@@ -139,12 +136,11 @@ public class EditOrderCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.logic.commands.orders.EditOrderCommand)) {
+        if (!(other instanceof EditOrderCommand)) {
             return false;
         }
 
-        seedu.address.logic.commands.orders.EditOrderCommand otherEditOrderCommand =
-                (seedu.address.logic.commands.orders.EditOrderCommand) other;
+        EditOrderCommand otherEditOrderCommand = (EditOrderCommand) other;
         return targetIndex.equals(otherEditOrderCommand.targetIndex)
                 && editOrderDescriptor.equals(otherEditOrderCommand.editOrderDescriptor);
     }
@@ -175,7 +171,7 @@ public class EditOrderCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditOrderDescriptor(seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor toCopy) {
+        public EditOrderDescriptor(EditOrderDescriptor toCopy) {
             setOrderDate(toCopy.orderDate);
             setDeadline(toCopy.deadline);
             setPrice(toCopy.price);
@@ -237,12 +233,11 @@ public class EditOrderCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor)) {
+            if (!(other instanceof EditOrderDescriptor)) {
                 return false;
             }
 
-            seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor otherEditOrderDescriptor =
-                    (seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor) other;
+            EditOrderDescriptor otherEditOrderDescriptor = (EditOrderDescriptor) other;
             return Objects.equals(orderDate, otherEditOrderDescriptor.orderDate)
                     && Objects.equals(deadline, otherEditOrderDescriptor.deadline)
                     && Objects.equals(price, otherEditOrderDescriptor.price)
