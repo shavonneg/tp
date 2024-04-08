@@ -314,6 +314,7 @@ Format: `exit`
 ### <ins>Order Features:
 
 ### Adding an order: `order`
+
 Adds an order into BookKeeper.
 
 Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
@@ -323,7 +324,7 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 * All fields must be provided.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
-  * For e.g. `2.999` will be rounded up to `3.00`.
+    * For e.g. `2.999` will be rounded up to `3.00`.
 
 Examples:
 
@@ -408,9 +409,6 @@ is consistently positive and engaging.
 **Java** - the programming language that the application was written in,
 as well as the process in which the application is run
 
-**Runtime** - a software that users must download onto their systems to run other applications.
-The Java runtime allows users to run the BookKeeper application
-
 **JSON (Javascript Object Notation)** - a file format used to store data which is understandable
 for both end users and computers. BookKeeper stores its data inside addressbook.json.
 
@@ -422,10 +420,6 @@ The CLI is one method which the BookKeeper application can be launched
 **CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
 
 **GUI (Graphical User Interface)** -
-
-**Terminal Emulator**
-An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
-For Mac, open Terminal. For Linux, open your terminal emulator of choice
 
 ### 7.2. Appendix B: One page cheatsheet
 
