@@ -18,7 +18,7 @@ public class JsonAdaptedOrderTest {
     private static final String INVALID_ORDERID = "";
     private static final String INVALID_ORDERDATE = "41-15-2024 21:51";
     private static final String INVALID_DEADLINE = "41-15-2024 21:51";
-    private static final String INVALID_PRICE = "0";
+    private static final String INVALID_PRICE = "-1";
     private static final String INVALID_REMARK = "";
     private static final String INVALID_STATUS = "invalid";
     private static final String VALID_ORDERID = "69c25c8d-9e34-4d9d-8bad-e378f203ae73";
