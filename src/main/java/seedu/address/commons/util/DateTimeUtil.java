@@ -3,23 +3,31 @@ package seedu.address.commons.util;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Helper functions for handling datetimes.
  */
 public class DateTimeUtil {
 
-
     public static final String MESSAGE_CONSTRAINTS = "Date should be in the format of dd/MM/yyyy";
+
     /**
      * Returns a list of valid date time formats.
+     * Note that ResolverStyle.STRICT requires "uuuu" instead of "yyyy"
      */
-    public static final String VALID_DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
+    public static final String VALID_DATETIME_FORMAT = "dd-MM-uuuu HH:mm";
 
     /**
      * Returns the valid formatter pattern.
      */
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(VALID_DATETIME_FORMAT);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter
+            .ofPattern(VALID_DATETIME_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
+
+    private DateTimeUtil() {
+        // Prevent instantiation
+    }
 
     /**
      * Returns true if a given string is a valid date.
