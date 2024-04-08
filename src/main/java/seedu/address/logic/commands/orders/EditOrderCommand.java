@@ -129,7 +129,7 @@ public class EditOrderCommand extends Command {
                 return new Pair<>(person, editedPerson);
             }
         }
-        throw new CommandException("Failed to find the person associated with this order!");
+        throw new CommandException("Failed to find the client associated with this order!");
     }
 
     @Override
