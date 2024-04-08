@@ -220,7 +220,7 @@ designers, and boutique flower businesses.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 Format: `help`
@@ -239,9 +239,18 @@ Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+[//]: # (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
+
+Constraints:
+
+* A person can have any number of tags (including 0)
+* Name must be unique. (BookKeeper does not currently support having multiple persons with the same name).
+* Phone number must be numeric and at least 3 numbers. It must not contain spaces ` `, brackets `()` or hyphens `-`,
+  plus `+`, or other symbols.
+
+[//]: # (</div>)
+
+
 
 Examples:
 
@@ -261,6 +270,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* See the `add` command for more constraints on the fields.
 
 Examples:
 
