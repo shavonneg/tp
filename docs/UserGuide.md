@@ -33,6 +33,18 @@ title: User Guide
 
 [6. Main Features](#6-main-features)
 
+* [6.1. Help](#61-viewing-help--help)
+* [6.2. Clear all entries](#62-clearing-all-entries--clear)
+* [6.3. Exit the program](#63-exiting-the-program--exit)
+* [6.4. Add a client](#64-adding-a-client-add)
+* [6.5. Edit a client](#65-editing-a-client--edit)
+* [6.6. Delete a client](#66-deleting-a-client--delete)
+* [6.7. List all clients](#67-listing-all-clients--list)
+* [6.8. Find clients by name](#68-locating-clients-by-name-find)
+* [6.9. Add an order](#69-adding-an-order-order)
+* [6.10. Delete an order](#610-deleting-an-order-deleteorder)
+* [6.11. Edit an order](#611-editing-an-order--editorder)
+
 [7. Information about how to use the guide](#7-information-about-how-to-use-the-guide)
 
 * [7.1. Appendix A: Technical Glossary](#71-appendix-a-technical-glossary)
@@ -62,10 +74,8 @@ client management tasks done faster than traditional GUI apps.
 
 ### 2.1. Introducing BookKeeper
 
-BookKeeper is an application designed to simplify your client and order management.
-
-With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.
-
+BookKeeper is an application designed to simplify your client and order management. <br>
+With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.<br>
 This user guide is your comprehensive resource for understanding the full capabilities of BookKeeper.
 Here, we break down the installation process, system setup, and key features, ensuring seamless adoption and utilisation
 of our app. If you are just starting your small florist business, BookKeeper is here to help you efficiently organise
@@ -77,7 +87,6 @@ BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
     * Improved functionalities for efficient order management, with features like add, delete, edit and filter orders.
-
 * Links Client to Orders
     * Seamlessly links clients to their respective orders for comprehensive tracking and management
 * Provides bug fixes
@@ -137,31 +146,26 @@ designers, and boutique flower businesses.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
+2. Download the latest `bookkeeper.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your BookKeeper.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar`
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
-
     * `list` : Lists all contacts.
-
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the Address Book.
-
+      to BookKeeper.
     * `delete 3` : Deletes the 3rd contact shown in the current list.
-
     * `clear` : Deletes all contacts.
-
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Main Features](#6-main-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,7 +190,7 @@ designers, and boutique flower businesses.
 | Action          | Format, Examples                                                                                                                     |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | **order**       | `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` <br> e.g., `order 3 by/23-07-2024 00:00 c/99.99 d/1xRoses`                           |
-| **deleteOrder** | `deleteOrder INDEX` <br/> `deleteOrder 3`                                                                                            |
+| **deleteOrder** | `deleteOrder INDEX` <br/> e.g., `deleteOrder 3`                                                                                      |
 | **editOrder**   | `editOrder INDEX by/DEADLINE c/PRICE d/DESCRIPTION s/STATUS` <br> e.g., `editOrder 1 by/23-07-2024 10:10 c/40 d/1xRoses s/COMPLETED` |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -218,163 +222,240 @@ designers, and boutique flower businesses.
 
 </div>
 
-### Viewing help : `help`
+### 6.1. Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaning how to access the help page. <br>
+![help message](images/helpMessage.png) <br>
 Format: `help`
 
-### Clearing all entries : `clear`
+### 6.2. Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from BookKeeper. <br>
+Format: `clear` <br>
+![clear](images/clear.png)
 
-Format: `clear`
+### 6.3. Exiting the program : `exit`
+
+Exits the program. <br>
+Format: `exit`
 
 ### <ins>Client Features:
 
-### Adding a person: `add`
+### 6.4. Adding a client: `add`
 
-Adds a person to the address book.
-
+Adds a client to BookKeeper. <br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:**
+A client can have any number of tags (including 0)
+
 </div>
 
-Examples:
+Example:
+`add n/Betsy Crowe e/betsycrowe@example.com a/Beauty World p/1234567 t/VIP`
+
+![add client](images/addClient.png)
+
+More examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Jane Low p/95357481 e/jane@example.com a/Bukit Batok, block 312, #08-01 t/Member`
+* `add n/Alex Yeoh p/92157481 e/AY@example.com a/Bukit Batok, block 32, #07-01 t/VIP`
+* `add n/David Li p/98353481 e/David@example.com a/Bukit Batok, block 462, #07-02 t/Customer`
 
-### Editing a person : `edit`
+### 6.5. Editing a client : `edit`
 
-Edits an existing person in the address book.
-
+Edits an existing client in BookKeeper. <br>
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
   specifying any tags after it.
 
-Examples:
+</div>
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Example:
+`edit 1 n/Betsy Crower t/` Edits the name of the 1st client to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a person : `delete`
+![edit client](images/editClient1.png)
 
-Deletes the specified person from the address book.
+More examples:
 
+`edit 2 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 2nd client to
+be `91234567` and `johndoe@example.com` respectively.
+
+### 6.6. Deleting a client : `delete`
+
+Deletes the specified client from BookKeeper. <br>
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
+
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+</div>
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example:
 
-### Listing all persons : `list`
+* `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
 
-Shows a list of all persons in the address book.
+![delete client](images/deleteClient.png)
 
-Format: `list`
+More examples:
 
-### Locating persons by name: `find`
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-Finds persons whose names contain any of the given keywords.
+### 6.7. Listing all clients : `list`
 
+Shows a list of all clients in BookKeeper. <br>
+Format: `list` <br>
+![list clients](images/listClients.png)
+
+### 6.8. Locating clients by name: `find`
+
+Finds clients whose names contain any of the given keywords. <br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
+</div>
+
+Example:
+
+* `find alex david` returns `Alex Yeoh`, `David Li`
+
+![find clients](images/findClient.png)
+
+More examples:
 
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findKarenResult.png)
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### <ins>Order Features:
 
-### Adding an order: `order`
+### 6.9. Adding an order: `order`
 
-Adds an order into BookKeeper.
-
+Adds an order into BookKeeper. <br>
 Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 
-* Adds the order to the user at the specified `INDEX`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
+
+* Adds the order to the client at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 * All fields must be provided.
+* order of the fields does not matter
+  (e.g. both `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION` and `order <INDEX> d/DESCRIPTION c/PRICE by/DEADLINE`
+  are acceptable)
+* All orders status are automatically set to PENDING.
+* OrderID is automatically generated for better reference during delivery.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
     * For e.g. `2.999` will be rounded up to `3.00`.
+
+</div>
 
 Examples:
 
 * `order 1 d/1xRoses c/40 by/23-07-2024 00:00`
 
-### Deleting an order: `deleteOrder`
+![add order](images/addOrder.png)
 
-Deletes the specified order from BookKeeper.
+More examples:
 
+* `order 3 by/07-07-2024 00:00 c/88.88 d/99xRoses`
+* `order 1 by/23-05-2024 16:00 c/58.90 d/1xLily`
+
+### 6.10. Deleting an order: `deleteOrder`
+
+Deletes the specified order from BookKeeper. <br>
 Format: `deleteOrder INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br
 
 * Deletes the order at the specified `INDEX`.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+</div>
 Examples:
 
 * `deleteOrder 2` deletes the 2nd order in the order list.
 
-### Editing an order : `editOrder`
+![delete order](images/deleteOrder_Before.png)
+![delete order](images/deleteOrder_After.png)
 
-Edits an existing order in BookKeeper.
+### 6.11. Editing an order : `editOrder`
 
-Format: `edit <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+Edits an existing order in BookKeeper. <br>
+Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br
 
 * Edits the order at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* There are 3 different status:
 
+| Status        | Information                                   |
+|---------------|-----------------------------------------------|
+| **PENDING**   | `All orders are automatically set to PENDING` |
+| **COMPLETED** | `When the order is delivered successfully`    |
+| **CANCELED**  | `When the order is canceled`                  |
+
+</div>
 Examples:
 
-* `editOrder 1  by/23-07-2024 10:10 c/40 d/1xRoses s/PENDING` Edits 1st order in the order list.
+1. `editOrder 1  by/05-05-2024 16:00 c/58.90 d/1xRoses s/PENDING` edits 1st order Deadline and Description in the order
+   list.
+
+![edit order](images/editOrder1.png)
+
+2. `editOrder 1  s/COMPLETED` edits 1st order status to "COMPLETED".
+
+![edit order](images/editOrder2.png)
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to
+BookKeeper data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are
+BookKeeper data are saved automatically as a JSON file `[JAR file location]/data/bookkeeper.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, BookKeeper will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the BookKeeper to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -406,16 +487,16 @@ as well as the process in which the application is run
 The Java runtime allows users to run the BookKeeper application
 
 **JSON (Javascript Object Notation)** - a file format used to store data which is understandable
-for both end users and computers. BookKeeper stores its data inside addressbook.json.
+for both end users and computers. BookKeeper stores its data inside bookkeeper.json.
 
 **Command Line Interface (CLI)**
 ![Ui](images/CLI.png)
 A user interface that allows users to interact with the computer software by typing commands into the console.
-The CLI is one method which the BookKeeper application can be launched
+The CLI is one method which BookKeeper application can be launched
 
 **CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
 
-**GUI (Graphical User Interface)** -
+**GUI (Graphical User Interface)** - is a type of user interface that allows users to interact through buttons and text.
 
 **Terminal Emulator**
 An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
@@ -423,32 +504,30 @@ For Mac, open Terminal. For Linux, open your terminal emulator of choice
 
 ### 7.2. Appendix B: FAQ
 
-**Q**: I cannot run the application<br>
+**Q**: I cannot run the application.<br>
 **A**: Try updating your system. On Windows, look for Windows Update.
-For Mac
-For Linux, type in your terminal sudo apt update -y && sudo apt upgrade
+For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade -y`.
 
-**Q**: What command do I use to [...]<br>
-**A**: You can access the help page by clicking the Help button on the page
+**Q**: What command do I use to [...].<br>
+**A**: You can access the help page by clicking the Help button on the page.
 
-**Q**: How do I backup and restore data?<br>
+**Q**: How do I back up and restore data?<br>
 **A**: Your data is stored in the same directory you downloaded the application in.
-In that directory, search for a directory called data. In that directory, it is called `addressbook.json`.
-You may copy the addressbook.json to another location to back it up,
-and you may copy another addressbook.json to restore existing data.
+In that directory, search for a directory called data. In that directory, it is called `bookkeeper.json`.
+You may copy bookkeeper.json to another location to back it up,
+and you may copy another bookkeeper.json to restore existing data.
 
 **Q**: Can I access the application from multiple devices at once?<br>
 **A**: Not at the moment. It is something that we are working on, though.
 
 **Q**: Can I access this application without internet connection?<br>
-**A**: BookKeeper is designed to work fully offline
+**A**: BookKeeper is designed to work fully offline.
 
 **Q**: The application is not working!!!<br>
-**A**: Contact us at https://github.com/AY2324S2-CS2103T-T09-2/tp/releases
+**A**: Contact us at [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
 **Q**: How do I update my application?<br>
-**A**: You may download the latest release at https://github.com/AY2324S2-CS2103T-T09-2/tp/releases
-
+**A**: You may download the latest release [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 --------------------------------------------------------------------------------------------------------------------
 
 ## 8. Known issues
