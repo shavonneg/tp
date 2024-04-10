@@ -63,9 +63,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DETAILS, PREFIX_BY, PREFIX_PRICE);
         OrderId orderId = new OrderId();
         OrderDate orderDate = new OrderDate(DateTimeUtil.getCurrentTime());
-        Deadline deadline = new Deadline(argMultimap.getValue(PREFIX_BY).get());
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_BY).get());
         Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
-        Price price = new Price(argMultimap.getValue(PREFIX_PRICE).get());
+        Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
 
         Status status = new Status("pending");
         Order order = new Order(orderId, orderDate, deadline, price, remark, status);
