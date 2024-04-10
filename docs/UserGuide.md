@@ -144,28 +144,48 @@ designers, and boutique flower businesses.
 
 ## 4. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` and above installed in your system.
+   * You may check if you have Java installed by opening your command prompt or terminal, and type:  
+   `java --version`
+     * If Java is installed, you should ensure that it is currently running on version "11.x.xx".
+     * ![img_2.png](images/JavaVersionScreenshot.png)
+       * If you encounter an error, or if your version does not match our specified requirements, you may visit the 
+       [Official Oracle website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to 
+       download the Java JDK required to run this project.
 
-2. Download the latest `bookkeeper.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
+2. Download the latest `bookkeeper.jar` release from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BookKeeper.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
+4. Open your terminal or command prompt in your system.
+
+5. `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
    command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br> 
    Some example commands you can try:
-    * `list` : Lists all contacts.
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to BookKeeper.
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
-    * `clear` : Deletes all contacts.
-    * `exit` : Exits the app.
+    * Listing all contacts:
+      * Command: `list`
+    * Adding a new Client:
+      * Command `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+      * Adds a new `client` named `John Doe` to BookKeeper.
+    * Adding a new Order:
+      * Command `order 1 d/1xRoses c/20.99 by/20-10-2030 10:00`
+      * Adds a new `order` for 1 Rose, at $20.99 that is to be delivered by 20-10-2030 10:00.
+    * Delete an existing Client.
+      * Command `delete 1`
+      * Deletes the `client` with an index of 1.
+    * Clear BookKeeper
+      * Command `clear`
+      * Clears all clients and orders.
+    * Exit
+      * Command `exit`
+      * Closes the application.
 
-6. Refer to the [Main Features](#6-main-features) below for details of each command.
+7. Refer to the [Main Features](#6-main-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -387,6 +407,9 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
     * For e.g. `2.999` will be rounded up to `3.00`.
+* The order list will be sorted according to their deadline. 
+  * Meaning, if there are two orders, one due on `10-10-2025 10:00` and another due on `10-10-2025 10:30`, the order with 
+  the deadline of `10-10-2025 10:00` will have an index of `1`, and the other order will have an index of `2`. 
 
 </div>
 
