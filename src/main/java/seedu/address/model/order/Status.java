@@ -15,7 +15,7 @@ public class Status {
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be either 'pending', 'completed' or 'canceled'";
 
-    private final StatusEnum status;
+    private final StatusEnum statusEnum;
 
     /**
      * Constructs a {@code Status}.
@@ -25,7 +25,7 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        this.status = StatusEnum.valueOf(status.toUpperCase());
+        this.statusEnum = StatusEnum.valueOf(status.toUpperCase());
     }
 
     /**
@@ -33,7 +33,6 @@ public class Status {
      */
     public static boolean isValidStatus(String test) {
         return !test.isBlank()
-                && !test.isEmpty()
                 && Arrays.stream(StatusEnum.values())
                 .anyMatch(status -> status.name().equalsIgnoreCase(test));
     }
@@ -42,12 +41,12 @@ public class Status {
      * Returns the status enum value.
      */
     public StatusEnum getStatusEnum() {
-        return status;
+        return statusEnum;
     }
 
     @Override
     public String toString() {
-        return status.name();
+        return statusEnum.name();
     }
 
     @Override
@@ -61,12 +60,12 @@ public class Status {
         }
 
         Status otherStatus = (Status) other;
-        return otherStatus.status.equals(this.status);
+        return otherStatus.statusEnum.equals(this.statusEnum);
     }
 
     @Override
     public int hashCode() {
-        return status.hashCode();
+        return statusEnum.hashCode();
     }
 
     /**

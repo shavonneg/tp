@@ -13,7 +13,8 @@ import java.text.DecimalFormat;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price must be a positive number and can only include up to two decimal places";
+            "Price must either be 0 or a positive number. Note that any decimals after the second decimal place will "
+                    + "be rounded up.";
     public final double value;
 
     /**
@@ -34,7 +35,7 @@ public class Price {
      * @return true if the price is valid
      */
     public static boolean isValidPrice(String test) {
-        return Double.parseDouble(test) > 0;
+        return Double.parseDouble(test) >= 0;
     }
 
     /**
@@ -50,7 +51,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.format("%.2f", value);
     }
 
     @Override

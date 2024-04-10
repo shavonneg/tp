@@ -64,7 +64,7 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = phone.replaceAll("\\s+", "");
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -168,7 +168,7 @@ public class ParserUtil {
      */
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
-        String trimmedPrice = price.trim();
+        String trimmedPrice = price.replaceAll("\\s+", "");
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         } else {
