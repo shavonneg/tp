@@ -456,7 +456,7 @@ Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 
 * Edits the order at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* Command can work without any optional fields provided.
 * Existing values will be updated to the input values.
 * There are 3 different status (they are all case-insensitive):
 
