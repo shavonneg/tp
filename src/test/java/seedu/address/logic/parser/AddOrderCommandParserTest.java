@@ -16,9 +16,9 @@ public class AddOrderCommandParserTest {
     private AddOrderCommandParser parser = new AddOrderCommandParser();
 
     @Test
-    public void parse_missingPrefixUserIndex_throwsParseException() {
+    public void parse_invalidCommandFormat_throwsParseException() {
         assertParseFailure(parser, "1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "abc", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE));
     }
 
     @Test
