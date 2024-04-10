@@ -488,9 +488,6 @@ is consistently positive and engaging.
 **Java** - the programming language that the application was written in,
 as well as the process in which the application is run
 
-**Runtime** - a software that users must download onto their systems to run other applications.
-The Java runtime allows users to run the BookKeeper application
-
 **JSON (Javascript Object Notation)** - a file format used to store data which is understandable
 for both end users and computers. BookKeeper stores its data inside bookkeeper.json.
 
@@ -502,10 +499,6 @@ The CLI is one method which BookKeeper application can be launched
 **CRM (Customer Relationship Management)** - a program that simplifies managing of clientele and their needs.
 
 **GUI (Graphical User Interface)** - is a type of user interface that allows users to interact through buttons and text.
-
-**Terminal Emulator**
-An application that is used to run Command Line Interface (CLI) programs for Windows: open Command Prompt or Powershell.
-For Mac, open Terminal. For Linux, open your terminal emulator of choice
 
 ### 7.2. Appendix B: FAQ
 
