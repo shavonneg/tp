@@ -33,7 +33,6 @@ public class Status {
      */
     public static boolean isValidStatus(String test) {
         return !test.isBlank()
-                && !test.isEmpty()
                 && Arrays.stream(StatusEnum.values())
                 .anyMatch(status -> status.name().equalsIgnoreCase(test));
     }
