@@ -46,10 +46,9 @@ public class EditOrderCommand extends Command {
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_DETAILS + "REMARK] "
             + "[" + PREFIX_STATUS + "STATUS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 by/09-01-2024 23:11";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
     private final EditOrderDescriptor editOrderDescriptor;
