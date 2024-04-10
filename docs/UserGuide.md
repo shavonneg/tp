@@ -224,8 +224,9 @@ designers, and boutique flower businesses.
 
 ### 6.1. Viewing help : `help`
 
-Shows a message explaning how to access the help page. <br>
-![help message](images/helpMessage.png) <br>
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
 Format: `help`
 
 ### 6.2. Clearing all entries : `clear`
@@ -251,10 +252,16 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **:information_source: Additional Notes:**<br>
 
 * A client can have any number of tags (including 0)
-* tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted)
-* tags only accept 0-9 and a-z (case-insensitive)
+* Tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted)
+* Tags only accept 0-9 and a-z (case-insensitive)
+* Name must be unique. (BookKeeper does not currently support having multiple persons with the same name).
+* Phone number must be numeric and at least 3 numbers. It must not contain spaces ` `, brackets `()` or hyphens `-`,
+  plus `+`, or other symbols.
 
 </div>
+
+
+
 
 Example:
 `add n/Betsy Crowe e/betsycrowe@example.com a/Beauty World p/1234567 t/VIP`
