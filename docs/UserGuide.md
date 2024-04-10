@@ -246,10 +246,13 @@ Format: `exit`
 Adds a client to BookKeeper. <br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb:**Tip:**
-A client can have any number of tags (including 0)
+**:information_source: Additional Notes:**<br>
+
+* A client can have any number of tags (including 0)
+* tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted)
+* tags only accept 0-9 and a-z (case-insensitive)
 
 </div>
 
@@ -281,6 +284,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
   specifying any tags after it.
+* tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted)
+* tags only accept 0-9 and a-z (case-insensitive)
 
 </div>
 
@@ -423,7 +428,7 @@ Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* There are 3 different status:
+* There are 3 different status (they are all case-insensitive):
 
 | Status        | Information                                   |
 |---------------|-----------------------------------------------|
