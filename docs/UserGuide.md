@@ -148,7 +148,7 @@ designers, and boutique flower businesses.
    * You may check if you have Java installed by opening your command prompt or terminal, and type:  
    `java --version`
      * If Java is installed, you should ensure that it is currently running on version "11.x.xx".
-     * ![img_2.png](img_2.png)
+     * ![img_2.png](images/JavaVersionScreenshot.png)
        * If you encounter an error, or if your version does not match our specified requirements, you may visit the 
        [Official Oracle website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to 
        download the Java JDK required to run this project.
