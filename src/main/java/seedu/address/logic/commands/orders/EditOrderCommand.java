@@ -49,7 +49,6 @@ public class EditOrderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
     private final seedu.address.logic.commands.orders.EditOrderCommand.EditOrderDescriptor editOrderDescriptor;
@@ -129,7 +128,7 @@ public class EditOrderCommand extends Command {
                 return new Pair<>(person, editedPerson);
             }
         }
-        throw new CommandException("Failed to find the person associated with this order!");
+        throw new CommandException("Failed to find the client associated with this order!");
     }
 
     @Override
