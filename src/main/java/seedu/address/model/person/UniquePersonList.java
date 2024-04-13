@@ -71,6 +71,9 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+
+        // Needed to refresh the OrderList with updated Client Names
+        internalOrderList.setAll(new ArrayList<>(internalOrderList));
     }
 
     /**
