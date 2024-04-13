@@ -87,18 +87,35 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and adds {@code order}
+     * to the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
+     */
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
         persons.setPersonAndAddOrder(target, editedPerson, order);
     }
 
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and deletes {@code order}
+     * from the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
+     */
     public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
         persons.setPersonAndDeleteOrder(target, editedPerson, order);
     }
 
     /**
-     * Replaces the given order {@code target} in the list with {@code editedOrder}.
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and replaces {@code order}
+     * with {@code editedOrder} in the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
      */
