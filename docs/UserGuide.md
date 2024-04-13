@@ -405,6 +405,7 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
   are acceptable)
 * All orders status are automatically set to PENDING.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
+    * Deadlines can be set to a date before their current date to suggest that the order is overdue.
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
     * For e.g. `2.999` will be rounded up to `3.00`.
 * The order list will be sorted according to their deadline.
