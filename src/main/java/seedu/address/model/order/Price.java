@@ -13,8 +13,7 @@ import java.text.DecimalFormat;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price must either be 0 or a positive number. Note that any decimals after the second decimal place will "
-                    + "be rounded up.";
+            "Price must be a positive number and can only include up to two decimal places";
     public final double value;
 
     /**
