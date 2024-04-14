@@ -21,14 +21,14 @@ class JsonSerializableBookKeeper {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Client list contains duplicate client(s).";
 
-    private final List<JsonAdaptedClient> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableBookKeeper} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableBookKeeper(@JsonProperty("persons") List<JsonAdaptedClient> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableBookKeeper(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
+        this.clients.addAll(clients);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableBookKeeper {
      * @param source future changes to this will not affect the created {@code JsonSerializableBookKeeper}.
      */
     public JsonSerializableBookKeeper(ReadOnlyBookKeeper source) {
-        persons.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,7 +47,7 @@ class JsonSerializableBookKeeper {
      */
     public BookKeeper toModelType() throws IllegalValueException {
         BookKeeper bookKeeper = new BookKeeper();
-        for (JsonAdaptedClient jsonAdaptedClient : persons) {
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toModelType();
             if (bookKeeper.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);

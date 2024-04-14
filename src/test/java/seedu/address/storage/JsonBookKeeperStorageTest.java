@@ -53,12 +53,12 @@ public class JsonBookKeeperStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonBookKeeper.json"));
+        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidClientBookKeeper.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonBookKeeper.json"));
+        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidClientBookKeeper.json"));
     }
 
     @Test

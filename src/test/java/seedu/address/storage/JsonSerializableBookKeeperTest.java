@@ -16,9 +16,9 @@ import seedu.address.testutil.TypicalClients;
 public class JsonSerializableBookKeeperTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableBookKeeperTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsBookKeeper.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonBookKeeper.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonBookKeeper.json");
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalClientsBookKeeper.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidClientBookKeeper.json");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateClientBookKeeper.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {

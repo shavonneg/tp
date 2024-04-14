@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane clientListPanelPlaceholder;
+
     @FXML
     private StackPane orderListPanelPlaceholder;
 

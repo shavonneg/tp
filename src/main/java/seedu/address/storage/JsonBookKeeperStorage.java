@@ -22,8 +22,6 @@ public class JsonBookKeeperStorage implements BookKeeperStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonBookKeeperStorage.class);
     private final Path bookKeeperFilePath;
 
-    // private Path filePath;
-
     /**
      * Constructs a {@code JsonBookKeeperStorage} with the specified file paths.
      *
@@ -55,7 +53,7 @@ public class JsonBookKeeperStorage implements BookKeeperStorage {
 
         Optional<JsonSerializableBookKeeper> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableBookKeeper.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonAddressBook.isEmpty()) {
             return Optional.empty();
         }
 
