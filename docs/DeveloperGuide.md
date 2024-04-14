@@ -236,21 +236,21 @@ To implement the new Order Logic, a new package has to be created within the com
 the order implementations. The key changes would be:
 
 - Creation of new classes:
-    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will get the referenced `Client` by their index, and add the `Order` object into the Client's respective orders. 
-  This will have the required logic to return the appropriate `Command` to be executed in the main logic.
+    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will get the
+      referenced `Client` by their index, and add the `Order` object into the Client's respective orders.
+      This will have the required logic to return the appropriate `Command` to be executed in the main logic.
     - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
       This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
       the `ObservableList` by index to determine if the index is valid, then checks which `Client` the order belongs to.
       This allows the modification of both `Client`s and `Order`s at the same time.
-    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. The logic is similar to that used
-      by `DeleteOrderCommand`.
+    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. First, the 
 - Creation of new parser classes:
-  - Creating a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
-    flow is as intended, and will allow us to get the required parameters typed by the user.
-  - Creating a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-    This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
-  - Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-    This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+    - Creating a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
+      flow is as intended, and will allow us to get the required parameters typed by the user.
+    - Creating a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+    - Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
 - Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
   new `ObservableList` object to
   update the JavaFX element in the UI.
@@ -272,7 +272,7 @@ It was done in this manner to adhere to the following design principles:
   ModelManager class creates a seamless and responsive interaction between the backend data structures and the frontend
   user interface.
 
-By doing so,  am able to emphasize on the clear separation of duties among components and allowing flexibility to add
+By doing so, am able to emphasize on the clear separation of duties among components and allowing flexibility to add
 new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
 enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
 codebase.
