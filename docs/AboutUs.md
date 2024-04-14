@@ -1,3 +1,8 @@
+---
+layout: page
+title: About Us
+---
+
 # About Us
 
 Welcome to BookKeeper, your trusted companion in clientele management. We understand the
