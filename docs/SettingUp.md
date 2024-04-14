@@ -31,7 +31,7 @@ If you plan to use Intellij IDEA (highly recommended):
 ## Before writing code
 
 1. **Configure the coding style**
-
+   
    If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to set up IDEA's coding style to match ours.
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -45,7 +45,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [BookKeeper’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.

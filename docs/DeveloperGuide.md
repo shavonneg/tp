@@ -10,8 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* Original AB3
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,77 +120,24 @@ call as an example.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
-How the Logic component works:
+How the `Logic` component works:
 
-1. When Logic is invoked to execute a command, it delegates the command to an BookKeeperParser object. This object then
-   creates a parser corresponding to the command type (e.g., DeleteCommandParser) and utilizes it to interpret the
+1. When `Logic` is invoked to execute a command, it delegates the command to an `BookKeeperParser` object. This object
+   then
+   creates a parser corresponding to the command type (e.g., `DeleteCommandParser`) and utilizes it to interpret the
    command.
-2. This process generates a Command object (to be more specific, an instance of one of its subclasses, e.g.,
-   DeleteCommand) which is then executed by the LogicManager.
-3. During execution, the command can interact with the Model (e.g., to delete a Client or manage Order details).<br>
+2. This process generates a `Command` object (to be more specific, an instance of one of its subclasses, e.g.,
+   DeleteCommand) which is then executed by the `LogicManager`.
+3. During execution, the command can interact with the `Model` (e.g., to delete a `Client` or manage `Order`
+   details).<br>
    While this interaction is depicted as a singular step in the above diagram for the sake of simplicity, the actual
-   implementation may involve multiple interactions (between the command object and the Model) to accomplish the
+   implementation may involve multiple interactions (between the command object and the `Model`) to accomplish the
    intended task.
-4. The outcome of the command's execution is encapsulated within a CommandResult object, which is then returned from
-   Logic. Additional classes in Logic (not shown in the class diagram above) that are utilized for parsing a user
+4. The outcome of the command's execution is encapsulated within a `CommandResult` object, which is then returned from
+   `Logic`. Additional classes in `Logic` (not shown in the class diagram above) that are utilized for parsing a user
    command:
 
 <img src="images/ParserClasses.png" width="600"/>
-
-#### Implementation Details
-
-To implement the new Order Logic, a new package has to be created within the commands package to cater to the order type
-commands. The key changes would be:
-
-- Creation of new parser class:
-    - Created a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
-      flow is as intended, and will allow us to get the required parameters typed by the user.
-    - Created a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
-- Creation of new classes:
-    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will have the required logic
-      to return the appropriate `Command` to be executed in the main logic.
-    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
-      This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
-      the `ObservableList` by index to determine if the index is valid, then checks which `Client` the order belongs to.
-      This allows the modification of both `Client`s and `Order`s at the same time.
-    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. The logic is similar to that used
-      by `DeleteOrderCommand`.
-- Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
-  new `ObservableList` object to
-  update the JavaFX element in the UI.
-- JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
-  ensure that future updates do not alter their behavior.
-
-#### Why is it implemented this way:
-
-It was done in this manner to adhere to the following design principles:
-
-- Separation of Concerns: By delegating specific responsibilities to specialized classes (like `BookKeeperParser`,
-  AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of
-  the
-  system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
-- Provide Extensibility: With a modular structure, adding new functionality (like future order implementations)
-  involves creating new classes and modifying existing ones minimally. This approach makes the system more extendable,
-  as seen with the introduction of new parser and command classes for handling orders.
-- Enhances Frontend Integration:  By redefining how the `ObservableList` is managed within the `ModelManager` for
-  Orders, we enhance our capability to directly manipulate the `OrderList` view in JavaFX. This adjustment in the
-  ModelManager class creates a seamless and responsive interaction between the backend data structures and the frontend
-  user interface.
-
-By doing so, I am able to emphasize on the clear separation of duties among components and allowing flexibility to add
-new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
-enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
-codebase.
-
-How the parsing works:
-
-* When called upon to parse a user command, the `BookKeeperParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BookKeeperParser` returns back as
-  a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-  interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -274,7 +220,7 @@ mark a significant step forward in enhancing the robustness and flexibility of o
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.bookkeeper.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -282,52 +228,110 @@ Classes used by multiple components are in the `seedu.bookkeeper.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding the Order methods
+
+#### Implementation Details
+
+To implement the new Order Logic, a new package has to be created within the commands and parser packages to cater to
+the order implementations. The key changes would be:
+
+- Creation of new classes:
+    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will get the referenced `Client` by their index, and add the `Order` object into the Client's respective orders. 
+  This will have the required logic to return the appropriate `Command` to be executed in the main logic.
+    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
+      This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
+      the `ObservableList` by index to determine if the index is valid, then checks which `Client` the order belongs to.
+      This allows the modification of both `Client`s and `Order`s at the same time.
+    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. The logic is similar to that used
+      by `DeleteOrderCommand`.
+- Creation of new parser classes:
+  - Creating a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
+    flow is as intended, and will allow us to get the required parameters typed by the user.
+  - Creating a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+    This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+  - Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+    This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+- Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
+  new `ObservableList` object to
+  update the JavaFX element in the UI.
+- JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
+  ensure that future updates do not alter their behavior.
+
+#### Why is it implemented this way:
+
+It was done in this manner to adhere to the following design principles:
+
+- Separation of Concerns: By delegating specific responsibilities to specialized classes (like `BookKeeperParser`,
+  `AddOrderCommandParser`, etc.), the design adheres to the principle of separation of concerns. This means each part of
+  the system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
+- Provide Extensibility: With a modular structure, adding new functionality (like future order implementations)
+  involves creating new classes and modifying existing ones minimally. This approach makes the system more extensible,
+  as seen with the introduction of new parser and command classes for handling orders.
+- Enhances Frontend Integration:  By redefining how the `ObservableList` is managed within the `ModelManager` for
+  Orders, we enhance our capability to directly manipulate the `OrderList` view in JavaFX. This adjustment in the
+  ModelManager class creates a seamless and responsive interaction between the backend data structures and the frontend
+  user interface.
+
+By doing so,  am able to emphasize on the clear separation of duties among components and allowing flexibility to add
+new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
+enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
+codebase.
+
+How the parsing works:
+
+* When called upon to parse a user command, the `BookKeeperParser` class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BookKeeperParser` returns back as
+  a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+  interface so that they can be treated similarly where possible e.g, during testing.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
+The proposed undo/redo mechanism is facilitated by `VersionedBookKeeper`. It extends `BookKeeper` with an undo/redo
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()`— Saves the current bookkeeper state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous bookkeeper state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone bookkeeper state from its history.
+* `VersionedBookKeeper#commit()`— Saves the current bookkeeper state in its history.
+* `VersionedBookKeeper#undo()`— Restores the previous bookkeeper state from its history.
+* `VersionedBookKeeper#redo()`— Restores a previously undone bookkeeper state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitBookKeeper()`, `Model#undoBookKeeper()`
+and `Model#redoBookKeeper()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
+Step 1. The user launches the application for the first time. The `VersionedBookKeeper` will be initialized with the
 initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th client in bookkeeper. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of bookkeeper after the `delete 5` command executes
+calls `Model#commitBookKeeper()`, causing the modified state of bookkeeper after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted bookkeeper
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new client. The `add` command also
-calls `Model#commitAddressBook()`, causing another modified bookkeeper state to be saved into
+calls `Model#commitBookKeeper()`, causing another modified bookkeeper state to be saved into
 the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so bookkeeper state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitBookKeeper()`, so bookkeeper state will not be saved into the `addressBookStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
+the `undo` command. The `undo` command will call `Model#undoBookKeeper()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous bookkeeper state, and restores bookkeeper to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial BookKeeper state, then there are no previous BookKeeper states to restore. The `undo` command uses `Model#canUndoBookKeeper()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -344,20 +348,20 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
+The `redo` command does the opposite — it calls `Model#redoBookKeeper()`, which shifts the `currentStatePointer` once
 to the right, pointing to the previously undone state, and restores bookkeeper to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest bookkeeper state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest bookkeeper state, then there are no undone BookKeeper states to restore. The `redo` command uses `Model#canRedoBookKeeper()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify bookkeeper, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
+as `list`, will usually not call `Model#commitBookKeeper()`, `Model#undoBookKeeper()` or `Model#redoBookKeeper()`.
 Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
+Step 6. The user executes `clear`, which calls `Model#commitBookKeeper()`. Since the `currentStatePointer` is not
 pointing at the end of the `addressBookStateList`, all bookkeeper states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
@@ -390,11 +394,11 @@ _{more aspects and alternatives to be added}_
 The proposed View Orders mechanism is facilitated by `ViewOrdersCommand`. It extends `Command` and implements the
 displaying of all orders that belong to a client.
 
-These operations are exposed in the `AddressBookParser` class as `AddressBookParser#parseCommand()`.
+These operations are exposed in the `BookKeeperParser` class as `BookKeeperParser#parseCommand()`.
 
 Given below is an example usage scenario and how the view orders mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
+Step 1. The user launches the application for the first time. The `VersionedBookKeeper` will be initialized with the
 initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 Step 2. The user executes `viewOrders` command to view all the orders that they have in BookKeeper. The `viewOrders`
