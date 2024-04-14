@@ -5,130 +5,127 @@ title: User Guide
 
 ## Table of Contents
 
-[1. Purpose of User Guide (UG)](#1-purpose-of-user-guide-ug)
+[1. Introduction](#1-introduction)
 
-[2. Introduction](#2-introduction)
+* [1.1. Introducing BookKeeper](#11-introducing-bookkeeper)
+* [1.2. What's New in BookKeeper release v1.4](#12-whats-new-in-bookkeeper-release-v14)
+* [1.3. Product Description](#13-product-description)
+* [1.4. Unique Selling Points](#14-unique-selling-points)
+    * [1.4.1. Centralised Platform](#141-centralised-platform)
+    * [1.4.2. Efficiency](#142-efficiency)
+    * [1.4.3. Tailored for Florist Businesses](#143-tailored-for-florist-businesses)
+    * [1.4.4. Cost-Effective](#144-cost-effective)
 
-* [2.1. Introducing BookKeeper](#21-introducing-bookkeeper)
-* [2.2. What's New in BookKeeper release v1.4](#22-whats-new-in-bookkeeper-release-v14)
-* [2.3. Product Description](#23-product-description)
-* [2.4. Unique Selling Points](#24-unique-selling-points)
-    * [2.4.1. Centralised Platform](#241-centralised-platform)
-    * [2.4.2. Efficiency](#242-efficiency)
-    * [2.4.3. Tailored for Florist Businesses](#243-tailored-for-florist-businesses)
-    * [2.4.4. Cost-Effective](#244-cost-effective)
+[2. Target Audience with assumptions](#2-target-audience-with-assumptions)
 
-[3. Target Audience with assumptions](#3-target-audience-with-assumptions)
+* [2.1. Target Audience](#21-target-audience)
+* [2.2. Assumptions](#22-assumptions)
 
-* [3.1. Target Audience](#31-target-audience)
-* [3.2. Assumptions](#32-assumptions)
+[3. Quick start](#3-quick-start)
 
-[4. Quick start](#4-quick-start)
+[4. Commands](#4-commands)
 
-[5. Commands](#5-commands)
+* [4.1 Command summary](#41-command-summary)
+    * [4.1.1 Client](#411-client)
+    * [4.1.2 Order](#412-order)
 
-* [5.1 Command summary](#51-command-summary)
-    * [5.1.1 Client](#511-client)
-    * [5.1.2 Order](#512-order)
+[5. Main Features](#5-main-features)
 
-[6. Main Features](#6-main-features)
+* [5.1. Help](#51-viewing-help--help)
+* [5.2. Clear all entries](#52-clearing-all-entries--clear)
+* [5.3. Exit the program](#53-exiting-the-program--exit)
+* [5.4. Add a client](#54-adding-a-client-add)
+* [5.5. Edit a client](#55-editing-a-client--edit)
+* [5.6. Delete a client](#56-deleting-a-client--delete)
+* [5.7. List all clients](#57-listing-all-clients--list)
+* [5.8. Find clients by name](#58-locating-clients-by-name-find)
+* [5.9. Add an order](#59-adding-an-order-order)
+* [5.10. Delete an order](#510-deleting-an-order-deleteorder)
+* [5.11. Edit an order](#511-editing-an-order--editorder)
 
-* [6.1. Help](#61-viewing-help--help)
-* [6.2. Clear all entries](#62-clearing-all-entries--clear)
-* [6.3. Exit the program](#63-exiting-the-program--exit)
-* [6.4. Add a client](#64-adding-a-client-add)
-* [6.5. Edit a client](#65-editing-a-client--edit)
-* [6.6. Delete a client](#66-deleting-a-client--delete)
-* [6.7. List all clients](#67-listing-all-clients--list)
-* [6.8. Find clients by name](#68-locating-clients-by-name-find)
-* [6.9. Add an order](#69-adding-an-order-order)
-* [6.10. Delete an order](#610-deleting-an-order-deleteorder)
-* [6.11. Edit an order](#611-editing-an-order--editorder)
+[6. Information about how to use the guide](#6-information-about-how-to-use-the-guide)
 
-[7. Information about how to use the guide](#7-information-about-how-to-use-the-guide)
+* [6.1. Appendix A: Technical Glossary](#61-appendix-a-technical-glossary)
+* [6.2. Appendix B: FAQ](#62-appendix-b-faq)
+* [6.3. Appendix C: Planned Features](#63-planned-features)
 
-* [7.1. Appendix A: Technical Glossary](#71-appendix-a-technical-glossary)
-* [7.2. Appendix B: One page cheatsheet](#72-appendix-b-one-page-cheatsheet)
-* [7.3. Appendix C: FAQ](#73-appendix-c-faq)
-
-[8. Known issues](#8-known-issues)
+[7. Known issues](#7-known-issues)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Purpose of User Guide (UG)
+## 1. Introduction
 
-BookKeeper is a desktop app designed for florists, in particular to manage their clients and orders when selling
-flower bouquets.
+### 1.1. Introducing BookKeeper
 
-Our User Guide (UG) provides florists with a comprehensive resource to understand and use BookKeeper effectively.
-Inside, we have outlined clear instructions, explanations, and best practices in order to aid florists in navigating
-BookKeeper’s features seamlessly. This UG is crucial to help florists comprehend the application’s functionalities,
-optimise their workflows, and maximise productivity with ease.
+Welcome to BookKeeper — the user-friendly desktop app designed specifically for you, an aspiring florist ready to take
+on the fast-paced world of the floristry business. You’ve decided on selling flower bouquets, and are looking for cheap
+and efficient ways to bring your business to the next level.
 
-BookKeeper is also optimised for use via a Command Line Interface (
-CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookKeeper can get your
-client management tasks done faster than traditional GUI apps.
---------------------------------------------------------------------------------------------------------------------
+BookKeeper helps you manage your clients and orders. We have designed this application with your needs in mind, and we
+hope to make managing your business a breeze.
 
-## 2. Introduction
+Our user guide will be your go-to resource to master Bookkeeper's different features. Inside, you will find detailed
+explanations of our different features. Whether you are a greenhorn or an experienced practitioner, our guide has you
+covered.
 
-### 2.1. Introducing BookKeeper
+This guide is broken down into 5 main sections,
 
-BookKeeper is an application designed to simplify your client and order management. <br>
-With BookKeeper, you can effortlessly organise your client information, track orders and identify loyal customers.<br>
-This user guide is your comprehensive resource for understanding the full capabilities of BookKeeper.
-Here, we break down the installation process, system setup, and key features, ensuring seamless adoption and utilisation
-of our app. If you are just starting your small florist business, BookKeeper is here to help you efficiently organise
-your business operations.
+* Introduction (this)
+* Quick Start
+* Command Details
+* Command Cheat Sheet
+* FAQ and Glossary
 
-### 2.2. What's New in BookKeeper release v1.4
+Got questions? Check out the Frequently Asked Questions (FAQ) for quick answers to the common queries we receive.
+Thank you for choosing BookKeeper! Without further ado, let us jump right into the guide.
+
+### 1.2. What's New in BookKeeper release v1.4
 
 BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
-    * Improved functionalities for efficient order management, with features like add, delete, edit and filter orders.
+    * Improved functionalities for efficient order management, with features like add, delete and edit orders.
 * Links Client to Orders
     * Seamlessly links clients to their respective orders for comprehensive tracking and management
 * Provides bug fixes
     * Fixed minor bugs to ensure the smooth operation of the application
 
-### 2.3. Product Description
+### 1.3. Product Description
 
 BookKeeper is like an address book, providing a working platform that can effectively manage user information
 and orders. This efficiently manages customer relationships as it maximises user productivity.
 
-### 2.4. Unique Selling Points
+### 1.4. Unique Selling Points
 
-#### 2.4.1. Centralised Platform
+#### 1.4.1. Centralised Platform
 
 BookKeeper offers a centralised platform where you can effortlessly store and search for client information,
 keeping all your vital data organised and accessible at your fingertips.
 
-#### 2.4.2. Efficiency
+#### 1.4.2. Efficiency
 
 With its intuitive command-line interface, BookKeeper is faster and more efficient than traditional methods
 like CRMs or Excel sheets. Spend less time navigating complex menus and more time serving your customer’s needs.
 
-#### 2.4.3. Tailored for Florist Businesses
+#### 1.4.3. Tailored for Florist Businesses
 
 We understand the unique needs of florists, which is why BookKeeper comes equipped with customizable fields, tags,
 and seamless integration with e-commerce platforms.
 
-#### 2.4.4. Cost-Effective
+#### 1.4.4. Cost-Effective
 
 Designed with small businesses in mind, BookKeeper is not only powerful but also cost-effective.
 Say goodbye to expensive software solutions that drain your resources.
---------------------------------------------------------------------------------------------------------------------
 
-## 3. Target Audience with assumptions
+## 2. Target Audience with assumptions
 
-### 3.1. Target Audience
+### 2.1. Target Audience
 
 BookKeeper is specifically designed for small florist businesses, catering to the unique needs and challenges they face
 in managing client relationships and orders. Our target audience includes small florist shops, independent floral
 designers, and boutique flower businesses.
 
-### 3.2. Assumptions
+### 2.2. Assumptions
 
 1. Our application is made with the assumption that users are members of the florist industry and will understand the
    needs as well as the terminology used by florists. They can either be business owners, managers, or employees and
@@ -140,9 +137,7 @@ designers, and boutique flower businesses.
    help users to familiarise themselves with BookKeeper fast, BookKeeper is also entry-level-friendly so that we can
    accommodate users of all levels of technical expertise.
 
---------------------------------------------------------------------------------------------------------------------
-
-## 4. Quick start
+## 3. Quick start
 
 1. Ensure you have Java `11` and above installed in your system.
     * You may check if you have Java installed by opening your command prompt or terminal, and type:  
@@ -187,25 +182,23 @@ designers, and boutique flower businesses.
 
 7. Refer to the [Main Features](#6-main-features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+## 4. Commands
 
-## 5. Commands
+### 4.1 Command summary
 
-### 5.1 Command summary
+### 4.1.1 Client
 
-### 5.1.1 Client
+| Action     | Format, Examples                                                                                                                                                  |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/VIP t/Customer` |
+| **Clear**  | `clear`                                                                                                                                                           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                        |
+| **List**   | `list`                                                                                                                                                            |
+| **Help**   | `help`                                                                                                                                                            |
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
-
-### 5.1.2 Order
+### 4.1.2 Order
 
 | Action          | Format, Examples                                                                                                                     |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------|
@@ -213,9 +206,7 @@ designers, and boutique flower businesses.
 | **deleteOrder** | `deleteOrder INDEX` <br/> e.g., `deleteOrder 3`                                                                                      |
 | **editOrder**   | `editOrder INDEX by/DEADLINE c/PRICE d/DESCRIPTION s/STATUS` <br> e.g., `editOrder 1 by/23-07-2024 10:10 c/40 d/1xRoses s/COMPLETED` |
 
---------------------------------------------------------------------------------------------------------------------
-
-## 6. Main Features
+## 5. Main Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -240,29 +231,38 @@ designers, and boutique flower businesses.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 
+* All index inputs in commands labelled (INDEX) can omit any leading 0s. (e.g. 1, 01, 000001 are all valid index inputs
+  for the index #000001)
+
 </div>
 
-### 6.1. Viewing help : `help`
+### 5.1. Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 Format: `help`
 
-### 6.2. Clearing all entries : `clear`
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional Notes:**<br>
+
+* You can press `F1` on your keyboard to access the Help page too.
+
+</div>
+
+### 5.2. Clearing all entries : `clear`
 
 Clears all entries from BookKeeper. <br>
 Format: `clear` <br>
 ![clear](images/clear.png)
 
-### 6.3. Exiting the program : `exit`
+### 5.3. Exiting the program : `exit`
 
 Exits the program. <br>
 Format: `exit`
 
-### <ins>Client Features:
-
-### 6.4. Adding a client: `add`
+### 5.4. Adding a client: `add`
 
 Adds a client to BookKeeper. <br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
@@ -271,18 +271,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 **:information_source: Additional Notes:**<br>
 
-* Clients with exact same name is not allowed.
+* Name must be unique, clients with exact same name is not allowed.
 * A client can have any number of tags (including 0).
 * Tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted).
 * Name and Tags only accept 0-9 and a-z (case-insensitive).
-* Name must be unique. (BookKeeper does not currently support having multiple persons with the same name).
-* Phone number must be numeric and at least 3 numbers. It must not contain spaces ` `, brackets `()` or hyphens `-`,
-  plus `+`, or other symbols.
+* Phone number must be numeric and at least 3 numbers. It must not contain spaces " ", "brackets ()" or "hyphens -",
+  "plus +" , or other symbols.
 
 </div>
-
-
-
 
 Example:
 `add n/Betsy Crowe e/betsycrowe@example.com a/Beauty World p/1234567 t/VIP`
@@ -296,7 +292,7 @@ More examples:
 * `add n/Alex Yeoh p/92157481 e/AY@example.com a/Bukit Batok, block 32, #07-01 t/VIP`
 * `add n/David Li p/98353481 e/David@example.com a/Bukit Batok, block 462, #07-02 t/Customer`
 
-### 6.5. Editing a client : `edit`
+### 5.5. Editing a client : `edit`
 
 Edits an existing client in BookKeeper. <br>
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -327,7 +323,7 @@ More examples:
 `edit 2 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 2nd client to
 be `91234567` and `johndoe@example.com` respectively.
 
-### 6.6. Deleting a client : `delete`
+### 5.6. Deleting a client : `delete`
 
 Deletes the specified client from BookKeeper. <br>
 Format: `delete INDEX`
@@ -352,13 +348,13 @@ More examples:
 
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### 6.7. Listing all clients : `list`
+### 5.7. Listing all clients : `list`
 
 Shows a list of all clients in BookKeeper. <br>
 Format: `list` <br>
 ![list clients](images/listClients.png)
 
-### 6.8. Locating clients by name: `find`
+### 5.8. Locating clients by name: `find`
 
 Finds clients whose names contain any of the given keywords. <br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
@@ -386,9 +382,7 @@ More examples:
 
 * `find John` returns `john` and `John Doe`
 
-### <ins>Order Features:
-
-### 6.9. Adding an order: `order`
+### 5.9. Adding an order: `order`
 
 Adds an order into BookKeeper. <br>
 Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
@@ -406,6 +400,9 @@ Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
 * All orders status are automatically set to PENDING.
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
     * Deadlines can be set to a date before their current date to suggest that the order is overdue.
+      (e.g. If your order was due yesterday, but you never make yet, you can also add a new order and put yesterday's
+      day
+      to track if you have orders that are overdue.)
 * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
     * For e.g. `2.999` will be rounded up to `3.00`.
 * The order list will be sorted according to their deadline.
@@ -426,14 +423,14 @@ More examples:
 * `order 3 by/07-07-2024 00:00 c/88.88 d/99xRoses`
 * `order 1 by/23-05-2024 16:00 c/58.90 d/1xLily`
 
-### 6.10. Deleting an order: `deleteOrder`
+### 5.10. Deleting an order: `deleteOrder`
 
 Deletes the specified order from BookKeeper. <br>
 Format: `deleteOrder INDEX`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Additional Notes:**<br
+**:information_source: Additional Notes:**
 
 * Deletes the order at the specified `INDEX`.
 * The index refers to the index number shown in the displayed order list.
@@ -447,14 +444,14 @@ Examples:
 ![delete order](images/deleteOrder_Before.png)
 ![delete order](images/deleteOrder_After.png)
 
-### 6.11. Editing an order : `editOrder`
+### 5.11. Editing an order : `editOrder`
 
 Edits an existing order in BookKeeper. <br>
 Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Additional Notes:**<br
+**:information_source: Additional Notes:**
 
 * Edits the order at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -499,9 +496,7 @@ Furthermore, certain edits can cause the BookKeeper to behave in unexpected ways
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
-
-## 7. Information about how to use the guide
+## 6. Information about how to use the guide
 
 What do the colours mean?
 
@@ -515,7 +510,7 @@ and appealing.
 This combination of colours not only enhances the aesthetics of BookKeeper, but also promises a user experience that
 is consistently positive and engaging.
 
-### 7.1. Appendix A: Technical Glossary
+### 6.1. Appendix A: Technical Glossary
 
 **Java** - the programming language that the application was written in,
 as well as the process in which the application is run
@@ -532,20 +527,20 @@ The CLI is one method which BookKeeper application can be launched
 
 **GUI (Graphical User Interface)** - is a type of user interface that allows users to interact through buttons and text.
 
-### 7.2. Appendix B: FAQ
+### 6.2. Appendix B: FAQ
 
 **Q**: I cannot run the application.<br>
 **A**: Try updating your system. On Windows, look for Windows Update.
 For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade -y`.
 
 **Q**: What command do I use to [...].<br>
-**A**: You can access the help page by clicking the Help button on the page.
+**A**: You can access the help page by clicking the Help button on the application.
 
 **Q**: How do I back up and restore data?<br>
 **A**: Your data is stored in the same directory you downloaded the application in.
 In that directory, search for a directory called data. In that directory, it is called `bookkeeper.json`.
-You may copy bookkeeper.json to another location to back it up,
-and you may copy another bookkeeper.json to restore existing data.
+You may copy `bookkeeper.json` to another location to back it up,
+and you may copy another `bookkeeper.json` to restore existing data.
 
 **Q**: Can I access the application from multiple devices at once?<br>
 **A**: Not at the moment. It is something that we are working on, though.
@@ -559,7 +554,7 @@ and you may copy another bookkeeper.json to restore existing data.
 **Q**: How do I update my application?<br>
 **A**: You may download the latest release [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
-### 7.3 Planned Features
+### 6.3 Planned Features
 
 1. Enhanced Error Messaging
     * Implementing more specific error messages for the "edit" and "editOrder" functions to provide clearer guidance
@@ -587,13 +582,9 @@ and you may copy another bookkeeper.json to restore existing data.
         * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
           9,000,000,000).
 
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Known issues
+## 7. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
    the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
    application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
 
