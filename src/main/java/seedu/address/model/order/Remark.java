@@ -36,7 +36,7 @@ public class Remark {
      * @return true if the remark is valid.
      */
     public static boolean isValidRemark(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && (!test.isEmpty());
     }
 
     @Override

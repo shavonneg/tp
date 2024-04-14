@@ -69,7 +69,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         OrderId orderId = new OrderId();
         OrderDate orderDate = new OrderDate(DateTimeUtil.getCurrentTime());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_BY).get());
-        Remark remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_DETAILS).get());
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
 
         Status status = new Status("pending");
