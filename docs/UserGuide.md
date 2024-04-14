@@ -346,7 +346,8 @@ Example:
 
 * `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
 
-![delete client](images/deleteClient.png)
+![delete client](images/deleteClient_Before.png)
+![delete client](images/deleteClient_After.png)
 
 More examples:
 
