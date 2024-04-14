@@ -85,7 +85,7 @@ BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
     * Improved functionalities for efficient order management, with features like add, delete and edit orders.
-* Links Client to Orders
+* Link Client to Orders
     * Seamlessly links clients to their respective orders for comprehensive tracking and management
 * Provides bug fixes
     * Fixed minor bugs to ensure the smooth operation of the application
