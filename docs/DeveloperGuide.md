@@ -189,34 +189,6 @@ order details.
 Previously, the `Storage` component was primarily designed to handle bookkeeper data and user preferences. However,
 with the growing requirements of our application, it becomes necessary to accommodate the storage of clients and orders.
 
-#### Implementation Details:
-
-To implement this feature, several modifications were made across different classes within the `Storage` package. The
-key changes include:
-
-1. New Classes: The introduction of `JsonAdaptedClient` and `JsonAdaptedOrder` classes to facilitate the conversion
-   between JSON format and the corresponding model objects (`Client` and `Order`).
-
-2. Updated Interfaces: The `BookKeeperStorage` interface was extended to included methods for reading and writing
-   orders. Similarly, the `Storage` interface, which serves as an umbrella for all storage-related functionalities,
-   was update to incorporate these changes.
-
-3. Storage Manager: The `StorageManager` class, which orchestrates the storage operations, was modified to delegate the
-   handling of client and order data to the appropriate storage classes.
-
-4. Unit Tests: Unit tests were added or updated to ensure the correctness and robustness of the new functionalities.
-
-#### Why it is implemented that way:
-
-With the implementation of storing clients and orders details, the `Storage` component of our application has been
-enhanced to better meet the evolving needs of our users. These changes not only improve the functionality of our
-application but also lay the groundwork for future enhancements and features.
-
-Future plans may involve further optimizing the storage mechanisms, exploring alternative storage formats, or
-integrating additional data validation checks to ensure data integrity. Overall, the recent enhancements to
-the `Storage` component
-mark a significant step forward in enhancing the robustness and flexibility of our application.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Common classes
@@ -305,6 +277,32 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 #### Storage Implementations
+
+To implement this feature, several modifications were made across different classes within the `Storage` package. The
+key changes include:
+
+1. New Classes: The introduction of `JsonAdaptedClient` and `JsonAdaptedOrder` classes to facilitate the conversion
+   between JSON format and the corresponding model objects (`Client` and `Order`).
+
+2. Updated Interfaces: The `BookKeeperStorage` interface was extended to included methods for reading and writing
+   orders. Similarly, the `Storage` interface, which serves as an umbrella for all storage-related functionalities,
+   was update to incorporate these changes.
+
+3. Storage Manager: The `StorageManager` class, which orchestrates the storage operations, was modified to delegate the
+   handling of client and order data to the appropriate storage classes.
+
+4. Unit Tests: Unit tests were added or updated to ensure the correctness and robustness of the new functionalities.
+
+#### Why it is implemented that way:
+
+With the implementation of storing clients and orders details, the `Storage` component of our application has been
+enhanced to better meet the evolving needs of our users. These changes not only improve the functionality of our
+application but also lay the groundwork for future enhancements and features.
+
+Future plans may involve further optimizing the storage mechanisms, exploring alternative storage formats, or
+integrating additional data validation checks to ensure data integrity. Overall, the recent enhancements to
+the `Storage` component
+mark a significant step forward in enhancing the robustness and flexibility of our application.
 
 ### \[Proposed\] Undo/redo feature
 
