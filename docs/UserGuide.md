@@ -43,13 +43,15 @@ title: User Guide
 * [5.10. Delete an order](#510-deleting-an-order-deleteorder)
 * [5.11. Edit an order](#511-editing-an-order--editorder)
 
-[6. Information about how to use the guide](#6-information-about-how-to-use-the-guide)
+[6. Known issues](#6-known-issues)
 
-* [6.1. Appendix A: Technical Glossary](#61-appendix-a-technical-glossary)
-* [6.2. Appendix B: FAQ](#62-appendix-b-faq)
-* [6.3. Appendix C: Planned Features](#63-planned-features)
+[Appendix A: Technical Glossary](#appendix-a-technical-glossary)
 
-[7. Known issues](#7-known-issues)
+[Appendix B: FAQ](#appendix-b-faq)
+
+[Appendix C: Planned Features](#appendix-c-planned-features)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +87,7 @@ BookKeeper v1.4 contains the following new features and improvements.
 
 * Order management enhancements
     * Improved functionalities for efficient order management, with features like add, delete and edit orders.
-* Links Client to Orders
+* Link Client to Orders
     * Seamlessly links clients to their respective orders for comprehensive tracking and management
 * Provides bug fixes
     * Fixed minor bugs to ensure the smooth operation of the application
@@ -219,10 +221,13 @@ designers, and boutique flower businesses.
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIP`, `t/VIP t/MEMBER` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Names are case-sensitive.<br>
+  e.g. the names `John Doe` and `John doe` are considered unique.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   ignored.<br>
@@ -277,6 +282,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Name and Tags only accept 0-9 and a-z (case-insensitive).
 * Phone number must be numeric and at least 3 numbers. It must not contain spaces " ", "brackets ()" or "hyphens -",
   "plus +" , or other symbols.
+* Emails must not have consecutive special characters. E.g. "john..doe@example.com" is not accepted.
 
 </div>
 
@@ -493,25 +499,13 @@ If your changes to the data file makes its format invalid, BookKeeper will disca
 Furthermore, certain edits can cause the BookKeeper to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+## 6. Known issues
 
-_Details coming soon ..._
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
+   the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
+   application before running the application again.
 
-## 6. Information about how to use the guide
-
-What do the colours mean?
-
-BookKeeper mainly uses four colours: beige, muted green, creamy yellow, and warm brown.
-
-We hoped to achieve a cohesive colour scheme that not only shows visual hierarchy, but provides florists with a sense
-of familiarity by choosing colours that are reminiscent of nature. The neutral colour palette caters to a the wide
-diversity of florists, be it with respect to age group or gender, while also ensuring that the app remains timeless
-and appealing.
-
-This combination of colours not only enhances the aesthetics of BookKeeper, but also promises a user experience that
-is consistently positive and engaging.
-
-### 6.1. Appendix A: Technical Glossary
+## Appendix A: Technical Glossary
 
 **Java** - the programming language that the application was written in,
 as well as the process in which the application is run
@@ -528,11 +522,18 @@ The CLI is one method which BookKeeper application can be launched
 
 **GUI (Graphical User Interface)** - is a type of user interface that allows users to interact through buttons and text.
 
-### 6.2. Appendix B: FAQ
+## Appendix B: FAQ
 
 **Q**: I cannot run the application.<br>
-**A**: Try updating your system. On Windows, look for Windows Update.
-For Linux, type in your terminal `sudo apt update -y && sudo apt upgrade -y`.
+**A**: Ensure you have Java `11` and above installed in your system.
+
+* You may check if you have Java installed by opening your command prompt or terminal, and type:  
+  `java --version`
+* If Java is installed, you should ensure that it is currently running on version "11.x.xx".
+* ![img_2.png](images/JavaVersionScreenshot.png)
+* If you encounter an error, or if your version does not match our specified requirements, you may visit the
+  [Official Oracle website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to
+  download the Java JDK required to run this project.
 
 **Q**: What command do I use to [...].<br>
 **A**: You can access the help page by clicking the Help button on the application.
@@ -555,7 +556,7 @@ and you may copy another `bookkeeper.json` to restore existing data.
 **Q**: How do I update my application?<br>
 **A**: You may download the latest release [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
-### 6.3 Planned Features
+## Appendix C: Planned Features
 
 1. Enhanced Error Messaging
     * Implementing more specific error messages for the "edit" and "editOrder" functions to provide clearer guidance
@@ -582,10 +583,3 @@ and you may copy another `bookkeeper.json` to restore existing data.
     * There a constraints on size of values due to the innate storage system. Numbers cannot be too large.
         * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
           9,000,000,000).
-
-## 7. Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only
-   the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the
-   application before running the application again.
-

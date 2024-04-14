@@ -10,7 +10,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Original AB3
+* [AB3 developer guide](https://nus-cs2103-ay2324s2.github.io/tp/DeveloperGuide.html) for the initial template
+  and structure of this document.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,32 +231,50 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding the Order methods
 
-#### Implementation Details
+#### Command and CommandParser Implementations
 
 To implement the new Order Logic, a new package has to be created within the commands and parser packages to cater to
 the order implementations. The key changes would be:
 
 - Creation of new classes:
     - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will get the
-      referenced `Client` by their index, and add the `Order` object into the Client's respective orders.
-      This will have the required logic to return the appropriate `Command` to be executed in the main logic.
+      referenced `Client` by their index in the `ObservableList` and check if the `Client` index is valid.
+      Afterwards, it will create & append the `Order` object into the `Client` object's respective orders list.
+      Upon execution of this command, it will return the `CommandResult` on for the output box to indicate if it was a
+      successful command or not.
     - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
       This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
-      the `ObservableList` by index to determine if the index is valid, then checks which `Client` the order belongs to.
-      This allows the modification of both `Client`s and `Order`s at the same time.
-    - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. First, the 
+      the `ObservableList` by index to determine if the `Order` index is valid, then checks which `Client` the `Order`
+      object belongs to. This allows the modification of both `Client`s and `Order`s at the same time.
+      Upon execution of this command, it will return the `CommandResult` on for the output box to indicate if it was a
+      successful command or not.
+
+    - Created a `EditOrderCommand` class to cater to allow editing Orders by the user. It will first search the `Order`
+      objects in the `ObservableList` to ensure that the index is valid, before finding the `Client` object that
+      the `Order` object belongs to.
+      Afterwards, the `Order` object is edited, and will be replaced in the `Client` object's orders list to update the
+      details. This will be encapsulated and returned in a `Command` object that will be executed in the main logic.
 - Creation of new parser classes:
     - Creating a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
-      flow is as intended, and will allow us to get the required parameters typed by the user.
+      flow is as intended, and will allow us to get index of the `Client` object in the `ObservableList` and get the
+      required parameters typed by the user by parsing it with
+      the `Prefix` objects in `CliSyntax` class.
+      For this command, the prefixes used would be `d/` for description, `c/` for price and `by/` for the deadline.
+      The respective `AddOrderCommand` will be created to be executed by the `LogicManager`.
     - Creating a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
       This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+      This will create the respective `DeleteOrderCommand` to be executed by the `LogicManager`.
     - Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList` and get the
+      required parameters typed by the user by parsing it with
+      the `Prefix` objects in `CliSyntax` class. For this command, the prefixes used would be `d/` for description, `c/`
+      for price and `by/` for the deadline.
+      These prefixes are optional, and not including them will use the current `Order` object details.
+      At the end this will create the respective `EditOrderCommand` to be executed by the `LogicManager`.
+
 - Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
-  new `ObservableList` object to
+  new `ObservableList` object for `Order` objects to
   update the JavaFX element in the UI.
-- JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
-  ensure that future updates do not alter their behavior.
 
 #### Why is it implemented this way:
 
@@ -285,6 +304,8 @@ How the parsing works:
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
+
+#### Storage Implementations
 
 ### \[Proposed\] Undo/redo feature
 

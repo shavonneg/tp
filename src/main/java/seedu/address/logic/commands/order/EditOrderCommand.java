@@ -7,11 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -79,11 +77,6 @@ public class EditOrderCommand extends Command {
         Remark updatedRemark = editOrderDescriptor.getRemark().orElse(orderToEdit.getRemark());
         Status updatedStatus = editOrderDescriptor.getStatus().orElse(orderToEdit.getStatus());
 
-        if (orderToEdit.getStatus().getStatusEnum() == Status.StatusEnum.PENDING
-                && updatedStatus.getStatusEnum() == Status.StatusEnum.COMPLETED) {
-            updatedStatus = new Status(Status.StatusEnum.COMPLETED.name());
-        }
-
         return new Order(orderToEdit.getOrderId(), updatedOrderDate, updatedDeadline, updatedPrice, updatedRemark,
                 updatedStatus, orderToEdit.getClient());
     }
@@ -101,7 +94,7 @@ public class EditOrderCommand extends Command {
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
 
         List<Client> clientList = model.getFilteredClientList();
-        Pair<Client, Client> clientPair = getEditedClient(clientList, orderToEdit, editedOrder);
+        Pair<Client, Client> clientPair = editClient(clientList, orderToEdit, editedOrder);
         Client clientToEdit = clientPair.getFirst();
         Client editedClient = clientPair.getSecond();
 
@@ -110,18 +103,11 @@ public class EditOrderCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, Messages.format(editedOrder)));
     }
 
-    private Pair<Client, Client> getEditedClient(List<Client> clientList, Order orderToEdit, Order editedOrder) throws
+    private Pair<Client, Client> editClient(List<Client> clientList, Order orderToEdit, Order editedOrder) throws
             CommandException {
         for (Client client : clientList) {
             if (client.getOrders().contains(orderToEdit)) {
-                Set<Order> newOrders = new HashSet<>(client.getOrders());
-                newOrders.remove(orderToEdit);
-                newOrders.add(editedOrder);
-
-                Client editedClient = new Client(
-                        client.getName(), client.getPhone(), client.getEmail(),
-                        client.getAddress(), client.getTags(), newOrders);
-
+                Client editedClient = client.editOrder(orderToEdit, editedOrder);
                 return new Pair<>(client, editedClient);
             }
         }
