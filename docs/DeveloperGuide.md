@@ -41,8 +41,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** (consisting of
-classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is
+classes [`Main`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is
 in charge of the app launch and shut down.
 
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
@@ -82,32 +82,32 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
+e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
 ### Logic component
 
 **API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -123,7 +123,7 @@ call as an example.
 
 How the Logic component works:
 
-1. When Logic is invoked to execute a command, it delegates the command to an AddressBookParser object. This object then
+1. When Logic is invoked to execute a command, it delegates the command to an BookKeeperParser object. This object then
    creates a parser corresponding to the command type (e.g., DeleteCommandParser) and utilizes it to interpret the
    command.
 2. This process generates a Command object (to be more specific, an instance of one of its subclasses, e.g.,
@@ -153,8 +153,8 @@ commands. The key changes would be:
       to return the appropriate `Command` to be executed in the main logic.
     - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their `ObservableList` class.
       This will allow the users to delete by index instead of the UUID. The `DeleteOrderCommand` first checks
-      the `ObservableList` by index to determine if the index is valid, then checks which `Person` the order belongs to.
-      This allows the modification of both `Person`s and `Order`s at the same time.
+      the `ObservableList` by index to determine if the index is valid, then checks which `Client` the order belongs to.
+      This allows the modification of both `Client`s and `Order`s at the same time.
     - Created a `EditOrderCommand` class to cater to allow editing inputs by the user. The logic is similar to that used
       by `DeleteOrderCommand`.
 - Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
@@ -167,7 +167,7 @@ commands. The key changes would be:
 
 It was done in this manner to adhere to the following design principles:
 
-- Separation of Concerns: By delegating specific responsibilities to specialized classes (like `AddressBookParser`,
+- Separation of Concerns: By delegating specific responsibilities to specialized classes (like `BookKeeperParser`,
   AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of
   the
   system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
@@ -186,9 +186,9 @@ codebase.
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `BookKeeperParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BookKeeperParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -196,16 +196,16 @@ How the parsing works:
 ### Model component
 
 **API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="682" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores bookkeeper data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores the currently 'selected' `Order` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to
@@ -215,7 +215,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `BookKeeper`, which `Client` references. This allows `BookKeeper` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -224,7 +224,7 @@ The `Model` component,
 ### Storage component
 
 **API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 Below is an updated UML class diagram illustrating the relationships and interactions among the various storage-related
 classes:
@@ -233,13 +233,13 @@ classes:
 
 The `Storage` component of our application is responsible for handling the reading and writing of data to and from
 external storage sources.
-This includes functionalities such as saving and retrieving addressbook data and user preferences.
+This includes functionalities such as saving and retrieving bookkeeper data and user preferences.
 In this section, we will delve into the recent enhancements made to the `Storage` component, focusing on the
 implementation of storing clients and order details.
 
 In this enhancement, the `Storage` component has been extended to support the storage and retrieval of both client and
 order details.
-Previously, the `Storage` component was primarily designed to handle address book data and user preferences. However,
+Previously, the `Storage` component was primarily designed to handle bookkeeper data and user preferences. However,
 with the growing requirements of our application, it becomes necessary to accommodate the storage of clients and orders.
 
 #### Implementation Details:
@@ -250,7 +250,7 @@ key changes include:
 1. New Classes: The introduction of `JsonAdaptedClient` and `JsonAdaptedOrder` classes to facilitate the conversion
    between JSON format and the corresponding model objects (`Client` and `Order`).
 
-2. Updated Interfaces: The `AddressBookStorage` interface was extended to included methods for reading and writing
+2. Updated Interfaces: The `BookKeeperStorage` interface was extended to included methods for reading and writing
    orders. Similarly, the `Storage` interface, which serves as an umbrella for all storage-related functionalities,
    was update to incorporate these changes.
 
@@ -274,7 +274,7 @@ mark a significant step forward in enhancing the robustness and flexibility of o
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.bookkeeper.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -290,9 +290,9 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()`— Saves the current bookkeeper state in its history.
+* `VersionedAddressBook#undo()`— Restores the previous bookkeeper state from its history.
+* `VersionedAddressBook#redo()`— Restores a previously undone bookkeeper state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
 and `Model#redoAddressBook()` respectively.
@@ -300,30 +300,30 @@ and `Model#redoAddressBook()` respectively.
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+Step 2. The user executes `delete 5` command to delete the 5th person in bookkeeper. The `delete` command
+calls `Model#commitAddressBook()`, causing the modified state of bookkeeper after the `delete 5` command executes
+to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted bookkeeper
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
-calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
+calls `Model#commitAddressBook()`, causing another modified bookkeeper state to be saved into
 the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so bookkeeper state will not be saved into the `addressBookStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
+once to the left, pointing it to the previous bookkeeper state, and restores bookkeeper to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -345,20 +345,20 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+to the right, pointing to the previously undone state, and restores bookkeeper to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest bookkeeper state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
+Step 5. The user then decides to execute the command `list`. Commands that do not modify bookkeeper, such
 as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
 Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
+pointing at the end of the `addressBookStateList`, all bookkeeper states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -372,7 +372,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire bookkeeper.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -395,10 +395,10 @@ These operations are exposed in the `AddressBookParser` class as `AddressBookPar
 Given below is an example usage scenario and how the view orders mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 Step 2. The user executes `viewOrders` command to view all the orders that they have in BookKeeper. The `viewOrders`
-command calls `Model#updateFilteredOrderList()`, causing the address book to show the list of orders
+command calls `Model#updateFilteredOrderList()`, causing bookkeeper to show the list of orders
 that are tracked in the storage of the application. The `viewOrders` command then returns a new `CommandResult`, which
 displays the `MESSAGE_SUCCESS` message, which is "Here are all your orders: ".
 
@@ -443,9 +443,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Florists business owners or freelance hobbyist.
-* Prefers efficient ways to manage customer and loyalty points.
-* Prefers an efficient way to keep track of customer's orders.
+* Florists business owners or freelance hobbyist in the floral industry.
+* Prefers efficient ways to manage their clients and their information.
+* Prefers an efficient way to keep track of client's orders.
 * Values productivity and time-saving solutions.
 
 **User Needs and Preferences**:
@@ -458,7 +458,7 @@ _{Explain here how the data archiving feature will be implemented}_
     * Prefers to organize orders and sort them via due date.
     * Helps to keep track of customer's delivery deadlines.
 * Persistent Data Storage:
-    * Prefers applications with backup and synchronization capabilities for data integrity.
+    * Prefers application that stores data across local sessions.
 
 **Value proposition**:
 
@@ -470,23 +470,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …  | I want to …                                                              | So that I can…                                                                                                |
 |----------|---------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | Florist | easily add new customers to my address book                              | keep track of all my clients' information in one place.                                                       |
+| `* * *`  | Florist | easily add new clients to my bookkeeper                                  | keep track of all my clients' information in one place.                                                       |
 | `* * *`  | Florist | have a search function                                                   | quickly find specific customers when I need to reference their details.                                       |
 | `* * *`  | Florist | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                 |
 | `* * *`  | Florist | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.               |
 | `* * *`  | Florist | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                             |
-| `* * *`  | Florist | have data backup and synchronization capabilities                        | access my customer information from multiple devices and ensure its security.                                 |
-| `* * *`  | Florist | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
-| `* *`    | Florist | categorize my customers                                                  | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases.      |
+| `* * *`  | Florist | be able to create orders for my clients                                  | record all of my clients' orders and take note of their respective deadlines.                                 |
+| `* *`    | Florist | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
+| `* *`    | Florist | categorize my client                                                     | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases.      |
 | `* *`    | Florist | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.        |
 | `* *`    | Florist | have a reminder feature                                                  | stay organized and follow up with customers on important dates, such as birthdays or anniversaries.           |
 | `* *`    | Florist | have customizable templates for invoices and receipts                    | easily generate and send professional-looking documents to my customers.                                      |
-| `* *`    | Florist | have a notes section for each customer                                   | record specific preferences and requirements for their projects.                                              |
+| `* *`    | Florist | have a notes section for each client                                     | record specific preferences and requirements for their projects.                                              |
 | `* *`    | Florist | integrate with accounting software                                       | easily track expenses related to each customer and maintain accurate financial records.                       |
 | `*`      | Florist | have a mobile-friendly interface                                         | easily access customer information on the go and process orders efficiently.                                  |
 | `*`      | Florist | integrate with my email client                                           | send personalized messages and promotions to my customers directly from the platform.                         |
 | `*`      | Florist | integrate with e-commerce platforms                                      | automatically sync customer data and manage orders efficiently when participating in online marketplaces.     |
-| `*`      | Florist | track communication history with customers                               | provide personalized and timely customer service including emails and phone calls.                            |
+| `*`      | Florist | track communication history with clients                                 | provide personalized and timely customer service including emails and phone calls.                            |
 | `*`      | Florist | support multiple user accounts with shared access                        | my team members can collaborate on managing customer relationships.                                           |
 | `*`      | Florist | have a scheduling feature                                                | manage registrations and communicate updates with attendees seamlessly.                                       |
 | `*`      | Florist | have a feature for scanning and capturing customer contact information   | grow my mailing list and follow up with potential leads quickly.                                              |
@@ -499,17 +499,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+(For all use cases below, the **System** is the `BookKeeper` and the **Actor** is the `user`, unless specified
 otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a Client**
 
 **MSS**
 
-1. User requests to list persons.
-2. AddressBook shows a list of persons.
-3. User requests to delete a specific person in the list.
-4. AddressBook deletes the person.
+1. User requests to list clients.
+2. BookKeeper shows a list of clients.
+3. User requests to delete a specific client in the list.
+4. BookKeeper deletes the client.
 
    Use case ends.
 
@@ -521,97 +521,88 @@ otherwise)
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. BookKeeper shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Add a person**
+**Use case: Add a client**
 
 **MSS**
 
-1. User requests to add a person.
-2. AddressBook adds a person.
-3. AddressBook shows the added person.
+1. User requests to add a client.
+2. BookKeeper adds a client.
+3. BookKeeper shows the added client.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The person already exists.
+* 2a. The client already exists.
 
-    * 2a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
-
-* 2b. The person details are invalid.
-
-    * 2b1. AddressBook shows an error message.
+    * 2a1. BookKeeper shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: Edit a person**
+* 2b. The client details are invalid.
+
+    * 2b1. Bookkeeper shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit a client**
 
 **MSS**
 
-1. User requests to edit a person.
-2. AddressBook shows the person to be edited.
-3. User edits the person.
-4. AddressBook shows the edited person.
+1. User requests to edit a client.
+2. BookKeeper shows the client to be edited.
+3. User edits the client.
+4. BookKeeper shows the edited client.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The person does not exist.
+* 2a. The client does not exist.
 
-    * 2a1. AddressBook shows an error message.
-    * 2a2. AddressBook shows a list of persons with similar names.
+    * 2a1. BookKeeper shows an error message.
+    * 2a2. BookKeeper shows a list of clients with similar names.
 
       Use case resumes at step 1.
-* 3a. The person details are invalid.
+* 3a. The client details are invalid.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-* 3b. The person details are unchanged.
-
-    * 3b1. AddressBook shows a message indicating no changes are made.
+    * 3a1. BookKeeper shows an error message.
 
       Use case resumes at step 2.
+* 3b. The client details are unchanged.
 
-**Use case: Find a person**
+    * 3b1. BookKeeper shows a message indicating no changes are made.
+
+      Use case resumes at step 2.
+
+**Use case: Find a client**
 
 **MSS**
 
-1. User requests to find a person by name.
-2. AddressBook shows a list of persons whose names contain the given keyword.
+1. User requests to find a client by name.
+2. BookKeeper shows a list of clients whose names contain the given keyword.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. No person is found.
+* 2a. No client is found.
 
-    * 2a1. AddressBook shows a message indicating no person is found.
-    * 2a2. AddressBook shows the list of persons with similar names.
+    * 2a1. BookKeeper shows a message indicating no client is found.
+    * 2a2. BookKeeper shows the list of clients with similar names.
 
   Use case ends.
-
-**Use case: Filter categories**
-
-**MSS**
-
-1. User requests to filter categories.
-2. AddressBook shows a list of persons with the given category.
-
-   Use case ends.
 
 **Use case: Sort by order**
 
 **MSS**
 
 1. User requests to sort by order.
-2. AddressBook shows a list of persons sorted by the given order.
+2. BookKeeper shows a list of clients sorted by the given order.
 
    Use case ends.
 
@@ -620,7 +611,7 @@ otherwise)
 **MSS**
 
 1. User requests to show help.
-2. AddressBook shows a help page.
+2. BookKeeper shows a help page.
 
    Use case ends.
 
@@ -629,7 +620,7 @@ otherwise)
 **MSS**
 
 1. User requests to clear all entries.
-2. AddressBook clears all entries.
+2. BookKeeper clears all entries.
 
    Use case ends.
 
@@ -638,35 +629,7 @@ otherwise)
 **MSS**
 
 1. User requests to exit the program.
-2. AddressBook exits.
-
-   Use case ends.
-
-**Use case: Import data**
-
-**MSS**
-
-1. User requests to view locally saved data.
-2. AddressBook opens location of saved data.
-3. User stores new data to local file.
-4. AddressBook imports data from file.
-
-   Use case ends.
-
-**Extensions**
-
-* 4a. The data is invalid.
-
-    * 4a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: Export data**
-
-**MSS**
-
-1. User requests to export data.
-2. AddressBook opens locally saved file.
+2. BookKeeper exits.
 
    Use case ends.
 
@@ -675,7 +638,7 @@ otherwise)
 **MSS**
 
 1. User requests to add an order.
-2. AddressBook adds an order.
+2. BookKeeper adds an order.
 
    Use case ends.
 
@@ -683,12 +646,12 @@ otherwise)
 
 * 2a. The order already exists.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. BookKeeper shows an error message.
 
       Use case resumes at step 1.
 * 2b. The order details are invalid.
 
-    * 2b1. AddressBook shows an error message.
+    * 2b1. BookKeeper shows an error message.
 
       Use case resumes at step 1.
 
@@ -697,9 +660,9 @@ otherwise)
 **MSS**
 
 1. User requests to edit an order.
-2. AddressBook shows the order to be edited.
+2. BookKeeper shows the order to be edited.
 3. User edits the order.
-4. AddressBook shows the edited order.
+4. BookKeeper shows the edited order.
 
    Use case ends.
 
@@ -707,18 +670,17 @@ otherwise)
 
 * 2a. The order does not exist.
 
-    * 2a1. AddressBook shows an error message.
-    * 2a2. AddressBook shows a list of orders with similar names.
+    * 2a1. BookKeeper shows an error message.
 
       Use case resumes at step 1.
 * 3a. The order details are invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. BookKeeper shows an error message.
 
       Use case resumes at step 2.
 * 3b. The order details are unchanged.
 
-    * 3b1. AddressBook shows a message indicating no changes are made.
+    * 3b1. BookKeeper shows a message indicating no changes are made.
 
       Use case resumes at step 2.
 
@@ -727,7 +689,7 @@ otherwise)
 **MSS**
 
 1. User requests to delete an order.
-2. AddressBook deletes the order.
+2. BookKeeper deletes the order.
 
    Use case ends.
 
@@ -735,31 +697,15 @@ otherwise)
 
 * 2a. The order does not exist.
 
-    * 2a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: Prioritize order**
-
-**MSS**
-
-1. User requests to prioritize an order.
-2. AddressBook shows the prioritized order.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The order does not exist.
-
-    * 2a1. AddressBook shows an error message.
+    * 2a1. BookKeeper shows an error message.
 
       Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 clients' information without a noticeable sluggishness in performance for typical
+   usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed
@@ -808,18 +754,18 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a Client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
     1. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
