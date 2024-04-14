@@ -1,5 +1,3 @@
-# About Us:
-
 Welcome to BookKeeper, your trusted companion in clientele management. We understand the
 challenges faced by entrepreneurs like you. **Passionate** about sharing beautiful flowers.
 BookKeeper is here to simplify your workflow, empower your business, and help you thrive, so you can spend more time
