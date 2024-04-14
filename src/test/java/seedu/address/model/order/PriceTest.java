@@ -32,7 +32,7 @@ class PriceTest {
     void isValidPrice() {
 
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
-        assertThrows(NumberFormatException.class, () -> Price.isValidPrice(""));
+        assertFalse(Price.isValidPrice(""));
 
         assertFalse(Price.isValidPrice("-1"));
 
