@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.order.EditOrderCommand;
+import seedu.address.logic.commands.order.EditOrderDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -41,7 +42,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_BY, PREFIX_PRICE, PREFIX_DETAILS, PREFIX_STATUS);
 
-        EditOrderCommand.EditOrderDescriptor editOrderDescriptor = new EditOrderCommand.EditOrderDescriptor();
+        EditOrderDescriptor editOrderDescriptor = new EditOrderDescriptor();
 
         if (argMultimap.getValue(PREFIX_BY).isPresent()) {
             editOrderDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_BY).get()));
