@@ -271,6 +271,7 @@ the order implementations. The key changes would be:
       for price and `by/` for the deadline.
       These prefixes are optional, and not including them will use the current `Order` object details.
       At the end this will create the respective `EditOrderCommand` to be executed by the `LogicManager`.
+
 - Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
   new `ObservableList` object for `Order` objects to
   update the JavaFX element in the UI.
