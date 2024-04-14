@@ -44,46 +44,46 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' bookkeeper file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' bookkeeper file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the AddressBook.
+     * Returns BookKeeper.
      */
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces bookkeeper data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in bookkeeper.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in bookkeeper.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in bookkeeper.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in bookkeeper.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in bookkeeper.
      */
     void setPerson(Person target, Person editedPerson);
 

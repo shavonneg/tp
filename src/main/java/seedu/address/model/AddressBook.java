@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}.
+     * Creates an BookKeeper using the Persons in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in bookkeeper.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -69,8 +69,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to bookkeeper.
+     * The person must not already exist in bookkeeper.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -79,8 +79,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in bookkeeper.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in bookkeeper.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -99,8 +99,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given order {@code target} in the list with {@code editedOrder}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
+     * {@code target} must exist in bookkeeper.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in bookkeeper.
      */
     public void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder) {
         requireNonNull(editedOrder);
@@ -109,7 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in bookkeeper.
      */
     public void removePerson(Person key) {
         persons.remove(key);

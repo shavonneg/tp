@@ -68,9 +68,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s bookkeeper and {@code userPrefs}. <br>
+     * The data from the sample bookkeeper will be used instead if {@code storage}'s bookkeeper is not found,
+     * or an empty bookkeeper will be used instead if errors occur when reading {@code storage}'s bookkeeper.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
@@ -81,12 +81,12 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+                        + " populated with a sample BookKeeper.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty BookKeeper.");
             initialData = new AddressBook();
         }
 
@@ -127,7 +127,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -158,7 +158,7 @@ public class MainApp extends Application {
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -170,7 +170,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting BookKeeper " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
