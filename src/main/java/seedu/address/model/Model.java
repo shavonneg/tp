@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.client.Client;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 
 /**
@@ -16,7 +16,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true.
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true.
@@ -56,47 +56,47 @@ public interface Model {
     /**
      * Returns BookKeeper.
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyBookKeeper getAddressBook();
 
     /**
      * Replaces bookkeeper data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyBookKeeper addressBook);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in bookkeeper.
+     * Returns true if a client with the same identity as {@code client} exists in bookkeeper.
      */
-    boolean hasPerson(Person person);
+    boolean hasClient(Client client);
 
     /**
-     * Deletes the given person.
-     * The person must exist in bookkeeper.
+     * Deletes the given client.
+     * The client must exist in bookkeeper.
      */
-    void deletePerson(Person target);
+    void deleteClient(Client target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in bookkeeper.
+     * Adds the given client.
+     * {@code client} must not already exist in bookkeeper.
      */
-    void addPerson(Person person);
+    void addClient(Client client);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in bookkeeper.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in bookkeeper.
+     * The client identity of {@code editedClient} must not be the same as another existing client in bookkeeper.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setClient(Client target, Client editedClient);
 
-    void setPersonAndAddOrder(Person target, Person editedPerson, Order order);
+    void setClientAndAddOrder(Client target, Client editedClient, Order order);
 
-    void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order);
+    void setClientAndDeleteOrder(Client target, Client editedClient, Order order);
 
-    void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder);
+    void setClientAndEditOrder(Client target, Client editedClient, Order order, Order editedOrder);
 
     /**
-     * Returns an unmodifiable view of the filtered person list.
+     * Returns an unmodifiable view of the filtered client list.
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns an unmodifiable view of the filtered order list.
@@ -104,11 +104,11 @@ public interface Model {
     ObservableList<Order> getFilteredOrderList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
 
     /**
      * Updates the filter of the filtered order list to filter by the given {@code predicate}.

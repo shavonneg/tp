@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Client;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of bookkeeper data.
@@ -20,28 +20,28 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final BookKeeper bookKeeper;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
     private final FilteredList<Order> filteredOrders;
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given bookKeeper and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyBookKeeper addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with save file: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.bookKeeper = new BookKeeper(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
+        filteredClients = new FilteredList<>(this.bookKeeper.getClientList());
+        filteredOrders = new FilteredList<>(this.bookKeeper.getOrderList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new BookKeeper(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,62 +79,62 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== BookKeeper ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyBookKeeper getAddressBook() {
+        return bookKeeper;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyBookKeeper addressBook) {
+        this.bookKeeper.resetData(addressBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return bookKeeper.hasClient(client);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteClient(Client target) {
+        bookKeeper.removeClient(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addClient(Client client) {
+        bookKeeper.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
 
-        addressBook.setPerson(target, editedPerson);
+        bookKeeper.setClient(target, editedClient);
 
     }
 
     @Override
-    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
-        requireAllNonNull(target, editedPerson);
+    public void setClientAndAddOrder(Client target, Client editedClient, Order order) {
+        requireAllNonNull(target, editedClient);
 
-        addressBook.setPersonAndAddOrder(target, editedPerson, order);
+        bookKeeper.setClientAndAddOrder(target, editedClient, order);
     }
 
     @Override
-    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
-        requireAllNonNull(target, editedPerson);
+    public void setClientAndDeleteOrder(Client target, Client editedClient, Order order) {
+        requireAllNonNull(target, editedClient);
 
-        addressBook.setPersonAndDeleteOrder(target, editedPerson, order);
+        bookKeeper.setClientAndDeleteOrder(target, editedClient, order);
     }
 
     @Override
-    public void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder) {
-        requireAllNonNull(target, editedPerson, order, editedOrder);
+    public void setClientAndEditOrder(Client target, Client editedClient, Order order, Order editedOrder) {
+        requireAllNonNull(target, editedClient, order, editedOrder);
 
-        addressBook.setPersonAndEditOrder(target, editedPerson, order, editedOrder);
+        bookKeeper.setClientAndEditOrder(target, editedClient, order, editedOrder);
     }
 
 
@@ -155,21 +155,21 @@ public class ModelManager implements Model {
         filteredOrders.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Client List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
      * {@code versionedAddressBook}.
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredClients.setPredicate(predicate);
     }
 
     @Override
@@ -184,8 +184,8 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return bookKeeper.equals(otherModelManager.bookKeeper)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredClients.equals(otherModelManager.filteredClients);
     }
 }
