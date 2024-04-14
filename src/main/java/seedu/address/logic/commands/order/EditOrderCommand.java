@@ -101,16 +101,16 @@ public class EditOrderCommand extends Command {
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
 
         List<Client> clientList = model.getFilteredClientList();
-        Pair<Client, Client> personPair = getEditedPerson(clientList, orderToEdit, editedOrder);
-        Client clientToEdit = personPair.getFirst();
-        Client editedClient = personPair.getSecond();
+        Pair<Client, Client> clientPair = getEditedClient(clientList, orderToEdit, editedOrder);
+        Client clientToEdit = clientPair.getFirst();
+        Client editedClient = clientPair.getSecond();
 
         model.setClientAndEditOrder(clientToEdit, editedClient, orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, Messages.format(editedOrder)));
     }
 
-    private Pair<Client, Client> getEditedPerson(List<Client> clientList, Order orderToEdit, Order editedOrder) throws
+    private Pair<Client, Client> getEditedClient(List<Client> clientList, Order orderToEdit, Order editedOrder) throws
             CommandException {
         for (Client client : clientList) {
             if (client.getOrders().contains(orderToEdit)) {

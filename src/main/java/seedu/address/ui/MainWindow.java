@@ -170,14 +170,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ClientListPanel getPersonListPanel() {
-        return clientListPanel;
-    }
-
-    public OrderListPanel getOrderListPanel() {
-        return orderListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
