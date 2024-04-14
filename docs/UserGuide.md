@@ -43,13 +43,13 @@ title: User Guide
 * [5.10. Delete an order](#510-deleting-an-order-deleteorder)
 * [5.11. Edit an order](#511-editing-an-order--editorder)
 
-[6. Known issues](#7-known-issues)
+[6. Known issues](#6-known-issues)
 
-[Appendix A: Technical Glossary](#61-appendix-a-technical-glossary)
+[Appendix A: Technical Glossary](#appendix-a-technical-glossary)
 
-[Appendix B: FAQ](#62-appendix-b-faq)
+[Appendix B: FAQ](#appendix-b-faq)
 
-[Appendix C: Planned Features](#63-planned-features)
+[Appendix C: Planned Features](#appendix-c-planned-features)
 
 
 
