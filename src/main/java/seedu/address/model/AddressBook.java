@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in bookkeeper.
+     * Returns true if a person with the same identity as {@code person} exists in BookKeeper.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a person to bookkeeper.
-     * The person must not already exist in bookkeeper.
+     * The person must not already exist in BookKeeper.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -79,7 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in bookkeeper.
+     * {@code target} must exist in BookKeeper.
      * The person identity of {@code editedPerson} must not be the same as another existing person in bookkeeper.
      */
     public void setPerson(Person target, Person editedPerson) {
@@ -87,20 +87,37 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and adds {@code order}
+     * to the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
+     */
     public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
         persons.setPersonAndAddOrder(target, editedPerson, order);
     }
 
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and deletes {@code order}
+     * from the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
+     */
     public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
         requireNonNull(editedPerson);
         persons.setPersonAndDeleteOrder(target, editedPerson, order);
     }
 
     /**
-     * Replaces the given order {@code target} in the list with {@code editedOrder}.
-     * {@code target} must exist in bookkeeper.
-     * The person identity of {@code editedOrder} must not be the same as another existing person in bookkeeper.
+     * Replaces the given person {@code target} in the list with {@code editedPerson} and replaces {@code order}
+     * with {@code editedOrder} in the OrderList.
+     * This method allows updating of the OrderList with the newly added Order.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedOrder} must not be the same as another existing person in the address book.
      */
     public void setPersonAndEditOrder(Person target, Person editedPerson, Order order, Order editedOrder) {
         requireNonNull(editedOrder);
