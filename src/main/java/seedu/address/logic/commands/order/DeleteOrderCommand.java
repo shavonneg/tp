@@ -13,11 +13,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 /**
- * Removes an existing order in the address book.
+ * Removes an existing order in Bookkeeper.
  */
 public class DeleteOrderCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Deleted Order: %1$s";
@@ -41,12 +41,12 @@ public class DeleteOrderCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    private Pair<Person, Person> getEditedPerson(List<Person> personList, Order orderToDelete) throws CommandException {
+    private Pair<Client, Client> getEditedClient(List<Client> clientList, Order orderToDelete) throws CommandException {
 
-        for (Person person : personList) {
-            if (person.getOrders().contains(orderToDelete)) {
-                Person editedPerson = person.removeOrder(orderToDelete);
-                return new Pair<>(person, editedPerson);
+        for (Client client : clientList) {
+            if (client.getOrders().contains(orderToDelete)) {
+                Client editedClient = client.removeOrder(orderToDelete);
+                return new Pair<>(client, editedClient);
             }
         }
         throw new CommandException(MESSAGE_DELETE_ORDER_FAILURE);
@@ -64,12 +64,12 @@ public class DeleteOrderCommand extends Command {
 
         Order orderToDelete = lastShownOrderList.get(targetIndex.getZeroBased());
 
-        List<Person> personList = model.getFilteredPersonList();
-        Pair<Person, Person> pair = getEditedPerson(personList, orderToDelete);
-        Person person = pair.getFirst();
-        Person editedPerson = pair.getSecond();
+        List<Client> clientList = model.getFilteredClientList();
+        Pair<Client, Client> pair = getEditedClient(clientList, orderToDelete);
+        Client client = pair.getFirst();
+        Client editedClient = pair.getSecond();
 
-        model.setPersonAndDeleteOrder(person, editedPerson, orderToDelete);
+        model.setClientAndDeleteOrder(client, editedClient, orderToDelete);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(orderToDelete)));

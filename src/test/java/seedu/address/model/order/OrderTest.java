@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalOrders.ROSES;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.OrderBuilder;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalClients;
 
 class OrderTest {
     @Test
@@ -68,9 +68,9 @@ class OrderTest {
                 .build();
         assertNotEquals(ROSES, editedRoses);
 
-        // different person -> returns false
+        // different client -> returns false
         editedRoses = new OrderBuilder(ROSES)
-                .withPerson(TypicalPersons.CARL)
+                .withPerson(TypicalClients.CARL)
                 .build();
         assertNotEquals(ROSES, editedRoses);
 

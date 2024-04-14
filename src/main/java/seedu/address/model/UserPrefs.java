@@ -51,7 +51,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ BookKeeper methods ==============================
 
     public Path getAddressBookFilePath() {
         return addressBookFilePath;

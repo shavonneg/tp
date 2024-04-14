@@ -304,14 +304,14 @@ initial bookkeeper state, and the `currentStatePointer` pointing to that single 
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in bookkeeper. The `delete` command
+Step 2. The user executes `delete 5` command to delete the 5th client in bookkeeper. The `delete` command
 calls `Model#commitAddressBook()`, causing the modified state of bookkeeper after the `delete 5` command executes
 to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted bookkeeper
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
+Step 3. The user executes `add n/David …​` to add a new client. The `add` command also
 calls `Model#commitAddressBook()`, causing another modified bookkeeper state to be saved into
 the `addressBookStateList`.
 
@@ -321,7 +321,7 @@ the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
+Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous bookkeeper state, and restores bookkeeper to that state.
 
@@ -378,7 +378,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_

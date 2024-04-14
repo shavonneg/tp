@@ -11,12 +11,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.BookKeeperParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
+import seedu.address.model.client.Client;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -32,7 +32,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final BookKeeperParser bookKeeperParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,7 +40,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        bookKeeperParser = new BookKeeperParser();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = bookKeeperParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -63,13 +63,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyBookKeeper getAddressBook() {
         return model.getAddressBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Client> getFilteredClientList() {
+        return model.getFilteredClientList();
     }
 
     @Override

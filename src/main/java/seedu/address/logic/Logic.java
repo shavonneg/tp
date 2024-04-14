@@ -7,9 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBookKeeper;
+import seedu.address.model.client.Client;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component.
@@ -30,12 +30,12 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getAddressBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyBookKeeper getAddressBook();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons.
+     * Returns an unmodifiable view of the filtered list of clients.
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns an unmodifiable view of the filtered list of orders.

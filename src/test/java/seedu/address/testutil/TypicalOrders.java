@@ -13,7 +13,7 @@ public class TypicalOrders {
             .withPrice("10")
             .withRemark("No remark")
             .withStatus("CANCELED")
-            .withPerson(TypicalPersons.ALICE)
+            .withPerson(TypicalClients.ALICE)
             .build();
     public static final Order LILIES = new OrderBuilder()
             .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae74")
@@ -22,7 +22,7 @@ public class TypicalOrders {
             .withPrice("10")
             .withRemark("Important")
             .withStatus("PENDING")
-            .withPerson(TypicalPersons.BOB)
+            .withPerson(TypicalClients.BOB)
             .build();
 
     private TypicalOrders() {
