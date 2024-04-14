@@ -55,8 +55,7 @@ public class Messages {
      */
     public static String format(Order order) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(order.getOrderId())
-                .append("; Deadline: ")
+        builder.append("Deadline: ")
                 .append(order.getDeadline())
                 .append("; Date Received: ")
                 .append(order.getOrderDate())
