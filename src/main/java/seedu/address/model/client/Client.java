@@ -101,6 +101,20 @@ public class Client {
     }
 
     /**
+     * Returns a new Client object, with the specified Order edited accordingly.
+     *
+     * @param oldOrder the order to be removed
+     * @param newOrder the order to be added
+     * @return new Client object
+     */
+    public Client editOrder(Order oldOrder, Order newOrder) {
+        Set<Order> newOrders = new HashSet<>(orders);
+        newOrders.remove(oldOrder);
+        newOrders.add(newOrder);
+        return new Client(this.name, this.phone, this.email, this.address, this.getTags(), newOrders);
+    }
+
+    /**
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
      */
