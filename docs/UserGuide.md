@@ -282,6 +282,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Name and Tags only accept 0-9 and a-z (case-insensitive).
 * Phone number must be numeric and at least 3 numbers. It must not contain spaces " ", "brackets ()" or "hyphens -",
   "plus +" , or other symbols.
+* Emails must not have consecutive special characters. E.g. "john..doe@example.com" is not accepted.
 
 </div>
 
