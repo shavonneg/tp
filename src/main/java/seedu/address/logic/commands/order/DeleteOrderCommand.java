@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Removes an existing order in the bookkeeper.
+ * Removes an existing order in bookkeeper.
  */
 public class DeleteOrderCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";

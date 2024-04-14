@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an BookKeeper using the Persons in the {@code toBeCopied}.
+     * Creates BookKeeper using the Persons in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
