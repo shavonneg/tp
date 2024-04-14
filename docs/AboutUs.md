@@ -45,7 +45,7 @@ Maximize productivity without breaking the bank.
 
 ## Value Proposition
 
-For small business owners launching services, organizing customer lists can be challenging. Our address book offers a
+For small business owners launching services, organizing customer lists can be challenging. BookKeeper offers a
 centralized platform to store and search for clients, streamlining customer management. With a command-line interface,
 our application is faster and more efficient than inputting data into other systems like CRMs or Microsoft Excel.
 

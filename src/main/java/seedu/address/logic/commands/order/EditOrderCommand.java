@@ -32,7 +32,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Edits the details of an existing order in the address book.
+ * Edits the details of an existing order in bookkeeper.
  */
 public class EditOrderCommand extends Command {
     public static final String COMMAND_WORD = "editOrder";

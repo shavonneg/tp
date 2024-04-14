@@ -15,19 +15,19 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access BookKeeper data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
     private Path addressBookFilePath;
 
-    //private Path filePath;
+    // private Path filePath;
 
     /**
      * Constructs a {@code JsonAddressBookStorage} with the specified file paths.
      *
-     * @param addressBookFilePath The file path for the address book data.
+     * @param addressBookFilePath The file path for bookkeeper data.
      */
     public JsonAddressBookStorage(Path addressBookFilePath) {
         this.addressBookFilePath = addressBookFilePath;

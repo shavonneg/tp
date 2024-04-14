@@ -203,7 +203,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores bookkeeper data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
@@ -239,7 +239,7 @@ implementation of storing clients and order details.
 
 In this enhancement, the `Storage` component has been extended to support the storage and retrieval of both client and
 order details.
-Previously, the `Storage` component was primarily designed to handle address book data and user preferences. However,
+Previously, the `Storage` component was primarily designed to handle bookkeeper data and user preferences. However,
 with the growing requirements of our application, it becomes necessary to accommodate the storage of clients and orders.
 
 #### Implementation Details:
@@ -290,9 +290,9 @@ The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It ex
 history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()`— Saves the current address book state in its history.
-* `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()`— Saves the current bookkeeper state in its history.
+* `VersionedAddressBook#undo()`— Restores the previous bookkeeper state from its history.
+* `VersionedAddressBook#redo()`— Restores a previously undone bookkeeper state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
 and `Model#redoAddressBook()` respectively.
@@ -300,30 +300,30 @@ and `Model#redoAddressBook()` respectively.
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+Step 2. The user executes `delete 5` command to delete the 5th person in bookkeeper. The `delete` command
+calls `Model#commitAddressBook()`, causing the modified state of bookkeeper after the `delete 5` command executes
+to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted bookkeeper
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also
-calls `Model#commitAddressBook()`, causing another modified address book state to be saved into
+calls `Model#commitAddressBook()`, causing another modified bookkeeper state to be saved into
 the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so bookkeeper state will not be saved into the `addressBookStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
 the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
+once to the left, pointing it to the previous bookkeeper state, and restores bookkeeper to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -345,20 +345,20 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+to the right, pointing to the previously undone state, and restores bookkeeper to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest bookkeeper state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
+Step 5. The user then decides to execute the command `list`. Commands that do not modify bookkeeper, such
 as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
 Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
+pointing at the end of the `addressBookStateList`, all bookkeeper states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -372,7 +372,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire bookkeeper.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -395,10 +395,10 @@ These operations are exposed in the `AddressBookParser` class as `AddressBookPar
 Given below is an example usage scenario and how the view orders mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+initial bookkeeper state, and the `currentStatePointer` pointing to that single bookkeeper state.
 
 Step 2. The user executes `viewOrders` command to view all the orders that they have in BookKeeper. The `viewOrders`
-command calls `Model#updateFilteredOrderList()`, causing the address book to show the list of orders
+command calls `Model#updateFilteredOrderList()`, causing bookkeeper to show the list of orders
 that are tracked in the storage of the application. The `viewOrders` command then returns a new `CommandResult`, which
 displays the `MESSAGE_SUCCESS` message, which is "Here are all your orders: ".
 
@@ -470,12 +470,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …  | I want to …                                                              | So that I can…                                                                                                |
 |----------|---------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | Florist | easily add new clients to my address book                                | keep track of all my clients' information in one place.                                                       |
+| `* * *`  | Florist | easily add new clients to my bookkeeper                                  | keep track of all my clients' information in one place.                                                       |
 | `* * *`  | Florist | have a search function                                                   | quickly find specific customers when I need to reference their details.                                       |
 | `* * *`  | Florist | be accessible via a command-line interface                               | efficiently manage my customer list without navigating through complex menus.                                 |
 | `* * *`  | Florist | have customizable fields                                                 | record specific details about each customer, such as their favorite colors or special requests.               |
 | `* * *`  | Florist | be cost-effective and easy to use                                        | maximize productivity without investing in expensive CRM systems.                                             |
-| `* * *`  | Florist | be able to create orders for my clients                                  | record all of my clients' orders and take note of their respective deadlines.                                |
+| `* * *`  | Florist | be able to create orders for my clients                                  | record all of my clients' orders and take note of their respective deadlines.                                 |
 | `* *`    | Florist | have secure access controls and permissions settings                     | restrict sensitive information and ensure data privacy compliance.                                            |
 | `* *`    | Florist | categorize my client                                                     | tailor my marketing efforts accordingly based on factors like their preferred flowers or past purchases.      |
 | `* *`    | Florist | generate reports on customer activity                                    | analyze trends and make informed business decisions based on order history and frequency of purchases.        |
@@ -704,7 +704,8 @@ otherwise)
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 clients' information without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 clients' information without a noticeable sluggishness in performance for typical
+   usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should provide clear and informative error messages to users in case of unexpected errors. Additionally, detailed
