@@ -568,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `BookKeeper` and the **Actor** is the `user`, unless specified
 otherwise)
 
-### **Use case: Delete a Client**
+### **Use case: Delete a client**
 
 **MSS**
 
@@ -874,85 +874,219 @@ Expected Output in the Command Output Box:
 
 * `BookKeeper has been cleared!`
 
-### Adding a Client
+### Adding a client
 
 Pre-requisite:
 
-*
+* There should not exist another client with the exact same name (names are case-sensitive) and spacing,
+  i.e. the names "Betsy Crowe" and "Betsy crowe" are considered as different names.
 
-Command: `help`
+Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+* Example: `add n/Betsy Crowe e/betsycrowe@example.com a/Beauty World p/1234567 t/VIP`
+* Note:
+    * Name must be unique, clients with exact same name is not allowed.
+    * A client can have any number of tags (including 0).
+    * Tags do not accept whitespaces (e.g. “VIP 2” is not accepted, “VIP2” is accepted).
+    * Tags only accept 0-9 and a-z.
+    * Names only accept 0-9 and a-z and are case-sensitive.
+    * Two persons with the same name are not allowed, but two persons with the same name but different cases are
+      allowed.
+    * Phone number must be numeric and at least 3 numbers. It must not contain spaces “ “, brackets `()` or hyphens
+      `-`, plus `+` , or other symbols.
+    * Emails must not have consecutive special characters. E.g. “john..doe@example.com” is not accepted.
 
 Expected Output:
 
-*
+* All the client information with their respective fields will be displayed on the left side column.
 
 Expected Output in the Command Output Box:
 
-*
+* `New client added: Betsy Crowe; Phone: 1234567; Email: betsycrowe@example.com; Address: Beauty World; Tags: [VIP]`
+* The message should echo and show correctly the information that you have entered for your client.
 
-### Adding a Client
+### Editing a client
 
 Pre-requisite:
 
-*
+* You must know the index of the client you want to edit.
+* A client must exist at the index you want to edit at i.e. you cannot edit a client at index 3 if you only have two
+  clients in the application.
+* There must at least be one client in the application.
 
-Command: `help`
+Command: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Example: `edit 1 n/Betsy Crower t/`
+* This edits the name of the 1st client to be `Betsy Crower` and clears all existing tags.
 
 Expected Output:
 
-*
+* The application will be updated with the edited client information.
 
 Expected Output in the Command Output Box:
 
-*
+* `Edited Client: Betsy Crower; Phone: 1234567; Email: betsycrowe@example.com; Address: Beauty World; Tags: `
 
-### Adding a Client
+### Deleting a client
 
 Pre-requisite:
 
-*
+* You must know the index of the client you want to delete.
+* A client must exist at the index you want to delete i.e. you cannot delete a client at index 3 if you only have two
+  clients in the application.
+* There must at least be one client in the application.
 
-Command: `help`
+Command: `delete INDEX`
+
+* Examples:
+    * `delete 1` deletes the 1st client listed in your application.
+    * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the find command.
+* Note:
+    * This deletes the client at the specified INDEX.
+    * The index refers to the index number shown for the respective client in the displayed client list.
+    * The index must be a positive integer 1, 2, 3, …​
 
 Expected Output:
 
-*
+* Client is removed from the application.
 
 Expected Output in the Command Output Box:
 
-*
+* `Deleted Client: Betsy Crower; Phone: 1234567; Email: betsycrowe@example.com; Address: Beauty World; Tags:`
+* Note: The details of the client should correspond to the client that you have just deleted.
 
-### Adding a Client
+### Listing all clients
 
 Pre-requisite:
 
-*
+* There must at least be one client in the application.
 
-Command: `help`
+Command: `list`
 
 Expected Output:
 
-*
+* Shows a list of all clients in BookKeeper.
 
 Expected Output in the Command Output Box:
 
-*
+* `Listed all clients`
 
-### Adding a Client
+### Locating clients by name: find
 
 Pre-requisite:
 
-*
+* There must at least be one client in the application.
 
-Command: `help`
+Command: `find KEYWORD [MORE_KEYWORDS]…`
+
+* Examples:
+    * `find alex david` returns `Alex Yeoh`, `David Li`
+    * `find John` returns `john` and `John Doe`
 
 Expected Output:
 
-*
+* Finds clients whose names contain any of the given keywords.
 
 Expected Output in the Command Output Box:
 
-*
+* `2 clients listed!`
+* Note: the number of clients listed depends on the number of matching clients found by the application.
+
+### Adding an order
+
+Pre-requisite:
+
+* There must at least be one client in the application.
+* You must know the index of the client you want to add an order to.
+
+Command: `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION`
+
+* Examples:
+    * `order 1 d/1xRoses c/40 by/23-07-2024 00:00`
+    * `order 3 by/07-07-2024 00:00 c/88.88 d/99xRoses`
+    * `order 1 by/23-05-2024 16:00 c/58.90 d/1xLily`
+* Note:
+    * Adds an order to the client at the specified `INDEX`. The index must be a positive integer 1, 2, 3, …​,
+      and the index must exist in the Client list.
+    * All fields must be provided.
+    * The order of the fields does not matter (e.g. both `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` and
+      `order INDEX d/DESCRIPTION c/PRICE by/DEADLINE` are acceptable)
+    * The status of new orders are automatically set to “PENDING”.
+    * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
+        * Deadlines can be set to a date before a date before today to mean that an order is overdue. E.g. if your
+          order was due yesterday, but you have not completed the order, you can put yesterday’s date.
+          This lets you track if you have orders that are overdue.
+    * For the `c/PRICE` field, do note that any decimal places after 2 will be rounded.
+        * E.g. `2.999` will be rounded up to `3.00`.
+    * The order list will be sorted according to their deadline.
+      Meaning, if there are two orders, one due on `10-10-2025 10:00` and another due on `10-10-2025 10:30`, the order
+      with the deadline of `10-10-2025 10:00` will have an index of `1`, and the other order will have an index of `2`.
+
+Expected Output:
+
+* Adds an order into BookKeeper.
+
+Expected Output in the Command Output Box:
+
+* `New Order added! John Doe`
+* Note: The name of the client that you added the order to will appear after `New Order added!`
+
+### Deleting an order
+
+Pre-requisite:
+
+* There must at least be one client and one order in the application.
+* You must know the index of the order you want to delete.
+
+Command: `deleteOrder INDEX`
+
+* Example: `deleteOrder 2` deletes the 2nd order in the order list.
+* Note:
+    * Deletes the order at the specified `INDEX`.
+    * The index refers to the index number shown in the displayed order list.
+    * The index must be a positive integer 1, 2, 3, …​, and the index must exist in the Client list.
+
+Expected Output:
+
+* Deletes the specified order from BookKeeper.
+
+Expected Output in the Command Output Box:
+
+* `Deleted Order: Deadline: 23-07-2024 00:00; Date Received: 15-04-2024 12:52; Details: 1xRoses`
+* Note: The details of the deleted order in the command output box will correspond to the details of the order deleted
+  at the index.
+
+### Editing an order
+
+Pre-requisite:
+
+* There must at least be one client and one order in the application.
+* You must know the index of the order you want to edit.
+
+Command: `editOrder INDEX [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+
+* Examples:
+    * `editOrder 1 by/05-05-2024 16:00 c/58.90 d/1xRoses s/PENDING` edits the Deadline and
+      Description of the 1st Order list.
+    * `editOrder 1 s/COMPLETED` edits 1st order status to “COMPLETED”.
+* Note:
+    * Edits the order at the specified `INDEX`.
+      The index must be a positive integer 1, 2, 3, …​ and the index must exist in the Order list.
+    * Command can work without any optional fields provided.
+    * Existing values will be updated to the input values.
+    * There are 3 possible statuses (they are all case-insensitive):
+        * PENDING: All orders are automatically set to PENDING
+        * COMPLETED: When the order is delivered successfully
+        * CANCELED: When the order is canceled
+
+Expected Output:
+
+* Edits an existing order in BookKeeper.
+
+Expected Output in the Command Output Box:
+
+* `Edited Order: Deadline: 23-07-2024 00:33; Date Received: 15-04-2024 12:52; Details: 1xRoses`
+* Note: The details of the edited order will correspond to the details specified in the command.
 
 ## **Appendix: Planned Enhancements**
 
