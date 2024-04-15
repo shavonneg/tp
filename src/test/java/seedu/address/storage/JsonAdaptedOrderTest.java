@@ -25,7 +25,7 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_ORDERDATE = "01-03-2024 23:59";
     private static final String VALID_DEADLINE = "01-04-2024 23:59";
     private static final String VALID_PRICE = "50";
-    private static final String VALID_REMARK = "No remark";
+    private static final String VALID_REMARK = "No description";
     private static final String VALID_STATUS = "CANCELED";
 
     /*@Test

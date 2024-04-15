@@ -802,3 +802,31 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Planned Enhancements**
+
+1. Enhanced Error Messaging
+    * Implementing more specific error messages for the "edit" and "editOrder" functions to provide clearer guidance
+      to users encountering issues.
+2. Enhanced Error Messaging for Wrong Indices with Missing Fields
+    * For the `edit` command, if the user fills in 0 fills but an invalid index, the error message is "At least one
+      field to edit must be provided."
+    * This will be changed to note the invalid index in the future.
+3. Extended Tag Length and Error Refinement
+    * Increase the maximum length of tags supported within the system, enabling users to provide more descriptive labels
+      and organize content effectively.
+4. Resolution Support
+    * Expand resolution support to include additional screen resolutions such as 1280x720, catering to a broader range
+      of devices and user preferences.
+5. Allow filtering of orders based on displayed customers.
+    * Allow users to filter orders based on the displayed customers, providing a more streamlined and efficient
+      experience for users managing multiple clients.
+6. Allow adding of multiple users with the same name.
+    * Allow users to add multiple clients with the same name, enabling users to manage multiple clients with similar
+      names more effectively.
+7. Relax constraints on field data types
+    * There are constraints on length of values that may prevent overly long fields from being displayed correctly.
+        * E.g. do not input a name that is too long, as it may not be displayed correctly.
+    * There a constraints on size of values due to the innate storage system. Numbers cannot be too large.
+        * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
+          9,000,000,000).

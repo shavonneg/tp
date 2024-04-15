@@ -20,7 +20,7 @@ public class OrderBuilder {
     public static final String DEFAULT_ORDER_DATE = "10-10-2024 00:00";
     public static final String DEFAULT_DEADLINE = "11-10-2024 23:59";
     public static final String DEFAULT_PRICE = "100";
-    public static final String DEFAULT_REMARK = "No remark";
+    public static final String DEFAULT_REMARK = "No description";
     public static final String DEFAULT_STATUS = "PENDING";
 
     private OrderId orderId;

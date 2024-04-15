@@ -49,9 +49,6 @@ title: User Guide
 
 [Appendix B: FAQ](#appendix-b-faq)
 
-[Appendix C: Planned Features](#appendix-c-planned-features)
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,20 +158,20 @@ designers, and boutique flower businesses.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
     * Listing all contacts:
         * Command: `list`
     * Adding a new Client:
         * Command `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-        * Adds a new `client` named `John Doe` to BookKeeper.
+        * Adds a new client named "John Doe" to BookKeeper.
     * Adding a new Order:
         * Command `order 1 d/1xRoses c/20.99 by/20-10-2030 10:00`
-        * Adds a new `order` for 1 Rose, at $20.99 that is to be delivered by 20-10-2030 10:00.
+        * Adds a new order for 1 Rose, at $20.99 that is to be delivered by 20-10-2030 10:00.
     * Delete an existing Client.
         * Command `delete 1`
-        * Deletes the `client` with an index of 1.
+        * Deletes the client with an index of 1.
     * Clear BookKeeper
         * Command `clear`
         * Clears all clients and orders.
@@ -182,7 +179,7 @@ designers, and boutique flower businesses.
         * Command `exit`
         * Closes the application.
 
-7. Refer to the [Main Features](#6-main-features) below for details of each command.
+7. Refer to the [Main Features](#5-main-features) below for details of each command.
 
 ## 4. Commands
 
@@ -218,7 +215,7 @@ designers, and boutique flower businesses.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIP`, `t/VIP t/MEMBER` etc.
@@ -236,8 +233,8 @@ designers, and boutique flower businesses.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-* All index inputs in commands labelled (INDEX) can omit any leading 0s. (e.g. 1, 01, 000001 are all valid index inputs
-  for the index #000001)
+* Leading 0's are ignored for commands which require use of `INDEX`.
+  (e.g. `1`, `01`, `000001` are all valid index inputs for the index `1`)
 
 </div>
 
@@ -279,9 +276,12 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 * Name must be unique, clients with exact same name is not allowed.
 * A client can have any number of tags (including 0).
 * Tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted).
-* Name and Tags only accept 0-9 and a-z (case-insensitive).
-* Phone number must be numeric and at least 3 numbers. It must not contain spaces " ", "brackets ()" or "hyphens -",
-  "plus +" , or other symbols.
+* Tags only accept 0-9 and a-z.
+* Names only accept 0-9 and a-z and are case-sensitive.
+    * Two persons with the same name are not allowed, but two persons with the same name but different cases are
+      allowed.
+* Phone number must be numeric and at least 3 numbers. It must not contain spaces " ", brackets `()` or hyphens `-`,
+  plus `+` , or other symbols.
 * Emails must not have consecutive special characters. E.g. "john..doe@example.com" is not accepted.
 
 </div>
@@ -308,19 +308,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 **:information_source: Additional Notes:**<br>
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
-  The index **must be a positive integer** 1, 2, 3, …​
+  The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
-* tags do not accept whitespaces (e.g. "VIP 2" is not accepted, "VIP2" is accepted)
-* tags only accept 0-9 and a-z (case-insensitive)
+* When editing tags, the existing tags of the client will be removed i.e. adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without specifying any tags after it.
+* See [add client](#54-adding-a-client-add) for more information on the constraints of each field.
 
 </div>
 
 Example:
-`edit 1 n/Betsy Crower t/` Edits the name of the 1st client to be `Betsy Crower` and clears all existing tags.
+`edit 1 n/Betsy Crower t/`. Edits the name of the 1st client to be `Betsy Crower` and clears all existing tags.
 
 ![edit client](images/editClient1.png)
 
@@ -339,14 +337,14 @@ Format: `delete INDEX`
 **:information_source: Additional Notes:**<br>
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
+* The index refers to the index number shown for the respective client in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
 Example:
 
-* `list` followed by `delete 2` deletes the 2nd client in BookKeeper.
+* `list` followed by `delete 2` deletes the 2nd client displayed in BookKeeper.
 
 ![delete client](images/deleteClient_Before.png)
 ![delete client](images/deleteClient_After.png)
@@ -364,17 +362,17 @@ Format: `list` <br>
 ### 5.8. Locating clients by name: `find`
 
 Finds clients whose names contain any of the given keywords. <br>
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Additional Notes:**<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
+* Clients matching at least one keyword will be returned (i.e. an "OR" search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 </div>
@@ -392,30 +390,28 @@ More examples:
 ### 5.9. Adding an order: `order`
 
 Adds an order into BookKeeper. <br>
-Format: `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION`
+Format: `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Additional Notes:**<br>
 
-* Adds the order to the client at the specified `INDEX`.
+* Adds an order to the client at the specified `INDEX`.
   The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 * All fields must be provided.
-* order of the fields does not matter
-  (e.g. both `order <INDEX> by/DEADLINE c/PRICE d/DESCRIPTION` and `order <INDEX> d/DESCRIPTION c/PRICE by/DEADLINE`
+* The order of the fields does not matter
+  (e.g. both `order INDEX by/DEADLINE c/PRICE d/DESCRIPTION` and `order INDEX d/DESCRIPTION c/PRICE by/DEADLINE`
   are acceptable)
-* All orders status are automatically set to PENDING.
+* The status of new orders are automatically set to "PENDING".
 * Please specify `by/DEADLINE` field in `DD-MM-YYYY HH:MM`.
-    * Deadlines can be set to a date before their current date to suggest that the order is overdue.
-      (e.g. If your order was due yesterday, but you never make yet, you can also add a new order and put yesterday's
-      day
-      to track if you have orders that are overdue.)
-* For the `c/PRICE` field, do note that any decimal places after 2 will be rounded up.
-    * For e.g. `2.999` will be rounded up to `3.00`.
+    * Deadlines can be set to a date before a date before today to mean that an order is overdue.
+      E.g. if your order was due yesterday, but you have not completed the order, you can
+      put yesterday's date. This lets you track if you have orders that are overdue.
+* For the `c/PRICE` field, do note that any decimal places after 2 will be rounded.
+    * E.g. `2.999` will be rounded up to `3.00`.
 * The order list will be sorted according to their deadline.
     * Meaning, if there are two orders, one due on `10-10-2025 10:00` and another due on `10-10-2025 10:30`, the order
-      with
-      the deadline of `10-10-2025 10:00` will have an index of `1`, and the other order will have an index of `2`.
+      with the deadline of `10-10-2025 10:00` will have an index of `1`, and the other order will have an index of `2`.
 
 </div>
 
@@ -441,7 +437,7 @@ Format: `deleteOrder INDEX`
 
 * Deletes the order at the specified `INDEX`.
 * The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​, and the index must exist in the Client list.
 
 </div>
 Examples:
@@ -454,17 +450,17 @@ Examples:
 ### 5.11. Editing an order : `editOrder`
 
 Edits an existing order in BookKeeper. <br>
-Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
+Format: `editOrder INDEX [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Additional Notes:**
 
 * Edits the order at the specified `INDEX`.
-  The index **must be a positive integer** 1, 2, 3, …​
+  The index **must be a positive integer** 1, 2, 3, …​ and the index must exist in the Order list.
 * Command can work without any optional fields provided.
 * Existing values will be updated to the input values.
-* There are 3 different status (they are all case-insensitive):
+* There are 3 possible statuses (they are all case-insensitive):
 
 | Status        | Information                                   |
 |---------------|-----------------------------------------------|
@@ -475,7 +471,7 @@ Format: `editOrder <INDEX> [by/DEADLINE] [c/PRICE] [d/DESCRIPTION] [s/STATUS]`
 </div>
 Examples:
 
-1. `editOrder 1  by/05-05-2024 16:00 c/58.90 d/1xRoses s/PENDING` edits 1st order Deadline and Description in the order
+1. `editOrder 1  by/05-05-2024 16:00 c/58.90 d/1xRoses s/PENDING` edits the Deadline and Description of the 1st Order
    list.
 
 ![edit order](images/editOrder1.png)
@@ -491,7 +487,7 @@ save manually.
 
 ### Editing the data file
 
-BookKeeper data are saved automatically as a JSON file `[JAR file location]/data/bookkeeper.json`. Advanced users are
+BookKeeper data is saved automatically as a JSON file `[JAR file location]/data/bookkeeper.json`. Advanced users are
 welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -556,30 +552,3 @@ and you may copy another `bookkeeper.json` to restore existing data.
 **Q**: How do I update my application?<br>
 **A**: You may download the latest release [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases).
 
-## Appendix C: Planned Features
-
-1. Enhanced Error Messaging
-    * Implementing more specific error messages for the "edit" and "editOrder" functions to provide clearer guidance
-      to users encountering issues.
-2. Enhanced Error Messaging for Wrong Indices with Missing Fields
-    * For the `edit` command, if the user fills in 0 fills but an invalid index, the error message is "At least one
-      field to edit must be provided."
-    * This will be changed to note the invalid index in the future.
-3. Extended Tag Length and Error Refinement
-    * Increase the maximum length of tags supported within the system, enabling users to provide more descriptive labels
-      and organize content effectively.
-4. Resolution Support
-    * Expand resolution support to include additional screen resolutions such as 1280x720, catering to a broader range
-      of devices and user preferences.
-5. Allow filtering of orders based on displayed customers.
-    * Allow users to filter orders based on the displayed customers, providing a more streamlined and efficient
-      experience for users managing multiple clients.
-6. Allow adding of multiple users with the same name.
-    * Allow users to add multiple clients with the same name, enabling users to manage multiple clients with similar
-      names more effectively.
-7. Relax constraints on field data types
-    * There are constraints on length of values that may prevent overly long fields from being displayed correctly.
-        * E.g. do not input a name that is too long, as it may not be displayed correctly.
-    * There a constraints on size of values due to the innate storage system. Numbers cannot be too large.
-        * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
-          9,000,000,000).

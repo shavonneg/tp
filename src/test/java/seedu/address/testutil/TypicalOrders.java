@@ -11,7 +11,7 @@ public class TypicalOrders {
             .withOrderDate("01-03-2024 23:59")
             .withDeadline("01-04-2024 23:59")
             .withPrice("10")
-            .withRemark("No remark")
+            .withRemark("No description")
             .withStatus("CANCELED")
             .withPerson(TypicalClients.ALICE)
             .build();
