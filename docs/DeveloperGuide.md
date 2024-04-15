@@ -8,10 +8,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **About BookKeeper**
 
-* [AB3 developer guide](https://nus-cs2103-ay2324s2.github.io/tp/DeveloperGuide.html) for the initial template
-  and structure of this document.
+As the florist industry continues to evolve, aspiring florists like you might feel increasingly challenged with
+managing complex business tasks while managing your florist business and crafting bouquets. This often leads to a need
+for efficient and straightforward methods to handle sales, client interactions, and order fulfillment.
+
+BookKeeper is a desktop application designed to support florists who are venturing into this bustling market. We focus
+on alleviating the burden of many cumbersome responsibilities, from tracking client orders to optimising your
+inventory management. This ensures that you can focus more on your floral designs and customer service.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,13 +27,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [
-_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
-and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -466,24 +464,30 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Klara is a florist and owner of Royal Bloom, a thriving floral shop in Singapore.
+As her business grows, managing the increasing volume of orders and client information becomes more complex and
+time-consuming.
 
-* Florists business owners or freelance hobbyist in the floral industry.
+Recently, the demand for personalised and expedited flower arrangements has risen, leading to challenges in keeping up
+with client requests and order specifics. This has resulted in Klara needing a more efficient way to manage her shop’s
+operations to maintain customer satisfaction and business growth. In response, Klara's florist mentor, Jenna, suggests
+implementing a more convenient system to streamline these processes.
+
+Therefore, Jenna has recommended BookKeeper, a desktop application designed to assist florists like Klara. BookKeeper
+will help Klara manage her growing list of clients and orders.
+
+Klara is tech-savvy and prefers tools that enhance productivity while streamlining her workflow. She values
+desktop applications for their reliability and performance and is accustomed to managing digital tools that save time
+and reduce manual efforts.
+
+Klara is a small business owner of a florist shop, specifically a freelance hobbyist in the floral industry. She has
+the requirements of:
+
 * Prefers efficient ways to manage their clients and their information.
 * Prefers an efficient way to keep track of client's orders.
 * Values productivity and time-saving solutions.
 
-**User Needs and Preferences**:
-
-* Efficient Customer Management:
-    * Can organize and manage customer lists effectively.
-    * Prefers streamlined processes for handling customer information.
-    * Values tools that optimize workflows and save time.
-* Organised Orders
-    * Prefers to organize orders and sort them via due date.
-    * Helps to keep track of customer's delivery deadlines.
-* Persistent Data Storage:
-    * Prefers application that stores data across local sessions.
+(Note: Klara and Jenna are fictional characters, created based on research of the needs of real florist business owners)
 
 **Value proposition**:
 
@@ -522,12 +526,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Florist | offer customizable tags or labels for customers                          | segment my audience and target specific groups with tailored marketing campaigns.                             |
 | `*`      | Florist | have a good out of the box experience                                    | immediately use the application without needing to configure it for my own needs.                             |
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `BookKeeper` and the **Actor** is the `user`, unless specified
 otherwise)
 
-**Use case: Delete a Client**
+### **Use case: Delete a Client**
 
 **MSS**
 
@@ -550,7 +554,7 @@ otherwise)
 
       Use case resumes at step 2.
 
-**Use case: Add a client**
+### **Use case: Add a client**
 
 **MSS**
 
@@ -574,7 +578,7 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: Edit a client**
+### **Use case: Edit a client**
 
 **MSS**
 
@@ -604,7 +608,7 @@ otherwise)
 
       Use case resumes at step 2.
 
-**Use case: Find a client**
+### **Use case: Find a client**
 
 **MSS**
 
@@ -622,7 +626,7 @@ otherwise)
 
   Use case ends.
 
-**Use case: Sort by order**
+### **Use case: Sort by order**
 
 **MSS**
 
@@ -631,7 +635,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: Show help**
+### **Use case: Show help**
 
 **MSS**
 
@@ -640,7 +644,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: Clear all entries**
+### **Use case: Clear all entries**
 
 **MSS**
 
@@ -649,7 +653,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: Exit the program**
+### **Use case: Exit the program**
 
 **MSS**
 
@@ -658,7 +662,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: Add order**
+### **Use case: Add order**
 
 **MSS**
 
@@ -680,7 +684,7 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: Edit order**
+### **Use case: Edit order**
 
 **MSS**
 
@@ -709,7 +713,7 @@ otherwise)
 
       Use case resumes at step 2.
 
-**Use case: Delete order**
+### **Use case: Delete order**
 
 **MSS**
 
@@ -726,7 +730,7 @@ otherwise)
 
       Use case resumes at step 1.
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 clients' information without a noticeable sluggishness in performance for typical
@@ -740,7 +744,7 @@ otherwise)
 6. Automated backups of critical data should be performed, and there should be a documented and tested procedure for
    data recovery in case of system failures or data loss.
 
-### Glossary
+## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
