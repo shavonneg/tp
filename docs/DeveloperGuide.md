@@ -3,8 +3,45 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
+## Table of Contents
+
+[About BookKeeper](#about-bookkeeper)
+
+[Setting up, getting started](#setting-up-getting-started)
+
+[Design](#design)
+
+* [Architecture](#architecture)
+* [UI Component](#ui-component)
+* [Logic Component](#logic-component)
+* [Model Component](#model-component)
+* [Storage Component](#storage-component)
+* [Common classes](#common-classes)
+
+[Implementation](#implementation)
+
+* [Adding the Order methods](#adding-the-order-methods)
+* [Proposed Undo/redo feature](#proposed-undoredo-feature)
+* [View Orders feature](#view-orders-feature)
+* [Proposed Data archiving](#proposed-data-archiving)
+
+[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+
+[Appendix: Requirements](#appendix-requirements)
+
+* [Product scope](#product-scope)
+* [User stories](#user-stories)
+
+[Use cases](#use-cases)
+
+[Non-Functional Requirements](#non-functional-requirements)
+
+[Glossary](#glossary)
+
+[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
+[Appendix: Planned Enhancements](#appendix-planned-enhancements)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -767,47 +804,155 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Ensure you have Java `11` and above installed in your system.
+    * You may check if you have Java installed by opening your command prompt or terminal, and typing:  
+      `java --version`
+        * If Java is installed, you should ensure that it is currently running on version "11.x.xx".
+        * ![img_2.png](images/JavaVersionScreenshot.png)
+        * If you encounter an error, or if your version does not match our specified requirements, you may visit the
+          [Official Oracle website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to
+          download the Java JDK required to run this project.
 
-    1. Download the jar file and copy into an empty folder
+2. Initial launch
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    1. Download the latest `bookkeeper.jar` release from [here](https://github.com/AY2324S2-CS2103T-T09-2/tp/releases)
+    2. Copy the file to the folder you want to use as the _home folder_ for your BookKeeper.
+    3. Open your terminal or command prompt in your system.
+    4. `cd` into the folder you put the jar file in, and use the `java -jar bookkeeper.jar`
+       command to run the application.<br>
+       Expected: A GUI similar to the below should appear in a few seconds.
 
-1. Saving window preferences
+       Note how the app contains some sample data.<br>
+       ![Ui](images/Ui.png)
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Viewing Help
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Pre-requisite:
 
-1. _{ more test cases …​ }_
+* None
 
-### Deleting a Client
+Command: `help`
 
-1. Deleting a client while all clients are being shown
+Expected Output:
 
-    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+* A help window should open up with instructions to
+  `Refer to the user guide: https://ay2324s2-cs2103t-t09-2.github.io/tp/UserGuide.html#5-main-features`
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+Expected Output in the Command Output Box:
 
-    1. Test case: `delete 0`<br>
-       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+* `Opened help window.`
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+### Clearing BookKeeper
 
-1. _{ more test cases …​ }_
+Pre-requisite:
 
-### Saving data
+* There is at least one ("1") client and/or order stored in the BookKeeper application.
 
-1. Dealing with missing/corrupted data files
+Command: `clear`
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected Output:
 
-1. _{ more test cases …​ }_
+* All clients and orders will be cleared.
+
+Expected Output in the Command Output Box:
+
+* `BookKeeper has been cleared!`
+
+### Exiting the Program
+
+Pre-requisite:
+
+* There is at least one ("1") client and/or order stored in the BookKeeper application.
+
+Command: `clear`
+
+Expected Output:
+
+* Exits the program.
+
+Expected Output in the Command Output Box:
+
+* `BookKeeper has been cleared!`
+
+### Adding a Client
+
+Pre-requisite:
+
+*
+
+Command: `help`
+
+Expected Output:
+
+*
+
+Expected Output in the Command Output Box:
+
+*
+
+### Adding a Client
+
+Pre-requisite:
+
+*
+
+Command: `help`
+
+Expected Output:
+
+*
+
+Expected Output in the Command Output Box:
+
+*
+
+### Adding a Client
+
+Pre-requisite:
+
+*
+
+Command: `help`
+
+Expected Output:
+
+*
+
+Expected Output in the Command Output Box:
+
+*
+
+### Adding a Client
+
+Pre-requisite:
+
+*
+
+Command: `help`
+
+Expected Output:
+
+*
+
+Expected Output in the Command Output Box:
+
+*
+
+### Adding a Client
+
+Pre-requisite:
+
+*
+
+Command: `help`
+
+Expected Output:
+
+*
+
+Expected Output in the Command Output Box:
+
+*
 
 ## **Appendix: Planned Enhancements**
 
