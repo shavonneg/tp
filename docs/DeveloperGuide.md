@@ -312,29 +312,33 @@ The following classes and methods have been added to support the implementation 
    of the system has a clear responsibility, reducing complexity and making the codebase easier to understand and
    maintain.
 
-#### Command and CommandParser Implementations
+### Editing an Order Feature
 
-To implement the new Order Logic, a new package has to be created within the commands and parser packages to cater to
-the order implementations. The key changes would be:
+This feature allows users to edit Orders objects in our application.
 
-- Creation of new classes:
-    - Created a `EditOrderCommand` class to cater to allow editing Orders by the user. It will first search the `Order`
-      objects in the `ObservableList` to ensure that the index is valid, before finding the `Client` object that
-      the `Order` object belongs to.
-      Afterwards, the `Order` object is edited, and will be replaced in the `Client` object's orders list to update the
-      details. This will be encapsulated and returned in a `Command` object that will be executed in the main logic.
-- Creation of new parser classes:
-    - Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
-      This flow is as intended, and will allow us to get index of the Order object in the `ObservableList` and get the
-      required parameters typed by the user by parsing it with
-      the `Prefix` objects in `CliSyntax` class. For this command, the prefixes used would be `d/` for description, `c/`
-      for price and `by/` for the deadline.
-      These prefixes are optional, and not including them will use the current `Order` object details.
-      At the end this will create the respective `EditOrderCommand` to be executed by the `LogicManager`.
+The following sequence diagram describes the flow:
 
-- Update `Model` and `ModelManager` to provide methods to support the new classes. such as creating the
-  new `ObservableList` object for `Order` objects to
-  update the JavaFX element in the UI.
+The following classes and methods have been added to support the implementation of this feature:
+
+1. `EditOrderCommand`  
+   Created a `EditOrderCommand` class to cater to allow editing Orders by the user. It will first search the `Order`
+   objects in the `ObservableList` to ensure that the index is valid, before finding the `Client` object that
+   the `Order` object belongs to.
+   Afterwards, the `Order` object is edited, and will be replaced in the `Client` object's orders list to update the
+   details. This will be encapsulated and returned in a `Command` object that will be executed in the main logic.
+2. `EditOrderCommandParser`  
+   Creating a `EditOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+   This flow is as intended, and will allow us to get index of the Order object in the `ObservableList` and get the
+   required parameters typed by the user by parsing it with
+   the `Prefix` objects in `CliSyntax` class. For this command, the prefixes used would be `d/` for description, `c/`
+   for price and `by/` for the deadline.
+   These prefixes are optional, and not including them will use the current `Order` object details.
+3. `EditOrderCommandParser#EditOrderDescriptor`  
+   This is a nested static class within the `EditOrderCommand` class that manages the `Order` information.
+   It's role is to temporarily hold the values of `Order` information that may or may not be updated. It acts as a data
+   transfer object that contains the details to be edited by the user.
+   Additionally, it helps to validate the fields to ensure that there are only valid values will be accepted, and to
+   parse and apply the edits.
 
 #### Why is it implemented this way:
 
@@ -347,20 +351,6 @@ It was done in this manner to adhere to the following design principles:
   Orders, we enhance our capability to directly manipulate the `OrderList` view in JavaFX. This adjustment in the
   ModelManager class creates a seamless and responsive interaction between the backend data structures and the frontend
   user interface.
-
-By doing so, am able to emphasize on the clear separation of duties among components and allowing flexibility to add
-new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
-enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
-codebase.
-
-How the parsing works:
-
-* When called upon to parse a user command, the `BookKeeperParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BookKeeperParser` returns back as
-  a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
-  interface so that they can be treated similarly where possible e.g, during testing.
 
 ### View Orders feature
 
