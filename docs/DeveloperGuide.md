@@ -832,3 +832,60 @@ testers are expected to do more *exploratory* testing.
     * There a constraints on size of values due to the innate storage system. Numbers cannot be too large.
         * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
           9,000,000,000).
+
+## **Appendix: Effort**
+
+Our project aimed to develop a comprehensive solution tailored for florist to manage both client information and order
+delivery tracking seamlessly. Unlike AB3. which focuses only on the client entity, our project extended its scope to
+include orders, thus introducing complexity in managing bidirectional navigation and ensuring seamless integration
+between client and order functionalities.
+
+### Challenges Faced
+
+1. *Bidirectional Navigation* - Implementing bidirectional navigation between orders and clients posed a significant
+   challenge. Ensuring that
+   modifications to one entity reflected accurately in the other required meticulous attention to detail.
+2. *Linking Orders to Clients* - Establishing a robust linkage between orders and clients presented difficulties,
+   especially during operations
+   like delete or edit. Coordinating changes on both client and order sides to maintain data correctness demanded
+   careful
+   planning and execution.
+3. *Collaborative Development* - Each team member had to work on features and functions independently, necessitating
+   close
+   collaboration to ensure seamless integration. Communication was important to minimize merging conflicts and ensure
+   that
+   individual components linked are successfully done.
+
+### Effort Required
+
+The project demanded a considerable effort due to its expanded scope and the complexities associated with managing
+multiple entity types. Coordinating development efforts, addressing integration challenges, and ensuring feature
+completeness required dedicated time and resources.
+
+### Achievements:
+
+Despite the challenges, we successfully delivered a robust product that allow florists to manage client information
+seamlessly while effectively tracking order deliveries.
+
+Key achievements include:
+
+* Implementing bidirectional navigation between client and order entities.
+* Establishing robust linkages between orders and clients, ensuring data consistency throughout.
+* Facilitating collaborative development and integration efforts to deliver a cohesive solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
