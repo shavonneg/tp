@@ -203,6 +203,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding the Order methods
 
+![BetterOrderClassDiagram.png](images%2FBetterOrderClassDiagram.png)
+
 #### Command and CommandParser Implementations
 
 To implement the new Order Logic, a new package has to be created within the commands and parser packages to cater to
