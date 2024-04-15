@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-BookKeeper *-right->  Order
+'BookKeeper *-right->  Order
 Order *--> Deadline
 Order *--> OrderDate
 Order *--> Price
