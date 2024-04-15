@@ -1115,3 +1115,10 @@ Expected Output in the Command Output Box:
     * There a constraints on size of values due to the innate storage system. Numbers cannot be too large.
         * E.g. do not input an Order Price that is unrealistically large for flower orders e.g. 9 billion (
           9,000,000,000).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
+
+* Used [AB3 developer guide](https://nus-cs2103-ay2324s2.github.io/tp/DeveloperGuide.html) for the initial template
+  and structure of this document.
